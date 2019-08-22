@@ -10,7 +10,7 @@ You can use this overlay by adding a file to `/etc/portage/repos.conf/` containi
 priority = 50
 location = /opt/portage/bombo82
 sync-type = git
-sync-uri = git@github.com:bombo82/bombo82-overlay.git
+sync-uri = https://github.com/bombo82/bombo82-overlay.git
 auto-sync = Yes
 ```
 
