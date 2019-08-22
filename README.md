@@ -1,8 +1,9 @@
-#bombo82-overlay
+# bombo82-overlay
+
 
 This is my own gentoo overlay, so none of these ebuilds will have official support.
 
-#Installation
+## Installation
 
 You can use this overlay by adding a file to `/etc/portage/repos.conf/` containing the following;
 ```bash
