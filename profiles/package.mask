@@ -1,0 +1,8 @@
+dev-util/clion:0
+dev-util/datagrip:0
+dev-util/goland:0
+dev-util/idea-ultimate:0
+dev-util/phpstorm:0
+dev-util/pycharm-professional:0
+dev-util/rubymine:0
+dev-util/webstorm:0
