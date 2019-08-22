@@ -15,6 +15,11 @@ sync-uri = https://github.com/bombo82/bombo82-overlay.git
 auto-sync = Yes
 ```
 
+Or add it from layman;
+```bash
+# layman -o https://raw.githubusercontent.com/bombo82/bombo82-overlay/master/repositories.xml -f -a bombo82
+```
+
 ## Contributing
 If you find an issue then please submit it on [the issue tracker](https://github.com/bombo82/bombo82-overlay/issues).
 

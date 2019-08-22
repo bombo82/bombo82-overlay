@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "https://www.gentoo.org/dtd/repositories.dtd">
+<repositories version="1.0">
+    <repo quality="experimental" status="unofficial">
+        <name>bombo82</name>
+        <description lang="en">Bombo82's own gentoo overlay</description>
+        <homepage>https://github.com/bombo82/bombo82-overlay</homepage>
+        <owner type="person">
+            <name>Gianni Bombelli (bombo82)</name>
+            <email>bombo82@giannibombelli.it</email>
+        </owner>
+        <source type="git">git@github.com:bombo82/bombo82-overlay.git</source>
+        <source type="git">https://github.com/bombo82/bombo82-overlay.git</source>
+        <feed>https://github.com/bombo82/bombo82-overlay/commits/master.atom</feed>
+    </repo>
+</repositories>
