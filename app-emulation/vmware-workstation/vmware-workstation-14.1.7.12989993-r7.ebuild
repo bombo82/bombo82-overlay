@@ -27,7 +27,7 @@ SRC_URI="
 
 LICENSE="GPL-2 GPL-3 MIT-with-advertising vmware"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="+bundled-libs cups doc macos-guests +modules ovftool server systemd vix"
 DARWIN_GUESTS="darwin darwinPre15"
 IUSE_VMWARE_GUESTS="${DARWIN_GUESTS} linux linuxPreGlibc25 netware solaris windows winPre2k winPreVista"
