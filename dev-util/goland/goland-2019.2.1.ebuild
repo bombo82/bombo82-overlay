@@ -18,7 +18,7 @@ RESTRICT="mirror splitdebug"
 IUSE="custom-jdk"
 
 RDEPEND="
-    dev-lang/go
+	dev-lang/go
 	!custom-jdk? ( virtual/jdk )"
 
 S="${WORKDIR}/GoLand-${PV}"
