@@ -5,4 +5,7 @@
         <email>bombo82@giannibombelli.it</email>
         <name>Gianni Bombelli (bombo82)</name>
     </maintainer>
+    <use>
+        <flag name="custom-jdk">Install and use JetBranins' custom JDK.</flag>
+    </use>
 </pkgmetadata>
