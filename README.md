@@ -5,7 +5,7 @@ This is my own gentoo overlay, so none of these ebuilds will have official suppo
 
 ## Installation
 
-You can use this overlay by adding a file to `/etc/portage/repos.conf/` containing the following;
+You can use this overlay by adding a file to `/etc/portage/repos.conf/` containing the following:
 ```bash
 [bombo82]
 priority = 50
@@ -17,7 +17,7 @@ auto-sync = Yes
 
 Or add it from layman;
 ```bash
-# layman -o https://raw.githubusercontent.com/bombo82/bombo82-overlay/master/repositories.xml -f -a bombo82
+# layman -f -a bombo82
 ```
 
 ## Contributing
