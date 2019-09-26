@@ -10,10 +10,10 @@ DESCRIPTION="GoLand is a cross-platform IDE built specially for Go developers"
 HOMEPAGE="https://www.jetbrains.com/go"
 SRC_URI="https://download.jetbrains.com/go/goland-${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_student-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
+LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror splitdebug"
+RESTRICT="bindist mirror splitdebug"
 IUSE="custom-jdk"
 
 RDEPEND="

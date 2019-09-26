@@ -6,21 +6,19 @@ EAPI=7
 
 inherit desktop eutils
 
-DESCRIPTION="The Lightning-Smart PHP IDE"
-HOMEPAGE="https://www.jetbrains.com/go"
-SRC_URI="https://download.jetbrains.com/webide/PhpStorm-${PV}.tar.gz -> ${P}.tar.gz"
+DESCRIPTION="Many databases, one tool"
+HOMEPAGE="https://www.jetbrains.com/datagrip"
+SRC_URI="https://download.jetbrains.com/datagrip/datagrip-${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_student-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
+LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror splitdebug"
+RESTRICT="bindist mirror splitdebug"
 IUSE="custom-jdk"
 
-RDEPEND="
-	!custom-jdk? ( virtual/jdk )"
+RDEPEND="!custom-jdk? ( virtual/jdk )"
 
-BUILD_NUMBER="192.6262.66"
-S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
+S="${WORKDIR}/DataGrip-${PV}"
 
 QA_PREBUILT="opt/${P}/*"
 
@@ -59,7 +57,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
 	newicon "bin/${PN}.svg" "${PN}.svg"
-	make_desktop_entry "${PN}" "PhpStorm ${SLOT}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "DataGrip ${SLOT}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

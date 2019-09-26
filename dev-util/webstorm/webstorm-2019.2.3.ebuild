@@ -6,20 +6,21 @@ EAPI=7
 
 inherit desktop eutils
 
-DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
-HOMEPAGE="https://www.jetbrains.com/ruby"
-SRC_URI="https://download.jetbrains.com/ruby/RubyMine-${PV}.tar.gz -> ${P}.tar.gz"
+DESCRIPTION="The smartest JavaScript IDE"
+HOMEPAGE="https://www.jetbrains.com/webstorm"
+SRC_URI="https://download.jetbrains.com/webstorm/WebStorm-${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_student-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
+LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror splitdebug"
+RESTRICT="bindist mirror splitdebug"
 IUSE="custom-jdk"
 
 RDEPEND="
 	!custom-jdk? ( virtual/jdk )"
 
-S="${WORKDIR}/RubyMine-${PV}"
+BUILD_NUMBER="192.6817.13"
+S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
 QA_PREBUILT="opt/${P}/*"
 
@@ -58,7 +59,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
 	newicon "bin/${PN}.svg" "${PN}.svg"
-	make_desktop_entry "${PN}" "RubyMine ${SLOT}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "WebStorm ${SLOT}" "${PN}" "Development;IDE;WebDevelopment;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

@@ -6,21 +6,20 @@ EAPI=7
 
 inherit desktop eutils
 
-DESCRIPTION="A complete toolset for web, mobile and enterprise development"
-HOMEPAGE="https://www.jetbrains.com/idea"
-SRC_URI="https://download.jetbrains.com/idea/ideaIU-${PV}.tar.gz -> ${P}.tar.gz"
+DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
+HOMEPAGE="https://www.jetbrains.com/ruby"
+SRC_URI="https://download.jetbrains.com/ruby/RubyMine-${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_student-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
+LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror splitdebug"
+RESTRICT="bindist mirror splitdebug"
 IUSE="custom-jdk"
 
 RDEPEND="
 	!custom-jdk? ( virtual/jdk )"
 
-BUILD_NUMBER="192.6603.28"
-S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
+S="${WORKDIR}/RubyMine-${PV}"
 
 QA_PREBUILT="opt/${P}/*"
 
@@ -42,7 +41,7 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/idea.sh
+	fperms 755 "${dir}"/bin/${PN}.sh
 
 	if use amd64; then
 		fperms 755 "${dir}"/bin/fsnotifier64
@@ -57,9 +56,9 @@ src_install() {
 		fi
 	fi
 
-	make_wrapper "${PN}" "${dir}/bin/idea.sh"
-	newicon "bin/idea.svg" "${PN}.svg"
-	make_desktop_entry "${PN}" "Idea Ultimate ${SLOT}" "${PN}" "Development;IDE;"
+	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
+	newicon "bin/${PN}.svg" "${PN}.svg"
+	make_desktop_entry "${PN}" "RubyMine ${SLOT}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
