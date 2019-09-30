@@ -6,11 +6,13 @@ EAPI=7
 
 inherit desktop eutils
 
-DESCRIPTION="The Python IDE for Professional Developers"
-HOMEPAGE="https://www.jetbrains.com/pycharm"
-SRC_URI="https://download.jetbrains.com/python/pycharm-professional-${PV}.tar.gz -> ${P}.tar.gz"
+DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
+HOMEPAGE="https://www.jetbrains.com/ruby"
+SRC_URI="https://download.jetbrains.com/ruby/RubyMine-${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
+LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
+"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="bindist mirror splitdebug"
@@ -19,7 +21,7 @@ IUSE="custom-jdk"
 RDEPEND="
 	!custom-jdk? ( virtual/jdk )"
 
-S="${WORKDIR}/pycharm-${PV}"
+S="${WORKDIR}/RubyMine-${PV}"
 
 QA_PREBUILT="opt/${P}/*"
 
@@ -41,7 +43,7 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/pycharm.sh
+	fperms 755 "${dir}"/bin/${PN}.sh
 
 	if use amd64; then
 		fperms 755 "${dir}"/bin/fsnotifier64
@@ -56,9 +58,9 @@ src_install() {
 		fi
 	fi
 
-	make_wrapper "${PN}" "${dir}/bin/pycharm.sh"
-	newicon "bin/pycharm.svg" "${PN}.svg"
-	make_desktop_entry "${PN}" "PyCharm ${SLOT}" "${PN}" "Development;IDE;"
+	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
+	newicon "bin/${PN}.svg" "${PN}.svg"
+	make_desktop_entry "${PN}" "RubyMine ${SLOT}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

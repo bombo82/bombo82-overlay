@@ -1,0 +1,259 @@
+IMPORTANT! READ CAREFULLY: THIS IS A LEGAL AGREEMENT. BY DOWNLOADING,
+INSTALLING, COPYING, SAVING ON YOUR COMPUTER, OR OTHERWISE USING THIS
+SOFTWARE, YOU (AS DEFINED BELOW) ARE BECOMING A PARTY TO THIS AGREEMENT AND
+YOU ARE CONSENTING TO BE BOUND BY ALL THE TERMS AND CONDITIONS OF THIS
+AGREEMENT.
+IF YOU DO NOT AGREE TO THE TERMS AND CONDITIONS OF THIS AGREEMENT, THEN YOU
+SHOULD NOT DOWNLOAD OR INSTALL THE SOFTWARE, YOU SHOULD NOT USE THE
+SOFTWARE, AND IF YOU ALREADY DOWNLOADED OR INSTALLED THE SOFTWARE YOU
+SHOULD REMOVE THE SOFTWARE FROM YOUR SYSTEM AND DESTROY ALL COPIES.
+Upon Your acceptance of this License Agreement (the "Agreement"), YourKit grants to You a non-exclusive
+and non-transferable license to use the Software, provided that You agree to the following:
+PARTIES
+"YourKit" means YourKit GmbH.
+"You" means an individual or a legal entity exercising rights under, and complying with all of the terms of,
+this Agreement. For legal entities, "You" includes any entity which controls, is controlled by, or is under
+common control with You. For purposes of this definition, "control" means (a) the power, direct or indirect,
+to cause the direction or management of such entity, whether by contract or otherwise, or (b) ownership of
+fifty percent (50%) or more of the outstanding shares or beneficial ownership of such entity.
+DEFINITIONS
+"Software" means the binary code of YourKit Java Profiler with its Documentation.
+GRANT OF LICENSE
+The Software is the property of YourKit. The Software is licensed, not sold. Title and copyrights to the
+Software, in whole and in part and all copies thereof, and all modifications, enhancements, derivatives and
+other alterations of the Software regardless of who made any modifications, if any, are, and will remain, the
+sole and exclusive property of YourKit.
+The Software is protected by United States Copyright Law and International Treaty provisions. Further, the
+structure, organization, and code embodied in the Software are the valuable and confidential trade secrets of
+YourKit and are protected by intellectual property laws and treaties. You agree to abide by the copyright law
+and all other applicable laws of the United States including, but not limited to, export control laws.
+Your acceptance of this Agreement gives You certain obligations and limited rights to use the Software as set
+forth in this Agreement.
+(a) PER-SEAT LICENSE
+You may:
+(i) install and run the number of copies of the Software for which the corresponding fee has been paid;
+(ii) enable profiling in any number of Java applications simultaneously, running them with the profiler agent
+(yjpagent.dll or libyjpagent.so or libyjpagent.jnilib);
+(iii) make one copy of the Software for archival purposes;
+(iv) deactivate (uninstall) an existing copy in order to install a new copy on another machine. Within the
+support period, YourKit will do its best to fulfill the deactivation request in a timely manner. After the
+support period has ended, you may deactivate an existing copy not sooner than 24 hours after the previous 
+successful deactivation;
+You may not:
+(v) sell, redistribute, encumber, give, lend, rent, lease, sublicense, or otherwise transfer the Software, or any
+portions of the Software, to anyone without the prior written consent of YourKit;
+(vi) reverse engineer, decompile, disassemble, modify, translate, make any attempt to discover the source
+code of the Software, or create derivative works from the Software;
+(vii) install and run the Software from a network server.
+For exceptions or modifications to this Agreement, please contact YourKit.
+(b) FLOATING LICENSE
+You may:
+(i) install and use one or more copies of the license server;
+(ii) install any number of copies of the Software;
+(iii) have the number of concurrent users of the installed copies of the Software which does not exceed the
+number for which the corresponding fee has been paid;
+(iv) enable profiling in any number of Java applications simultaneously, running them with the profiler agent
+(yjpagent.dll or libyjpagent.so or libyjpagent.jnilib);
+(v) make one copy of the Software for archival purposes;
+(vi) make one copy of the license server for archival purposes;
+You may not:
+(vii) install particular floating license key to more than one copy of the license server;
+(viii) sell, redistribute, encumber, give, lend, rent, lease, sublicense, or otherwise transfer the Software, or
+any portions of the Software, to anyone without the prior written consent of YourKit;
+(ix) reverse engineer, decompile, disassemble, modify, translate, make any attempt to discover the source
+code of the Software, or create derivative works from the Software.
+For exceptions or modifications to this Agreement, please contact YourKit.
+(c) ENTERPRISE LICENSE
+You may:
+(i) install and run the number of copies of the Software for which the corresponding fee has been paid;
+(ii) enable profiling in any number of Java applications simultaneously, running them with the profiler agent
+(yjpagent.dll or libyjpagent.so or libyjpagent.jnilib);
+(iii) make one copy of the Software for archival purposes;
+(iv) deactivate (uninstall) an existing copy in order to install a new copy on another machine. Within the
+support period, YourKit will do its best to fulfill the deactivation request in a timely manner. After the
+support period has ended, you may deactivate an existing copy not sooner than 24 hours after the previous
+successful deactivation;
+You may not:
+(v) sell, redistribute, encumber, give, lend, rent, lease, sublicense, or otherwise transfer the Software, or any
+portions of the Software, to anyone without the prior written consent of YourKit;
+(vi) reverse engineer, decompile, disassemble, modify, translate, make any attempt to discover the source
+code of the Software, or create derivative works from the Software; 
+(vii) install and run the Software from a network server.
+For exceptions or modifications to this Agreement, please contact YourKit.
+(d) PERSONAL LICENSE
+Personal license is granted to individuals only. Thus personal license can not be granted to legal entities.
+You may:
+(i) install and use up to 3 copies of the Software simultaneously;
+(ii) enable profiling in any number of Java applications simultaneously, running them with the profiler agent
+(yjpagent.dll or libyjpagent.so or libyjpagent.jnilib);
+(iii) make one copy of the Software for archival purposes;
+(iv) deactivate (uninstall) an existing copy in order to install a new copy on another machine. Within the
+support period, YourKit will do its best to fulfill the deactivation request in a timely manner. After the
+support period has ended, you may deactivate an existing copy not sooner than 24 hours after the previous
+successful deactivation;
+You may not:
+(v) allow other persons use the copies of the Software activated with your license key;
+(vi) sell, redistribute, encumber, give, lend, rent, lease, sublicense, or otherwise transfer the Software, or any
+portions of the Software, to anyone without the prior written consent of YourKit;
+(vii) reverse engineer, decompile, disassemble, modify, translate, make any attempt to discover the source
+code of the Software, or create derivative works from the Software;
+(viii) install and run the Software from a network server.
+For exceptions or modifications to this Agreement, please contact YourKit.
+(e) PER-SEAT ACADEMIC LICENSE
+You may:
+(i) install and run the number of copies of the Software for which the corresponding fee has been paid;
+(ii) use the Software for non-commercial purposes only including conducting academic research or providing
+educational services. You certify that use is directly related to teaching or that use is strictly for noncommercial research by students and faculty members where the results of such research are not intended
+primarily for the benefit of a third party;
+(iii) enable profiling in any number of Java applications simultaneously, running them with the profiler agent
+(yjpagent.dll or libyjpagent.so or libyjpagent.jnilib);
+(iv) make one copy of the Software for archival purposes;
+(v) deactivate (uninstall) an existing copy in order to install a new copy on another machine. Within the
+support period, YourKit will do its best to fulfill the deactivation request in a timely manner. After the
+support period has ended, you may deactivate an existing copy not sooner than 24 hours after the previous
+successful deactivation;
+You may not:
+(vi) sell, redistribute, encumber, give, lend, rent, lease, sublicense, or otherwise transfer the Software, or any
+portions of the Software, to anyone without the prior written consent of YourKit;
+(vii) reverse engineer, decompile, disassemble, modify, translate, make any attempt to discover the source
+code of the Software, or create derivative works from the Software; 
+(viii) install and run the Software from a network server.
+For exceptions or modifications to this Agreement, please contact YourKit.
+(f) INSTITUTION-WIDE ACADEMIC LICENSE
+You may:
+(i) install any number of copies of the Software; the number of concurrent users of the installed copies is
+unlimited;
+(ii) use the Software for non-commercial purposes only including conducting academic research or providing
+educational services. You certify that use is directly related to teaching or that use is strictly for noncommercial research by students and faculty members where the results of such research are not intended
+primarily for the benefit of a third party;
+(iii) enable profiling in any number of Java applications simultaneously, running them with the profiler agent
+(yjpagent.dll or libyjpagent.so or libyjpagent.jnilib);
+(iv) make one copy of the Software for archival purposes;
+You may not:
+(v) sell, redistribute, encumber, give, lend, rent, lease, sublicense, or otherwise transfer the Software, or any
+portions of the Software, to anyone without the prior written consent of YourKit;
+(vi) reverse engineer, decompile, disassemble, modify, translate, make any attempt to discover the source
+code of the Software, or create derivative works from the Software;
+(vii) install and run the Software from a network server.
+For exceptions or modifications to this Agreement, please contact YourKit.
+(g) OPEN SOURCE PROJECT LICENSE
+You may:
+(i) install and use as many copies of the Software as licensed;
+(ii) use the Software for development of the particular project only;
+(iii) use the Software for non-commercial purposes only; use must not be intended primarily for the benefit of
+a third party;
+(iv) enable profiling in any number of Java applications simultaneously, running them with the profiler agent
+(yjpagent.dll or libyjpagent.so or libyjpagent.jnilib);
+(v) make one copy of the Software for archival purposes;
+(vi) deactivate (uninstall) an existing copy in order to install a new copy on another machine. Within the
+support period, YourKit will do its best to fulfill the deactivation request in a timely manner. After the
+support period has ended, you may deactivate an existing copy not sooner than 24 hours after the previous
+successful deactivation;
+You may not:
+(vii) allow other persons use the copies of the Software activated with your license key;
+(viii) sell, redistribute, encumber, give, lend, rent, lease, sublicense, or otherwise transfer the Software, or
+any portions of the Software, to anyone without the prior written consent of YourKit;
+(ix) reverse engineer, decompile, disassemble, modify, translate, make any attempt to discover the source
+code of the Software, or create derivative works from the Software;
+(x) install and run the Software from a network server. 
+For exceptions or modifications to this Agreement, please contact YourKit.
+RESTRICTED USE DURING EVALUATION PERIOD
+You have a nonexclusive, nontransferable license to load and execute the unregistered copy of Software for a
+period of fifteen (15) days. (the "Evaluation Period")
+The unregistered copy of Software may be used for evaluation and testing purposes only and not for general
+commercial use.
+You must pay a license fee for the Software to obtain the right to use the Software for general commercial
+use and(or) for unlimited period.
+The unregistered copy of Software contains a feature that will automatically disable the Software in fifteen
+(15) days after sending the evaluation key to You. If You agree to this YourKit License Agreement and pay
+the license fee, YourKit will deactivate this feature. YourKit will have no liability to You if the Software is
+disabled by this feature. You may not disable, destroy, or remove this feature of the Software, and any
+attempt to do so will terminate your license and rights under this Agreement.
+RESTRICTED USE OF EARLY ACCESS SOFTWARE
+YourKit Early Access Program (EAP) is the easiest way to get in touch with the latest technologies from
+YourKit. Within the EAP You can get an early access to new products and internal builds of future versions
+of YourKit software ("Early Access Software").
+NOTE: EARLY ACCESS SOFTWARE IS A PREVIEW SOFTWARE AIMED AT PROVIDING YOU
+WITH AN OPPORTUNITY TO TEST THE NEWEST FEATURES SCHEDULED FOR THE NEXT
+MAJOR RELEASE. YOURKIT DOES NOT GUARANTEE THAT THIS SOFTWARE WILL RUN
+TROUBLE-FREE. USING THIS SOFTWARE IS AT YOUR OWN DISCRETION AND DOES NOT
+ENTITLE YOU TO ANY CUSTOMER SUPPORT.
+You have a nonexclusive, nontransferable license to load and execute a copy of the Early Access Software
+for a limited period of time. You must immediately cease using the Early Access Software and delete all its
+copies as soon as one of the following conditions is met, whichever comes first:
+(i) the Early Access Program for this Software version is over; this usually, but not necessarily, implies that
+an official release is made available;
+(ii) more than 90 days have passed since the date of particular Early Access Software build release date and a
+newer Early Access build is available;
+(iii) the Early Access Software may contain a feature that automatically disables the Software after some
+period of time, without any prior notice; YourKit will have no liability to You if the Software is disabled by
+this feature. You may not disable, destroy, or remove this feature of the Software, and any attempt to do so
+will terminate your license and rights under this Agreement.
+The Early Access Software may be used for evaluation and testing purposes only and not for general
+commercial use.
+RESTRICTED USE ON SOME PLATFORMS
+The Software may be used on any supported platform with the restriction described below. There are socalled advanced platforms, which include AIX, Solaris, HP-UX, and Linux on PPC (PPC 32-bit, PPC 64-bit
+big and little endian). The Software may run on an advanced platform, a JVM running on an advanced
+platform may be profiled (i.e. a running JVM may be connected), and results obtained on an advanced 
+platform may be analyzed (i.e. a snapshot of a JVM running on an advanced platform may be opened or
+exported) only if the license is with the advanced support level. Hence, a license with the basic support level
+does not entitle profiling on the advanced platforms.
+PATENT AND COPYRIGHT INDEMNITY
+YourKit will defend and indemnify You for all costs (including reasonable attorneys fees) arising from a
+claim that Software furnished and used within the scope of this Agreement infringes a U.S. copyright or U.S.
+patent provided that (i) You notify YourKit in writing within 30 days of the claim, (ii) YourKit has sole
+control of the defense and all related settlement negotiations, and (iii) You provide YourKit with the
+assistance, information, and authority necessary to perform the above.
+YourKit will have no liability for any claim of infringement based on (i) code contained within the Software
+which was not created by YourKit (ii) use of a superseded or altered release of the Software, except for such
+alteration(s) or modification(s) which have been made by YourKit or under YourKit's direction, if such
+infringement would have been avoided by the use of a current, unaltered release of the Software that YourKit
+provides to You, or (iii) the combination, operation, or use of any Software furnished under this Agreement
+with programs or data not furnished by YourKit if such infringement would have been avoided by the use of
+the Software without such programs or data.
+In the event the Software is held or believed by YourKit to infringe, or Your use of the Software is enjoined,
+YourKit will have the option, at its expense, to (i) modify the Software to cause it to become non-infringing,
+(ii) obtain for You a license to continue using the Software, (iii) substitute the Software with other Software
+reasonably suitable to You, or (iv) if none of the foregoing remedies are commercially feasible, terminate the
+license for the infringing Software and refund any license fees paid for the Software, prorated over a threeyear term from the effective date of the Agreement. This Section states YourKit's entire liability for
+infringement.
+LIMITED WARRANTY
+THE SOFTWARE IS DELIVERED TO YOU "AS IS" AND YOURKIT MAKES NO WARRANTY AS TO
+ITS USE OR PERFORMANCE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW,
+YOURKIT DISCLAIMS ALL OTHER WARRANTIES AND CONDITIONS, EITHER EXPRESS OR
+IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT, WITH REGARD TO
+THE SOFTWARE, AND THE PROVISION OF OR FAILURE TO PROVIDE SUPPORT SERVICES.
+THIS LIMITED WARRANTY GIVES YOU SPECIFIC LEGAL RIGHTS. YOU MAY HAVE OTHERS,
+WHICH VARY FROM STATE/JURISDICTION TO STATE/JURISDICTION
+DISCLAIMER OF DAMAGES
+REGARDLESS OF WHETHER ANY REMEDY SET FORTH HEREIN FAILS OF ITS ESSENTIAL
+PURPOSE, IN NO EVENT WILL YOURKIT BE LIABLE TO YOU FOR ANY SPECIAL,
+CONSEQUENTIAL, INDIRECT OR SIMILAR DAMAGES, INCLUDING ANY LOST PROFITS OR
+LOST DATA ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE EVEN IF
+YOURKIT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+IN ANY CASE, YOURKIT' ENTIRE LIABILITY UNDER ANY PROVISION OF THIS AGREEMENT
+SHALL BE LIMITED TO THE AMOUNT ACTUALLY PAID BY YOU FOR THE SOFTWARE.
+BECAUSE SOME STATES AND JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR
+LIMITATION OF LIABILITY, THE ABOVE LIMITATION MAY NOT APPLY TO YOU. 
+TERMINATION
+YourKit may terminate the right to use the Software upon notice to You (which may be delivered
+electronically by the same means as this Software is distributed), and You may terminate this Agreement at
+any time by destroying or erasing your copy of the Software. This Agreement automatically terminates if
+You fail to comply with its terms and conditions. Upon the termination of this Agreement, You must
+discontinue all use of the Software and remove the Software from your system. YourKit reserves the right at
+any time to cease the support of the Software and to alter prices, features, specifications, capabilities,
+functions, licensing terms, release dates, general availability or other characteristics of the Software.
+MARKETING
+You agree to be identified as a customer of YourKit and You agree that YourKit may refer to You by name,
+trade name and trademark, if applicable, and may briefly describe Your business in YourKit' marketing
+materials and web site. You hereby grant YourKit a license to use Your name and any of Your trade names
+and trademarks solely in connection with the rights granted to YourKit pursuant to this marketing section.
+GENERAL
+This Agreement will be governed by the laws of Germany, without reference to conflict of laws principles.
+The rights are granted worldwide. This Agreement is the entire agreement between us and supersedes any
+other communications or advertising with respect to the Software and accompanying documentation. If any
+provision of this Agreement is held invalid, the remainder of this Agreement will continue in full force and
+effect. If you have any questions, please contact YourKit by email: sales@yourkit.com or
+support@yourkit.com. This Agreement may only be modified by written document which has been signed by
+both You and YourKit. 

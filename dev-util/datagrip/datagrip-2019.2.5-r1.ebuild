@@ -1,39 +1,33 @@
-# Copyright 1999-2019 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
+# Copyright 2019 Gianni Bombelli <bombo82@giannibombelli.it>
+# Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
+# either version 2 of the License, or (at your option) any later version.
 
 EAPI=7
 
 inherit desktop eutils
 
-DESCRIPTION="A cross-platform IDE for C and C++"
-HOMEPAGE="https://www.jetbrains.com/clion"
-SRC_URI="https://download.jetbrains.com/cpp/CLion-${PV}.tar.gz -> ${P}.tar.gz"
+DESCRIPTION="Many databases, one tool"
+HOMEPAGE="https://www.jetbrains.com/datagrip"
+SRC_URI="https://download.jetbrains.com/datagrip/datagrip-${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )"
+LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
+	Apache-1.1 Apache-2.0 BSD BSD-2 CDDL GPL-2-with-classpath-exception LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL yFiles
+"
 SLOT="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="bindist mirror splitdebug"
 IUSE="custom-jdk"
 
-# RDEPENDS may cause false positives in repoman.
-# clion requires cmake and gdb at runtime to build and debug C/C++ projects
-RDEPEND="
-	dev-util/cmake
-	sys-devel/gdb
-	!custom-jdk? ( virtual/jdk )"
+RDEPEND="!custom-jdk? ( virtual/jdk )"
+
+S="${WORKDIR}/DataGrip-${PV}"
 
 QA_PREBUILT="opt/${P}/*"
 
 src_prepare() {
 	default
 
-	local remove_me=(
-		bin/gdb/linux
-		bin/lldb/linux
-		bin/cmake
-		license/CMake*
-		lib/pty4j-native/linux/ppc64le
-	)
+	local remove_me=()
 
 	use amd64 || remove_me+=( bin/fsnotifier64 lib/pty4j-native/linux/x86_64)
 	use x86 || remove_me+=( bin/fsnotifier lib/pty4j-native/linux/x86)
@@ -48,7 +42,7 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{${PN}.sh,clang/linux/clang{d,-tidy}}
+	fperms 755 "${dir}"/bin/${PN}.sh
 
 	if use amd64; then
 		fperms 755 "${dir}"/bin/fsnotifier64
@@ -65,7 +59,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
 	newicon "bin/${PN}.svg" "${PN}.svg"
-	make_desktop_entry "${PN}" "CLion ${SLOT}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "DataGrip ${SLOT}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

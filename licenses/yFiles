@@ -1,0 +1,193 @@
+Dated February 4th, 2016
+
+This Software License Agreement is a legal agreement ("Agreement") between you or the entity you represent (referred to as "you" or "Licensee" as identified in more detail on the applicable license order) and yWorks GmbH ("Licensor" or "yWorks").
+
+By downloading, installing, or using the yFiles for Java software (together with its accompanying documentation and support material, collectively "Software"), you indicate that you read and accept the provisions of this Agreement and that you agree to be bound by all terms and conditions set forth herein. yWorks is only willing to enter with you in this Agreement and grant you a Software license ("License") if you obtained the Software from yWorks or a yWorks' authorized reseller. If you obtained the Software from any other source you may not install or use the Software.
+
+PLEASE READ THIS SOFTWARE LICENSE AGREEMENT CAREFULLY BEFORE USING THE SOFTWARE. YWORKS LICENSES THE SOFTWARE ONLY ON THE CONDITION THAT LICENSEE ACCEPTS ALL OF THE TERMS CONTAINED OR REFERENCED IN THIS AGREEMENT. IF YOU DO NOT WISH TO BECOME A PARTY OF THIS AGREEMENT AND BE BOUND BY ALL OF ITS TERMS AND CONDITIONS, DO NOT INSTALL OR USE THIS SOFTWARE AND DESTROY THE SOFTWARE AND ALL COPIES OF THE SOFTWARE IN YOUR POSSESSION.
+
+The terms of this Agreement apply to the Software provided with this Agreement, all updates or upgrades to the Software that may be provided later by yWorks as part of any maintenance, technical support, or other services program for the Software, unless such update or upgrade comes with separate Software License terms. Software does not include any certain third party software that yWorks provides to you but that is subject to separate License terms either presented at the time of installation or otherwise provided with the Software.
+
+If you are entering into this Agreement on behalf of a company or other legal entity, you represent that you have the legal authority to bind such entity to these terms.
+
+All modifications or extensions of this Agreement need to be in writing signed by both parties.
+
+In the event of conflict or inconsistency among incorporated terms and stipulations within the Agreement, the following order of precedence shall apply:
+
+(1) Individual agreements, signed by both parties
+
+(2) yWorks product-related specific Software License Terms
+
+(3) yWorks Sales and Delivery Terms
+
+(4) Other documents (e.g. service specifications, statements of work, exhibits, attachments)
+
+1. Ownership
+The Software is licensed to you, not sold, notwithstanding any reference herein to "sale" and "purchase". The Software and all copies thereof are proprietary to yWorks and title thereto remains in yWorks, at all times. You agree that the Software contains proprietary information, including trade secrets, know-how and confidential information (the "Confidential/Proprietary Information"). The Software is protected by international copyright laws, the copyright laws of Germany, and other intellectual property rights. All rights in and to the Software not expressly granted herein are reserved by yWorks. There are no implied licenses under this Agreement. Except as expressly allowed by this Agreement, Licensee shall not use or disclose any Software technology, idea, algorithm or information except to the extent Licensee can document that it is generally available for use and disclosure by the public without any charge or license.
+
+If the License for the Software is purchased by you with any intent to breach yWorks' Intellectual Property Rights, especially with the intent to reverse engineer, decompile, unauthorized transfer Proprietary Information, to include any exposed methods or source code where provided, no licensed right of use shall exist, and any products created as a result shall be judged illegal by definition of all applicable law. Any sale or resale of Proprietary Information or created derivatives so obtained will be prosecuted to the fullest extent of all local, federal, and international law. Violators will be prosecuted to the maximum extent possible.
+
+yWorks has full power and authority to grant Licensee the rights granted herein. yWorks warrants that the performance of the terms herein and of yWorks' duties to the Licensee hereunder will not breach any separate agreement or arrangement by which yWorks is bound. yWorks warrants that the Software delivered to the Licensee hereunder do not violate or infringe any patent, copyright, trade secret or other proprietary right of any third party, and that yWorks is not aware of any facts upon which such a claim for infringement could be based.
+
+2. License Grant
+2.1. Rights and Limitations
+The following rights and restrictions apply to all Licenses for the Software granted to you under this Agreement:
+
+(a) You may not sell, rent, loan, or otherwise encumber or transfer the Software in whole or in part, to a third party, except as expressly granted below.
+
+(b) The Software may include certain files intended for distribution by you to the users of the software applications that you create. These files are called Redistributable(s) and include library files. You may not distribute any files, except those that yWorks has expressly designated as Redistributable. Developer Guide of Software (if any) or any other documents (such as API documentation) which are intended to teach you how to use the Software are not considered Redistributable(s).
+
+(c) You are entitled to deliver Redistributables as part of your own software applications if and only if the Redistributables have been protected by obfuscation via an obfuscator prior to distribution. Minimum requirement on the obfuscation process is that all essential class and type names, as well as class and type member names contained in the Software Redistributables are obfuscated. With the obfuscation it shall no longer be possible to use the functionality of the Redistributables via their public API. The obfuscation of the Redistributables may be performed by any obfuscator fulfilling the minimum requirement as defined above.
+
+(d) Your own software applications may not expose the functionality provided by the Software in a way that enables a third party to use these applications as a complete or partial replacement of the Software. This especially means that your applications may not expose an API to a third party that will allow them to access functionality provided by the Software. Redistributables may only be distributed with and for the sole purpose of executing applications permitted under this Agreement and which you have created using the Software.
+
+(e) You may not remove, alter, or obscure any confidentiality or proprietary notices (including copyright and trademark notices) of yWorks or its suppliers on, in, or displayed by the Software.
+
+(f) You may not reproduce or use the Software except as expressly authorized under this Section 2.
+
+2.2. Library License
+The Library License for the Software grants you the right to use the API of the Software Redistributables to develop software applications.
+
+You are not allowed to reverse engineer, decompile, de-obfuscate or otherwise attempt to derive the source code of the Software, create derivative works, modify, translate, or disassemble the Software, unless and only to the extent that such activity is expressly permitted by applicable law or by this Agreement.
+
+2.2.1. Evaluation License
+If you received the Software on an evaluation basis ("Evaluation License"), then the evaluation version of the Software is licensed to you for evaluation purposes only. The Evaluation License is a Library License. The evaluation period is up to sixty (60) days from the date of installation or such shorter or longer time period as set forth on the Software's packaging, license certificate, or accompanying documentation. During the evaluation period yWorks grants you a personal, non-transferable, non-exclusive limited license to install and execute the Software for your personal internal use.
+
+Upon completion of the evaluation period all copies of the Software and all data derived from the Software have to be completely deleted unless you acquire a regular license for the Software. If you desire to continue to use the Software following the evaluation period, you should contact yWorks or a yWorks' authorized reseller to order a regular license to use the Software.
+
+2.2.2. Single Developer License
+A Single Developer License is a non-exclusive, perpetual, royalty free Library License for the Software. The License is valid for one (1) individual developer who has to be specified in the License Order. The Single Developer License grants the individual developer the right to install and use multiple copies of the Software. Each individual developer with access to the Software needs a Single Developer License for the Software of his own. The Single Developer License cannot be shared or used concurrently by more than one individual developer. The Single Developer License is NOT a 'floating' license, that is, you cannot temporarily transfer access rights to another user. You may not transfer the Single Developer License to another developer except for the named developer is leaving the company or the team that is using the Software. yWorks has to be notified in writing and provided with the name of the new-assigned individual developer.
+
+2.2.3. Project License
+A Project License is a non-exclusive, perpetual, royalty free Library License for the Software that is valid for one named application ("Authorized Application" or "Authorized Project"). The Authorized Application has to be specified in the License Order. The Project License covers new versions and different editions of the Authorized Application as long as they are in the evolutionary line of it.
+
+The Project License grants you the right to use the Software concurrently by up to three (3) individual developers participating in the Authorized Project. For an additional License fee additional developer seats may be added to a Project License at any time. A Project License also allows you to use the Software as part of an automated build process for the Authorized Project.
+
+In case the Authorized Project changes its name, yWorks has to be notified in writing if the Project License shall cover the new-named application. In such cases, yWorks reserves the right to ask for a technical description that allows yWorks to verify that the newly named Authorized Project is a continuation of the Authorized Project.
+
+2.2.4. Site License
+A Site License is a non-exclusive, perpetual, royalty free Library License for the Software that is valid for one authorized site. The authorized site must be a specific place of business of Licensee that is defined by its mail address and has to be specified in the License Order. If projects that are hosted at different or multiple sites need to access the Software, each such site requires a separate License for the Software. A Site License grants you the right to share or use the Software concurrently by multiple individual developers at the authorized site. Furthermore, it can be used with multiple projects hosted at this site.
+
+2.3. Source Code License
+A Source Code License is available as Site or Project License with the additional right to use and modify the source code of the Software.
+
+yWorks shall retain all right, title, and interest in and to all updates, modifications, enhancements and derivative works, in whole or in part, of the Software source code created by you, including all copyrights subsisting therein, to the extent such modifications, enhancements or derivative works contain copyrightable code or expression derived from the Software source code.
+
+You may not distribute, disclose, or otherwise make available the Software source code, or any portion thereof, or any modified version or derivative work thereof to any third party without the express prior written consent of yWorks.
+
+Under no circumstances may the source code be used in whole or in part as the basis for creating a product that provides the same, or substantially the same, functionality as the Software.
+
+2.4. Academic License
+If the Software is labeled or provided to you as "Academic License", the following restrictions to the license definitions 2.1-2.3 apply: An Academic License restricts the use of the Software to non-commercial purposes (research, teaching, university projects, courses and application development). Any software application developed under an Academic License may not be licensed in whole or in part, to a third party being a commercial institution or a party that commercially uses the Software. Hereby, commercial institution is defined to be any company or organization with profit interest, commercial use is defined as any use within a commercial institution, any use with profit interest or any use within a cooperation of two or more parties with at least one party having a profit interest.
+
+2.5. Subscription
+Subject to the provisions contained in this Agreement, and timely payment of the applicable fees for maintenance and support services, yWorks offers Software maintenance and support services ("Subscription") to you. yWorks is not obliged to provide maintenance and support services to you outside a current Subscription.
+
+You can enter into a Subscription along with the purchase of the Software License ("Corresponding License"). Effective date of the Subscription is the invoice date of the Corresponding License. Subscription is generally offered in one-year increments. It is rendered for an initial term of twelve (12) months from the effective date ("Initial Term").
+
+You may purchase a renewal of your Subscription for an additional term ("Renewal Term") at the end of the Initial Term and any anniversary thereof. If you do not purchase a renewal for your Subscription prior to the end of its Initial or Renewal Term, your Subscription and your entitlement to receive maintenance and support services will automatically expire.
+
+yWorks has the right to give you notice of non-renewal at the end of a Subscription Initial or Renewal Term for any reason, including but not limited to circumstances where the Software has become obsolete or has been modified. Your Subscription shall terminate immediately upon termination of your Corresponding License.
+
+yWorks will only support the most current maintenance release of major versions of the Software. Six (6) months after the release of a new major version, yWorks may stop maintaining and supporting an older major version of the Software.
+
+yWorks and you agree to cooperate in good faith to achieve satisfactory results during the Term of your Subscription. You understand that the level of support that yWorks is able to provide is dependent upon your cooperation and the quantity and quality of information that you can provide. You agree to provide yWorks with such information as yWorks may reasonably require for fulfilling its Subscription obligations.
+
+Your Subscription includes (i) all versions and upgrades of the Corresponding License released during the Term, (ii) email based technical support for the Corresponding License and access to online support material during the Term, and (iii) in case of a Subscription renewal for another year, the right to renew your Subscription at expiration date for just a renewal fee.
+
+yWorks maintains qualified personnel to provide timely and knowledgeable Subscription services. You agree to maintain qualified personnel capable to use the Software.
+
+When you encounter a Software problem, you need to report the problem to yWorks. In your problem or bug report, you must include a detailed description of the problem accompanied by a self-contained source code sample that allows yWorks to easily reproduce the problem. yWorks will address your problem, and provide you with bug fixes or workarounds in case of Software bugs.
+
+yWorks does not support third party software. With respect to third party software support, yWorks' responsibility is restricted to passing through to you any warranties extended by the third-party.
+
+2.6. Deliverables
+yWorks shall provide you with the electronic documentation and with the licensed Software (Internet delivery). The Software shall be deemed accepted after a period of fifteen (15) days following delivery of the Software.
+
+2.7. Upgrade Eligibility
+As Licensee of the Software you are eligible to receive cost free upgrades in case they belong to the generation of the Software you have licensed. The generation of the Software is recognizable by the leading two numbers of the Software version number string (for example Software version 5.0.1 is of generation 5.0). Free trial licenses are not eligible for free upgrading.
+
+2.8. Backups
+You may make a reasonable number of backup copies of the Software during the term of this Agreement as long as you do not use such backup copies for any purpose other than to replace the original copy of the Software provided to you by yWorks if such copy is damaged or destroyed.
+
+3. Services
+There are no services provided under this Agreement. You are responsible for installing the Software on your computers as permitted under this Agreement. Support, maintenance and other services must be purchased separately.
+
+4. Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS" AND TO THE MAXIMUM EXTENT PERMITTED BY LAW WITHOUT WARRANTY OF ANY KIND. There is no warranty that the product will be error-free or will function without interruption.
+
+yWorks warrants however that the Licensed Software will be free from material errors and will operate substantially in accordance with the related documentation for a period of six months. Licensee's sole remedy and Licensor's sole and exclusive liability for the breach of this warranty shall be repair or replacement of the Licensed Software within thirty (30) days from being notified of such breach, or, if the Licensor deems such repair or replacement impossible within the foregoing thirty (30) days, refund fees previously paid to Licensor by Licensee for the previous six months period.
+
+yWorks makes no other warranties, either express or implied, regarding the Software, including but not limited to its merchantability or its fitness for any particular purpose. Licensee takes note of the fact that the Software is neither developed nor intended for high risk activities such as in the operation of nuclear facilities, aircraft navigation, traffic control, direct life support machines, or weapon systems, in which the failure of the Software could lead directly to death, personal injury, or severe physical or environmental damage. Any liability therefore is excluded.
+
+yWorks provides no warranty to third parties receiving your software applications, and you will remain solely responsible towards recipients of your software applications for support, service, upgrades, or technical or other assistance, and such recipients of your software applications are not entitled to such services or assistance through yWorks.
+
+yWorks agrees to pass through any warranties extended for third-party software, if any, incorporated into the Software.
+
+5. Intellectual Property Indemnification
+yWorks will, at its expense, hold you harmless and defend any claim brought against you by a third party resulting from your use of the Software, subject to the Euro amount limitations of this Section, to the extent that such claim alleges that the Software infringes any valid patent, copyright, or trademark of such third party protected by the laws of the European Union, the U.S.A., Canada, Japan, Australia, Switzerland, or Norway ("Covered Claim") and provided that such Covered Claim does not arise from (i) your use of the Software in combination with software or other materials not provided by yWorks; (ii) your use of the Software in a manner not in accordance with this Agreement or for a purpose not intended by yWorks; (iii) your failure to incorporate Software updates or upgrades provided by yWorks to you and that would have avoided the infringement; or (iv) any modifications of the Software not made by yWorks.
+
+yWorks' obligations in this Section are further contingent on you notifying yWorks in writing promptly upon obtaining notice of such impending Covered Claim. You are obliged to give Licensor a copy of each communication relating to the Covered Claim it receives from the claimant (except that, with respect to confidential communications, you and yWorks will mutually agree on an appropriate non-disclosure agreement and such disclosure is subject to the prior approval of the third party claimant) and you will give yWorks the authority, information and assistance necessary to defend or settle the Covered Claim at yWorks expense, provided however, that you agree to provide complete (subject to the limits of liability specified herein) indemnification with respect to such Covered Claim. In no event will you have the right to enter into a settlement without yWorks' prior written consent, and yWorks will not be liable for a settlement made without its prior written consent. If the litigation involves other claims, then yWorks agrees to negotiate in good faith your matters relating to the direction of the defense and sharing the cost of defense; provided, however, that nothing in this paragraph shall limit yWorks' ability and authority to defend in its sole discretion any Covered Claim for which you agree to provide complete (subject to the limits of liability specified herein) indemnification and nothing herein shall alleviate yWorks responsibilities and liabilities hereunder.
+
+If the Software is held to be infringed of the rights stated above in this Section and the use of the Software is enjoined, yWorks will, or if yWorks believes the Software might be held to infringe a third party's intellectual property rights yWorks may, at its option, (i) procure for you the right to use the Software; (ii) replace or modify the Software with other software that does not infringe; or (iii) receive your return of the infringing Software and refund to you the License fee payment made by you to yWorks for the Software.
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, YWORKS' LIABILITY AND THE LIABILITY OF ITS LICENSORS OR DISTRIBUTORS, AND THE LIABILITY OF ITS AND THEIR DIRECTORS, OFFICERS, EMPLOYEES, AND AGENTS, UNDER THIS SECTION AND REGARDLESS OF THE REASON FOR SUCH LIABILITY, WILL NOT EXCEED IN THE AGGREGATE EURO 27,500. THE FOREGOING STATES YOUR SOLE REMEDY FOR, AND YWORKS' ENTIRE LIABILITY AND RESPONSIBILITY FOR, INFRINGEMENT OF ANY PATENT, TRADEMARK, COPYRIGHT, OR OTHER INTELLECTUAL OR INDUSTRIAL PROPERTY RIGHT RELATING TO THE SOFTWARE. THIS LIMITED INDEMNITY IS IN LIEU OF ANY OTHER STATUTORY OR IMPLIED WARRANTY AGAINST INFRINGEMENT.
+
+THE FOREGOING OBLIGATIONS WILL NOT APPLY TO ANY THIRD PARTY SOFTWARE OR TO ANY THIRD PARTY PRODUCTS INCORPORATED IN OR OTHERWISE PROVIDED WITH THE SOFTWARE, AND YOU AGREE TO LOOK TO THE APPLICABLE THIRD PARTY MANUFACTURER WITH RESPECT TO ANY CLAIMS FOR INFRINGEMENT INVOLVING THIRD PARTY SOFTWARE OR THIRD PARTY PRODUCTS.
+
+6. Limitation of Liability
+EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, TO THE MAXIMUM EXTENT PERMITTED BY LAW, YWORKS ACCEPTS NO FURTHER LIABILITY. In no event will yWorks or any of its licensors or distributors or any of its and their directors, officers, employees and agents be liable to any party for any indirect, incidental, consequential, exemplary, special or punitive damages, including any loss of profit, revenue, business opportunity or data, arising from or relating to this Agreement or the Software, whether in contract, in tort or otherwise, even if yWorks knew, should have known or has been advised of the possibility of such damages. yWorks will not support or have any liability to you for use of reformatted and recombined Redistributables. yWorks' total cumulative liability arising from or related to this Agreement or the Software will not exceed the total amount received by yWorks under this Agreement, and you acknowledge that the fees and prices reflect yWorks allocation of risk.
+
+To the extent the foregoing limitation of liability is not capable of being excluded by applicable law, the sole liability of yWorks to you under or in connection with this Agreement shall be limited to the greater of Euro 27500 or the License fee paid to yWorks for the Software.
+
+7. Third Party Programs
+To the extent the Software is bundled with third party software programs; these third party software programs are governed by their own license terms, which may include open source or free software licenses. Nothing in this Agreement limits your rights under, or grants you rights that supersede, the terms of any such third party software.
+
+8. Overdue Payment
+If you are more than 30 working days in delay with a due payment yWorks shall be entitled to require the temporary deletion of all instances of the Software until payment has been made. yWorks shall not be obliged to declare cancellation of the contract prior to that demand.
+
+9. Privacy
+You agree that - in conjunction with the business you have been doing with yWorks and in accordance with the law - your company and personal data will be saved and processed in the database of yWorks. We may use your email address or phone number to communicate with you, for example to provide your order status, to respond to queries, to notify you of a new release of the Software you purchased or to remind you of the expiry of a service agreement with us.
+
+If not expressly disagreed by you in your License order, yWorks shall be entitled to reference you and/or the legal entity you represent as a user of the Software.
+
+10. General
+10.1. Applicable Law and Court of Jurisdiction
+This Agreement is made and shall be construed in accordance with the laws of Germany. Court of Jurisdiction is Tübingen, Germany.
+
+yWorks also reserves the right to start legal action at the court of jurisdiction at your legal business domicile or place of residence. The parties agree that the United Nations Convention for the International Sale of Goods shall not apply in any way to this Agreement and the services contemplated herein.
+
+10.2. Waiver
+Waiver of any breach or failure to enforce any Section of this Agreement shall not be deemed a waiver of any breach or right to enforce which may thereafter occur.
+
+Failure of either party to insist on strict compliance with any of the terms and conditions of this Agreement shall not be deemed a waiver of such terms and conditions, or of any similar right or power hereunder at any subsequent time.
+
+10.3. Assignments
+You may not assign or transfer, by operation of law or otherwise, any of your rights under this Agreement (including your licenses with respect to the Software) to any third party without the prior written consent of yWorks, since the software also contains confidential information, and any attempted assignment without such written consent shall be null and void. yWorks' consent to an assignment shall not be unreasonably withheld. You expressly agree that yWorks may assign its rights to any third party any time. In case of an assignment you are entitled to terminate this Agreement. In the event of any such termination, you will not be entitled to any refund of the fees paid by you hereunder. Irrespective of the aforesaid, yWorks may delegate its obligations under this Agreement without restrictions.
+
+10.4. Term and Termination
+(a) Perpetual License: If the License you have purchased is specified as "perpetual" or no period of time is specified in the Software description or other applicable document provided to you by yWorks, your License will be perpetual and, unless terminated pursuant the provisions herein, you have the right to use the Software indefinitely.
+
+(b) Term License: If you have purchased a term License, this Agreement will continue for the period of time specified in the Software description or other applicable documentation provided to you by yWorks. The License will expire automatically at the end of such term. Upon expiration of the License, the license grants contained herein will terminate and you must cease all use of the Software. All Sections of this Agreement which by nature should survive, will survive expiration of the License, including, but not limited to, payment terms, warranty disclaimers, confidentiality terms, and limitations of liability.
+
+(c) Termination: Either party has the right to terminate this Agreement with immediate effect, without prejudice to any available rights and remedies the party may have, by giving written notice of termination to the other party, if the other party breaches this Agreement and either the breach cannot be cured or, if the breach can be cured, but it is not cured within 30 (thirty) days after receiving written request to cure such breach.
+
+You acknowledge that the Software contains valuable trade secrets and proprietary information of yWorks and its suppliers, and that any actual or threatened material breach of this Agreement by you will constitute immediate, irreparable harm for which monetary damages might be an inadequate remedy, and that injunctive relief is necessary for such breach. YOUR RIGHTS UNDER THIS AGREEMENT WILL TERMINATE IMMEDIATELY WITHOUT NOTICE FROM YWORKS IF YOU MATERIALLY BREACH IT.
+
+Should Licensee cease to conduct business in the normal course, become insolvent or bankrupt, or if Licensee avails itself of or becomes subject to any proceedings pertaining to insolvency or protection of creditors, yWorks may terminate this Agreement by written notice to Licensee.
+
+Upon termination of this Agreement, you will cease use of, and destroy, the Software and confirm compliance in writing to yWorks. All Sections of this Agreement which by nature should survive, will survive termination of the Agreement, including, but not limited to, payment terms, warranty disclaimers, confidentiality terms, and limitations of liability. Termination is not an exclusive remedy and all other remedies will be available whether or not the License is terminated. The termination of this Agreement will not constitute a waiver of any fees, amounts or charges due to either party.
+
+10.5. Cumulative Remedies
+Except if otherwise provided herein, the parties' rights and remedies under this Agreement are cumulative and not exclusive of any other rights or remedies that may be available to the parties.
+
+10.6. Attorney's Fees
+If any legal action is brought to enforce this Agreement, the prevailing party will be entitled to receive its attorneys' fees, court costs, and other collection expenses, in addition to any other relief it may receive.
+
+10.7. Construction Clause
+If for any reason a court of competent jurisdiction finds any provision of this Agreement, or portion thereof, to be unenforceable, that provision of the Agreement will be enforced to the maximum extent permissible so as to affect the intent of the parties, and the remainder of this Agreement will continue in full force and effect.
+
+
+yWorks GmbH
+
+Copyright (c) 2016 yWorks GmbH. All rights reserved.
