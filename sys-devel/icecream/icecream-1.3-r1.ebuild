@@ -18,6 +18,7 @@ IUSE=""
 DEPEND="
 	sys-libs/libcap-ng
 	app-text/docbook2X
+	app-arch/zstd
 "
 RDEPEND="
 	${DEPEND}
