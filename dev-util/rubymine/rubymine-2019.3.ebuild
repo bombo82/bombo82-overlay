@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 2019 Gianni Bombelli <bombo82@giannibombelli.it>
 # Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
@@ -6,23 +6,23 @@ EAPI=7
 
 inherit desktop eutils
 
-DESCRIPTION="GoLand is a cross-platform IDE built specially for Go developers"
-HOMEPAGE="https://www.jetbrains.com/go"
-SRC_URI="https://download.jetbrains.com/go/goland-${PV}.tar.gz -> ${P}.tar.gz"
+DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
+HOMEPAGE="https://www.jetbrains.com/ruby"
+SRC_URI="https://download.jetbrains.com/ruby/RubyMine-${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
 "
-SLOT="$(ver_cut 1-2)"
+SLOT="0"
+VER="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="bindist mirror splitdebug"
 IUSE="custom-jdk"
 
 RDEPEND="
-	dev-lang/go
 	!custom-jdk? ( virtual/jdk )"
 
-S="${WORKDIR}/GoLand-${PV}"
+S="${WORKDIR}/RubyMine-${PV}"
 
 QA_PREBUILT="opt/${P}/*"
 
@@ -61,7 +61,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
 	newicon "bin/${PN}.svg" "${PN}.svg"
-	make_desktop_entry "${PN}" "GoLand ${SLOT}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "RubyMine ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
