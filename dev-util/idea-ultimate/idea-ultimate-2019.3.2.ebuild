@@ -22,7 +22,7 @@ IUSE="custom-jdk"
 RDEPEND="
 	!custom-jdk? ( virtual/jdk )"
 
-BUILD_NUMBER="193.5662.53"
+BUILD_NUMBER="193.6015.39"
 S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 
 QA_PREBUILT="opt/${P}/*"
