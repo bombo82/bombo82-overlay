@@ -1,5 +1,4 @@
 # List of maintained packages
-
 - app-editors:
     - app-editors/vscode-bin
 - app-emulation:
@@ -19,10 +18,12 @@
     - dev-util/webstorm
 - games-rpg:
     - games-rpg/open-adventure
-- net-im:
-    - net-im/teams-bin
-    - net-im/zoom-bin
 - net-misc:
     - net-misc/postman-bin
 -sys-devel:
     - sys-devel/icecream
+
+## masked
+- net-im:
+    - net-im/teams-bin
+    - net-im/zoom-bin
