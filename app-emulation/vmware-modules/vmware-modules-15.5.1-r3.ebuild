@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit eapi7-ver eutils flag-o-matic linux-info linux-mod user udev
+inherit eutils flag-o-matic linux-info linux-mod udev
 
 DESCRIPTION="VMware kernel modules"
 HOMEPAGE="https://github.com/mkubecek/vmware-host-modules"
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND=""
+RDEPEND="acct-group/vmware"
 DEPEND=""
 
 S="${WORKDIR}/vmware-host-modules-w${PV}-k${MY_KERNEL_VERSION}"
@@ -31,15 +31,11 @@ pkg_setup() {
 	linux-info_pkg_setup
 	linux-mod_pkg_setup
 
-	VMWARE_GROUP=${VMWARE_GROUP:-vmware}
-
 	VMWARE_MODULE_LIST="vmmon vmnet"
 
 	VMWARE_MOD_DIR="${PN}-${PVR}"
 
 	BUILD_TARGETS="auto-build KERNEL_DIR=${KERNEL_DIR} KBUILD_OUTPUT=${KV_OUT_DIR}"
-
-	enewgroup "${VMWARE_GROUP}"
 
 	filter-flags -mfpmath=sse -mavx -mpclmul -maes
 	append-cflags -mno-sse  # Found a problem similar to bug #492964

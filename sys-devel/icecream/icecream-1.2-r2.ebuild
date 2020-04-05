@@ -4,7 +4,7 @@
 
 EAPI=7
 
-inherit autotools user
+inherit autotools
 
 DESCRIPTION="Distributed compiling of C(++) code across several machines; based on distcc"
 HOMEPAGE="https://github.com/icecc/icecream"
@@ -16,9 +16,10 @@ KEYWORDS="~amd64 ~arm ~hppa ~ppc ~x86"
 IUSE=""
 
 DEPEND="
+	acct-user/icecream
+	acct-group/icecream
 	sys-libs/libcap-ng
 	app-text/docbook2X
-	app-arch/zstd
 "
 RDEPEND="
 	${DEPEND}
@@ -26,11 +27,6 @@ RDEPEND="
 "
 
 AT_NOELIBTOOLIZE="yes"
-
-pkg_setup() {
-	enewgroup icecream
-	enewuser icecream -1 -1 /var/cache/icecream icecream
-}
 
 src_prepare() {
 	default
