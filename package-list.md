@@ -22,8 +22,3 @@
     - net-misc/postman-bin
 -sys-devel:
     - sys-devel/icecream
-
-## masked
-- net-im:
-    - net-im/teams-bin
-    - net-im/zoom-bin
