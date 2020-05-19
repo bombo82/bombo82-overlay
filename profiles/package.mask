@@ -1,7 +1,0 @@
-# Gianni Bombelli (bombo82) <bombo82.giannibombelli.it> (2020-04-05)
-# This package is present in official gentoo repository, so use the official net-im/teams
-net-im/teams-bin
-
-# Gianni Bombelli (bombo82) <bombo82.giannibombelli.it> (2020-04-05)
-# This package is present in official gentoo repository, so use the official net-im/zoom
-net-im/zoom-bin
