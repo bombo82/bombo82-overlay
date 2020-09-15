@@ -21,8 +21,6 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
-PATCHES=("${FILESDIR}/${P}-use-yaml-safe_load.patch")
-
 src_install() {
 	local dir="/opt/${P}"
 
