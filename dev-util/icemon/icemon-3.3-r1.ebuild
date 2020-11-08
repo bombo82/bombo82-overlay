@@ -4,7 +4,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="Monitor program for use with Icecream compile clusters based on KDE Frameworks"
 HOMEPAGE="https://en.opensuse.org/Icecream https://github.com/icecc/icemon"
@@ -29,5 +29,5 @@ src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=OFF
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }
