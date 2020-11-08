@@ -8,7 +8,7 @@ inherit eutils flag-o-matic linux-info linux-mod udev
 DESCRIPTION="VMware kernel modules"
 HOMEPAGE="https://github.com/mkubecek/vmware-host-modules"
 
-MY_KERNEL_VERSION="5.5"
+MY_KERNEL_VERSION="5.8"
 SRC_URI="https://github.com/mkubecek/vmware-host-modules/archive/w${PV}-k${MY_KERNEL_VERSION}.zip -> ${P}-${MY_KERNEL_VERSION}.zip"
 
 LICENSE="GPL-2"
@@ -23,7 +23,7 @@ S="${WORKDIR}/vmware-host-modules-w${PV}-k${MY_KERNEL_VERSION}"
 
 pkg_setup() {
 	CONFIG_CHECK="~HIGH_RES_TIMERS"
-	if kernel_is ge 2 6 37 && kernel_is lt 2 6 39; then
+	if kernel_is -ge 2 6 37 && kernel_is -lt 2 6 39; then
 		CONFIG_CHECK="${CONFIG_CHECK} BKL"
 	fi
 	CONFIG_CHECK="${CONFIG_CHECK} VMWARE_VMCI VMWARE_VMCI_VSOCKETS"
@@ -47,7 +47,10 @@ pkg_setup() {
 
 src_prepare() {
 	# decouple the kernel include dir from the running kernel version: https://github.com/stefantalpalaru/gentoo-overlay/issues/17
-	sed -i -e "s%HEADER_DIR = /lib/modules/\$(VM_UNAME)/build/include%HEADER_DIR = ${KERNEL_DIR}/include%" */Makefile || die "sed failed"
+	sed -i \
+		-e "s%HEADER_DIR = /lib/modules/\$(VM_UNAME)/build/include%HEADER_DIR = ${KERNEL_DIR}/include%" \
+		-e "s%VM_UNAME = .*\$%VM_UNAME = ${KV_FULL}%" \
+		*/Makefile || die "sed failed"
 
 	# Allow user patches so they can support RC kernels and whatever else
 	default

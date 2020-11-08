@@ -3,8 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7} )
-
+PYTHON_COMPAT=( python3_{6,7,8,9} )
 inherit eutils readme.gentoo-r1 gnome2-utils pam python-any-r1 systemd xdg-utils
 
 MY_PN="VMware-Workstation-Full"
@@ -12,7 +11,7 @@ MY_PV=$(ver_cut 1-3)
 PV_MODULES="${MY_PV}"
 PV_BUILD=$(ver_cut 4)
 MY_P="${MY_PN}-${MY_PV}-${PV_BUILD}"
-VMWARE_FUSION_VER="11.5.2/15794494" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
+VMWARE_FUSION_VER="11.5.5/16269456" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
 SYSTEMD_UNITS_TAG="gentoo-02"
 UNLOCKER_VERSION="3.0.3"
 
@@ -51,7 +50,6 @@ RDEPEND="
 	app-arch/bzip2
 	app-arch/unzip
 	app-shells/bash
-	dev-cpp/gtkmm
 	dev-db/sqlite:3
 	dev-libs/dbus-glib
 	dev-libs/gmp:0
@@ -59,10 +57,10 @@ RDEPEND="
 	dev-libs/json-c
 	dev-libs/nettle:0
 	gnome-base/dconf
+	gnome-base/gconf
 	media-gfx/graphite2
 	media-libs/alsa-lib
 	media-libs/libart_lgpl
-	media-libs/libcanberra
 	media-libs/libvorbis
 	media-libs/mesa
 	media-plugins/alsa-plugins[speex]
@@ -72,17 +70,17 @@ RDEPEND="
 	sys-apps/tcp-wrappers
 	sys-apps/util-linux
 	x11-libs/libXxf86vm
-	sys-fs/fuse
 	x11-libs/libdrm
 	x11-libs/libxshmfence
-	sys-libs/ncurses
 	x11-libs/startup-notification
 	x11-libs/xcb-util
 	x11-themes/hicolor-icon-theme
 	!app-emulation/vmware-player
 	!app-emulation/vmware-tools
 "
+# 	gnome-base/libgnome-keyring
 DEPEND="
+	${PYTHON_DEPS}
 	>=dev-util/patchelf-0.9
 	modules? ( ~app-emulation/vmware-modules-${PV_MODULES} )
 	ovftool? ( app-admin/chrpath )
@@ -95,10 +93,15 @@ VM_HOSTD_USER="root"
 
 QA_PREBUILT="/opt/*"
 
-# added "opt/vmware/lib/vmware/lib/libvmware-gksu.so/libvmware-gksu.so" to QA_WX_LOAD, but doesn't work :-(
-QA_WX_LOAD="opt/vmware/lib/vmware/lib/libvmware-gksu.so/libvmware-gksu.so"
+QA_WX_LOAD="opt/vmware/lib/vmware/tools-upgraders/vmware-tools-upgrader-32 opt/vmware/lib/vmware/bin/vmware-vmx-stats opt/vmware/lib/vmware/bin/vmware-vmx-debug opt/vmware/lib/vmware/bin/vmware-vmx"
+# adding "opt/vmware/lib/vmware/lib/libvmware-gksu.so/libvmware-gksu.so" to QA_WX_LOAD doesn't work
 
 src_unpack() {
+	if has usersandbox ${FEATURES}; then
+		ewarn "You are emerging ${P} with 'usersandbox' enabled." \
+			"If unpacking fails, try emerging with 'FEATURES=-usersandbox'!"
+	fi
+
 	for a in ${A}; do
 		if [ ${a##*.} == 'bundle' ]; then
 			cp "${DISTDIR}/${a}" "${WORKDIR}"
@@ -148,7 +151,7 @@ src_prepare() {
 		sed -i -e "s#vmx_path = '/usr#vmx_path = '${ED}${VM_INSTALL_DIR//\//\\/}#" \
 			-e "s#os\.path\.isfile('/usr#os.path.isfile('${ED}${VM_INSTALL_DIR//\//\\/}#" \
 			-e "s#vmwarebase = '/usr#vmwarebase = '${ED}${VM_INSTALL_DIR//\//\\/}#" \
-			"${WORKDIR}"/unlocker-"${UNLOCKER_VERSION}"/unlocker.py
+			"${WORKDIR}"/unlocker-*/unlocker.py
 	fi
 
 	DOC_CONTENTS="
@@ -205,9 +208,9 @@ src_install() {
 	fi
 
 	# Hardcoded EULA path. We need to disable the default compression.
-	insinto "${VM_INSTALL_DIR}"/doc/vmware-workstation
+	insinto /usr/share/doc/vmware-workstation
 	doins vmware-workstation/doc/EULA
-	docompress -x "${VM_INSTALL_DIR}"/doc/vmware-workstation
+	docompress -x /usr/share/doc/vmware-workstation
 	# always needed
 	insinto /usr/lib/vmware-ovftool
 	doins vmware-ovftool/vmware.eula
@@ -294,7 +297,7 @@ src_install() {
 		doins -r *
 
 		chmod 0755 "${ED}${VM_INSTALL_DIR}"/lib/vmware-ovftool/{ovftool,ovftool.bin}
-		dosym "${VM_INSTALL_DIR}"/lib/vmware-ovftool/ovftool "${VM_INSTALL_DIR}"/bin/ovftool
+		dosym ../../lib/vmware-ovftool/ovftool "${VM_INSTALL_DIR}"/bin/ovftool
 
 		cd - >/dev/null
 	fi
@@ -494,7 +497,7 @@ src_install() {
 
 	# enable macOS guests support
 	if use macos-guests; then
-		python "${WORKDIR}"/unlocker-"${UNLOCKER_VERSION}"/unlocker.py >/dev/null || die "unlocker.py failed"
+		python3 "${WORKDIR}"/unlocker-*/unlocker.py >/dev/null || die "unlocker.py failed"
 	fi
 
 	# VMware tools
