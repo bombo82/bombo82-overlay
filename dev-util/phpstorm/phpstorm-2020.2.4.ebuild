@@ -22,7 +22,7 @@ IUSE="custom-jdk"
 RDEPEND="
 	!custom-jdk? ( virtual/jdk )"
 
-BUILD_NUMBER="202.7660.42"
+BUILD_NUMBER="202.8194.11"
 S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
 
 QA_PREBUILT="opt/${P}/*"

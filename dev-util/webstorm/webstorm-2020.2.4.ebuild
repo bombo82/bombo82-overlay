@@ -22,7 +22,7 @@ IUSE="custom-jdk"
 RDEPEND="
 	!custom-jdk? ( virtual/jdk )"
 
-BUILD_NUMBER="202.7660.23"
+BUILD_NUMBER="202.8194.6"
 S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
 QA_PREBUILT="opt/${P}/*"
