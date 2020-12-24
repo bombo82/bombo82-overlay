@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 IUSE=""
-DEPEND=">=virtual/jre-1.7:* >=x11-libs/gtk+-2:2"
+DEPEND=">=x11-libs/gtk+-2:2"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/dbeaver"
