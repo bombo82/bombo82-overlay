@@ -27,6 +27,7 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}/dbeaver"
+	fperms 755 "${dir}/jre/bin/java"
 
 	make_wrapper "${PN}" "${dir}/dbeaver"
 	newicon "dbeaver.png" "${PN}.png"
