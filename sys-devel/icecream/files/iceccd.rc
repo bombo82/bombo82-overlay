@@ -1,0 +1,38 @@
+#!/sbin/openrc-run
+#
+# Copyright 2021 Gianni Bombelli <bombo82@giannibombelli.it>
+# Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
+# either version 2 of the License, or (at your option) any later version.
+
+depend() {
+  need net
+}
+
+start() {
+  local basedir="${ICECCD_ENV_BASEDIR:-"/var/cache/icecream"}"
+  local env_basedir="--env-basedir $basedir"
+  local cache_limit="${ICECCD_CACHE_LIMIT:+"--cache-limit $ICECCD_CACHE_LIMIT"}"
+  local log_file="-l /var/log/icecream/iceccd.log"
+  local nice="${ICECCD_NICE_LEVEL:+"--nice $ICECCD_NICE_LEVEL"}"
+  local host_name="${ICECCD_HOST_NAME:+"-N ICECCD_HOST_NAME"}"
+  local net_name="${ICECCD_NET_NAME:+"--net-name $ICECCD_NET_NAME"}"
+  local scheduler="${ICECCD_SCHEDULER_HOST:+"--scheduler-host $ICECCD_SCHEDULER_HOST"}"
+  local max_processes="${ICECCD_MAX_PROCESSES:+"--max-processes $ICECCD_MAX_PROCESSES"}"
+  local verbosity="-${ICECCD_VERBOSITY:-"v"}"
+  local no_remote
+  [[ "$ICECCD_ALLOW_REMOTE" == "no" ]] && no_remote="--no-remote"
+
+  [[ ! -d "$basedir" ]] && mkdir -p "$basedir" && chown icecream:icecream "$basedir"
+  [[ ! -d /var/log/icecream/ ]] && mkdir -p /var/log/icecream/ && chown icecream:icecream /var/log/icecream/
+
+  ebegin "Starting Distributed Compiler Daemon"
+  start-stop-daemon --start --quiet --exec /usr/sbin/iceccd -- -d $env_basedir $cache_limit $log_file -u icecream \
+    $nice $host_name $net_name $scheduler $max_processes $verbosity $no_remote
+  eend ${?}
+}
+
+stop() {
+  ebegin "Stopping Distributed Compiler Daemon"
+  start-stop-daemon --stop --quiet --name iceccd
+  eend ${?}
+}

@@ -1,0 +1,42 @@
+# The level of niceness to use.
+# Default is "5".
+# ICECCD_NICE_LEVEL="5"
+
+# The name of the icecream host on the network.
+# ICECCD_HOST_NAME=""
+
+# The name of the icecream network the daemon should connect to. There has to be
+# a scheduler running for the network under the same network name. You can have
+# several distinct icecream networks in the same LAN for whatever reason.
+# ICECCD_NET_NAME=""
+
+# Name of host running the scheduler for the network the daemon should connect
+# to. This option might help if the scheduler cannot broadcast its presence to
+# the clients due to firewall settings or similar reasons, when this is enabled
+# scheduler should use --persistent-client-connection.
+# ICECCD_SCHEDULER_HOST=""
+
+# Maximum number of compile jobs started in parallel on machine running the
+# daemon.
+# Default is the number of (virtual) CPUs installed.
+# ICECCD_MAX_PROCESSES=""
+
+# Allows jobs from other nodes being scheduled on this one.
+# Default is "yes".
+# ICECCD_ALLOW_REMOTE="yes"
+
+# Base directory for storing compile environments sent to the daemon by the
+# compile clients.
+# Default is "/tmp/cache/icecream"
+#
+# NOTE: in a big network this can grow quite a bit, so use some path if your
+# /tmp is small - but the user icecream has to write to it.
+# ICECCD_ENV_BASEDIR="/tmp/cache/icecream"
+
+# Maximum size in Mega Bytes of cache used to store compile environments of
+# compile clients.
+# ICECCD_CACHE_LIMIT=""
+
+# Control verbosity of daemon. The more v (max three) the more verbose.
+# Default is "v"
+# ICECCD_VERBOSITY="v"

@@ -1,0 +1,8 @@
+/var/log/icecream/*.log {
+    rotate 7
+    daily
+    nocreate
+    missingok
+    ifempty
+    compress
+}

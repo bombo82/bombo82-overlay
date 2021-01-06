@@ -1,0 +1,11 @@
+# The name of the Icecream network the scheduler controls.
+# ICECC_SCHEDULER_NET_NAME=""
+
+# Client connections are not disconnected from the scheduler even if there is a
+# better scheduler available.
+# Default is "no"
+# ICECC_SCHEDULER_PERSISTENT_CLIENT_CONNECTION="no"
+
+# Control verbosity of daemon. The more v (max three) the more verbose.
+# Default is "v"
+# ICECC_SCHEDULER_VERBOSITY="v"
