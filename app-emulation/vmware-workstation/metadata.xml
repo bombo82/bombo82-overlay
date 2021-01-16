@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<email>stefantalpalaru@yahoo.com</email>
-		<name>Ștefan Talpalaru</name>
+		<email>bombo82@giannibombelli.it</email>
+		<name>Gianni Bombelli (bombo82)</name>
 	</maintainer>
 	<longdescription>
 		VMWare Workstation is a virtual machine which can be used to install

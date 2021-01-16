@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="person">
-		<email>stefantalpalaru@yahoo.com</email>
-		<name>Ștefan Talpalaru</name>
-	</maintainer>
-	<longdescription>
-		VMware kernel modules.
-	</longdescription>
+    <maintainer type="person">
+        <email>bombo82@giannibombelli.it</email>
+        <name>Gianni Bombelli (bombo82)</name>
+    </maintainer>
+    <longdescription>
+        VMware kernel modules.
+    </longdescription>
 </pkgmetadata>
