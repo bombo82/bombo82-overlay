@@ -3,6 +3,7 @@
     daily
     nocreate
     missingok
-    ifempty
+    delaycompress
     compress
+    copytruncate
 }

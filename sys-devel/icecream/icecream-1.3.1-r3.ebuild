@@ -38,6 +38,8 @@ src_install() {
 	default
 	find "${D}" -name '*.la' -delete || die
 
+	dodoc "${FILESDIR}"/HOWTO_Setup_an_ICECREAM_Compile_Cluster_on_Gentoo.md
+
 	newinitd "${FILESDIR}"/iceccd.rc iceccd
 	newinitd "${FILESDIR}"/icecc-scheduler.rc icecc-scheduler
 	newconfd "${FILESDIR}"/iceccd.confd iceccd
@@ -60,6 +62,9 @@ pkg_postinst() {
 	if [[ ${ROOT} == / ]]; then
 		eselect compiler-shadow update icecc
 	fi
+
+	elog "For configuration help  and howto refer to the documentation inside"
+	elog "/usr/share/doc/icecream-${PN} folder."
 
 	ewarn "Starting with icecream-1.3.10-r2, the management of init scripts and"
 	ewarn "configuration files has been split between the icecc compile daemon (iceccd)"
