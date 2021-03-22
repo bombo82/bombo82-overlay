@@ -17,8 +17,8 @@ SLOT="0"
 VER="$(ver_cut 1-2)"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="bindist mirror splitdebug"
-IUSE="+jbr jbr-dcevm jbr-fd jbr-jcef jbr-jfx jbr-nomod"
-REQUIRED_USE="amd64 ( ^^ ( jbr jbr-dcevm jbr-fd jbr-jcef jbr-jfx jbr-nomod ) )"
+IUSE="jbr-dcevm jbr-fd +jbr-jcef jbr-vanilla"
+REQUIRED_USE="amd64 ( ^^ ( jbr-dcevm jbr-fd jbr-jcef jbr-vanilla ) )"
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	dev-libs/libdbusmenu
@@ -29,16 +29,14 @@ SIMPLE_NAME="DataGrip"
 MY_PN="${PN}"
 SRC_URI_PATH="${PN}"
 SRC_URI_PN="${PN}"
-JBR_PV="11_0_9_1"
-JBR_PB="1275.1"
+JBR_PV="11_0_10"
+JBR_PB="1396.1"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}-no-jbr.tar.gz -> ${P}-no-jbr.tar.gz
 	amd64?	(
-		jbr?		( https://jetbrains.bintray.com/intellij-jbr/jbr-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 		jbr-dcevm?	( https://jetbrains.bintray.com/intellij-jbr/jbr_dcevm-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 		jbr-fd?		( https://jetbrains.bintray.com/intellij-jbr/jbr_fd-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 		jbr-jcef?	( https://jetbrains.bintray.com/intellij-jbr/jbr_jcef-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-		jbr-jfx?	( https://jetbrains.bintray.com/intellij-jbr/jbr_jfx-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-		jbr-nomod?	( https://jetbrains.bintray.com/intellij-jbr/jbr_nomod-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
+		jbr-vanilla?	( https://jetbrains.bintray.com/intellij-jbr/jbr_nomod-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 	)
 	x86?	( https://jetbrains.bintray.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "

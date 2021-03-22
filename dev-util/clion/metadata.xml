@@ -6,11 +6,9 @@
         <name>Gianni Bombelli (bombo82)</name>
     </maintainer>
     <use>
-        <flag name="jbr">Install and use default variant of JetBranins' custom JRE.</flag>
         <flag name="jbr-dcevm">Install and use DCEVM variant of JetBranins' custom JRE.</flag>
         <flag name="jbr-fd">Install and use FD variant of JetBranins' custom JRE.</flag>
-        <flag name="jbr-jfx">Install and use JFX variant of JetBranins' custom JRE.</flag>
         <flag name="jbr-jcef">Install and use JCEF variant of JetBranins' custom JRE.</flag>
-        <flag name="jbr-nomod">Install and use vanilla JetBranins' custom JRE.</flag>
+        <flag name="jbr-vanilla">Install and use vanilla JetBranins' custom JRE.</flag>
     </use>
 </pkgmetadata>
