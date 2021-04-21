@@ -76,6 +76,10 @@ src_install() {
 		fperms 755 "${dir}"/bin/fsnotifier
 	fi
 
+	if use jbr-jcef; then
+		fperms 755 "${dir}"/jbr/lib/jcef_helper
+	fi
+
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
 	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
