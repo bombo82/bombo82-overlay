@@ -6,11 +6,11 @@ EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="The smartest JavaScript IDE"
-HOMEPAGE="https://www.jetbrains.com/webstorm"
+DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
+HOMEPAGE="https://www.jetbrains.com/ruby"
 LICENSE="
 	|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit W3C ZLIB
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -24,10 +24,10 @@ RDEPEND="
 	dev-util/lldb
 "
 
-SIMPLE_NAME="WebStorm"
+SIMPLE_NAME="RubyMine"
 MY_PN="${PN}"
-SRC_URI_PATH="webstorm"
-SRC_URI_PN="WebStorm"
+SRC_URI_PATH="ruby"
+SRC_URI_PN="RubyMine"
 JBR_PV="11_0_10"
 JBR_PB="1419.1"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
@@ -40,8 +40,7 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	x86?	( https://jetbrains.bintray.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
 
-BUILD_NUMBER="211.6693.108"
-S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
+S="${WORKDIR}/RubyMine-${PV}"
 
 src_prepare() {
 	default
@@ -77,9 +76,13 @@ src_install() {
 		fperms 755 "${dir}"/bin/fsnotifier
 	fi
 
+	if use jbr-jcef; then
+		fperms 755 "${dir}"/jbr/lib/jcef_helper
+	fi
+
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

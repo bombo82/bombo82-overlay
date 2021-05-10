@@ -6,11 +6,11 @@ EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="GoLand is a cross-platform IDE built specially for Go developers"
-HOMEPAGE="https://www.jetbrains.com/go"
+DESCRIPTION="A complete toolset for web, mobile and enterprise development"
+HOMEPAGE="https://www.jetbrains.com/idea"
 LICENSE="
 	|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -24,13 +24,13 @@ RDEPEND="
 	dev-util/lldb
 "
 
-SIMPLE_NAME="GoLand"
-MY_PN="${PN}"
-SRC_URI_PATH="go"
-SRC_URI_PN="${PN}"
+SIMPLE_NAME="Idea Ultimate"
+MY_PN="idea"
+SRC_URI_PATH="idea"
+SRC_URI_PN="ideaIU"
 JBR_PV="11_0_10"
 JBR_PB="1419.1"
-SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
+SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}-no-jbr.tar.gz -> ${P}-no-jbr.tar.gz
 	amd64?	(
 		jbr-dcevm?	( https://jetbrains.bintray.com/intellij-jbr/jbr_dcevm-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 		jbr-fd?		( https://jetbrains.bintray.com/intellij-jbr/jbr_fd-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
@@ -40,19 +40,18 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	x86?	( https://jetbrains.bintray.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
 
-S="${WORKDIR}/GoLand-${PV}"
+BUILD_NUMBER="211.6693.111"
+S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 
 src_prepare() {
 	default
 
 	local pty4j_path="lib/pty4j-native/linux"
+	local jansi_path="plugins/maven/lib/maven3/lib/jansi-native"
 	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el )
-	use amd64 || remove_me+=( bin/fsnotifier64 "${pty4j_path}"/x86_64 )
-	use x86 || remove_me+=( bin/fsnotifier "${pty4j_path}"/x86 )
-
-	if use amd64 && ! use jbr-jcef ; then
-		remove_me+=( )
-	fi
+	remove_me+=( "${jansi_path}"/freebsd32 "${jansi_path}"/freebsd64 "${jansi_path}"/osx "${jansi_path}"/windows32 "${jansi_path}"/windows64)
+	use amd64 || remove_me+=( bin/fsnotifier64 "${pty4j_path}"/x86_64 "${jansi_path}"/linux32 )
+	use x86 || remove_me+=( bin/fsnotifier "${pty4j_path}"/x86 "${jansi_path}"/linux64 )
 
 	rm -rv "${remove_me[@]}" || die
 }
@@ -64,9 +63,7 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}".sh
 
-	if use amd64 && ! use jbr-jcef ; then
-		doins -r ../jbr
-	fi
+	doins -r ../jbr
 	fperms 755 "${dir}"/jbr/bin/{jaotc,java,javac,jdb,jfr,jhsdb,jjs,jrunscript,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
 
 	if use amd64; then
@@ -74,6 +71,10 @@ src_install() {
 	fi
 	if use x86; then
 		fperms 755 "${dir}"/bin/fsnotifier
+	fi
+
+	if use jbr-jcef; then
+		fperms 755 "${dir}"/jbr/lib/jcef_helper
 	fi
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh

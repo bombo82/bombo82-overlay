@@ -1,16 +1,15 @@
-# Copyright 2019-2021 Gianni Bombelli <bombo82@giannibombelli.it>
-# Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
-# either version 2 of the License, or (at your option) any later version.
+# Copyright 1999-2021 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
-HOMEPAGE="https://www.jetbrains.com/ruby"
+DESCRIPTION="A cross-platform IDE for C and C++"
+HOMEPAGE="https://www.jetbrains.com/clion"
 LICENSE="
 	|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -24,10 +23,10 @@ RDEPEND="
 	dev-util/lldb
 "
 
-SIMPLE_NAME="RubyMine"
+SIMPLE_NAME="CLion"
 MY_PN="${PN}"
-SRC_URI_PATH="ruby"
-SRC_URI_PN="RubyMine"
+SRC_URI_PATH="cpp"
+SRC_URI_PN="CLion"
 JBR_PV="11_0_10"
 JBR_PB="1419.1"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
@@ -39,8 +38,6 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	)
 	x86?	( https://jetbrains.bintray.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
-
-S="${WORKDIR}/RubyMine-${PV}"
 
 src_prepare() {
 	default
@@ -63,6 +60,7 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}".sh
+	fperms 755 "${dir}"/bin/clang/linux/clang{d,-tidy}
 
 	if use amd64 && ! use jbr-jcef ; then
 		doins -r ../jbr
@@ -74,6 +72,10 @@ src_install() {
 	fi
 	if use x86; then
 		fperms 755 "${dir}"/bin/fsnotifier
+	fi
+
+	if use jbr-jcef; then
+		fperms 755 "${dir}"/jbr/lib/jcef_helper
 	fi
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
