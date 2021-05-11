@@ -6,11 +6,11 @@ EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="GoLand is a cross-platform IDE built specially for Go developers"
-HOMEPAGE="https://www.jetbrains.com/go"
+DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
+HOMEPAGE="https://www.jetbrains.com/ruby"
 LICENSE="
 	|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -24,12 +24,12 @@ RDEPEND="
 	dev-util/lldb
 "
 
-SIMPLE_NAME="GoLand"
+SIMPLE_NAME="RubyMine"
 MY_PN="${PN}"
-SRC_URI_PATH="go"
-SRC_URI_PN="${PN}"
+SRC_URI_PATH="ruby"
+SRC_URI_PN="RubyMine"
 JBR_PV="11_0_10"
-JBR_PB="1419.1"
+JBR_PB="1428.2"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
 	amd64?	(
 		jbr-dcevm?	( https://jetbrains.bintray.com/intellij-jbr/jbr_dcevm-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
@@ -40,7 +40,7 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	x86?	( https://jetbrains.bintray.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
 
-S="${WORKDIR}/GoLand-${PV}"
+S="${WORKDIR}/RubyMine-${PV}"
 
 src_prepare() {
 	default
