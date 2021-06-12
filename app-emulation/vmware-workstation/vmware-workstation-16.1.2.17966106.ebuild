@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -11,7 +11,7 @@ MY_PV=$(ver_cut 1-3)
 PV_MODULES="${MY_PV}"
 PV_BUILD=$(ver_cut 4)
 MY_P="${MY_PN}-${MY_PV}-${PV_BUILD}"
-VMWARE_FUSION_VER="12.1.0/17195230" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
+VMWARE_FUSION_VER="12.1.2/17964953" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
 SYSTEMD_UNITS_TAG="gentoo-02"
 UNLOCKER_VERSION="3.0.3"
 
@@ -69,6 +69,7 @@ RDEPEND="
 	cups? ( net-print/cups )
 	sys-apps/tcp-wrappers
 	sys-apps/util-linux
+	sys-auth/polkit
 	x11-libs/libXxf86vm
 	x11-libs/libdrm
 	x11-libs/libxshmfence
@@ -154,8 +155,7 @@ src_prepare() {
 'env-update && source /etc/profile'\n
 Before you can use ${PN}, you must configure a default network setup.
 You can do this by running 'emerge --config ${PN}'.\n
-To be able to run ${PN} your user must be in the vmware group.\n
-"
+To be able to run ${PN} your user must be in the 'vmware' group."
 }
 
 src_install() {
@@ -172,6 +172,13 @@ src_install() {
 	dobin */bin/*
 	dosbin */sbin/*
 	rm "${ED}${VM_INSTALL_DIR}"/bin/configure-initscript.sh || die
+	mv "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher.bin
+	cat > "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher <<-EOF
+		#!/usr/bin/env bash
+		export LD_LIBRARY_PATH="/opt/vmware/lib/vmware/lib/libssl.so.1.0.2:/opt/vmware/lib/vmware/lib/libcrypto.so.1.0.2"
+		"${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher.bin "\$@"
+	EOF
+	chmod 755 "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher
 
 	# install the libraries
 	insinto "${VM_INSTALL_DIR}"/lib/vmware
@@ -253,7 +260,8 @@ src_install() {
 		doins -r *
 
 		chmod 0755 "${ED}${VM_INSTALL_DIR}"/lib/vmware-ovftool/{ovftool,ovftool.bin}
-		dosym ../../lib/vmware-ovftool/ovftool "${VM_INSTALL_DIR}"/bin/ovftool
+		sed -i 's/readlink/readlink -f/' "${ED}${VM_INSTALL_DIR}"/lib/vmware-ovftool/ovftool
+		dosym ../lib/vmware-ovftool/ovftool "${VM_INSTALL_DIR}"/bin/ovftool
 
 		cd - >/dev/null
 	fi
@@ -283,9 +291,10 @@ src_install() {
 	# create the environment
 	local envd="${T}/90vmware"
 	cat > "${envd}" <<-EOF
-		PATH='${VM_INSTALL_DIR}/bin'
+		PATH='${VM_INSTALL_DIR}/bin:${VM_INSTALL_DIR}/sbin'
 		ROOTPATH='${VM_INSTALL_DIR}/bin'
 		CONFIG_PROTECT_MASK='/etc/vmware-installer'
+		VMWARE_USE_SHIPPED_LIBS=1
 	EOF
 	echo 'VMWARE_USE_SHIPPED_LIBS=1' >> "${envd}"
 
