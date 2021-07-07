@@ -27,16 +27,16 @@ SIMPLE_NAME="CLion"
 MY_PN="${PN}"
 SRC_URI_PATH="cpp"
 SRC_URI_PN="CLion"
-JBR_PV="11_0_10"
-JBR_PB="1428.2"
+JBR_PV="11_0_11"
+JBR_PB="1504.8"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
 	amd64?	(
-		jbr-dcevm?	( https://jetbrains.bintray.com/intellij-jbr/jbr_dcevm-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-		jbr-fd?		( https://jetbrains.bintray.com/intellij-jbr/jbr_fd-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-		jbr-jcef?	( https://jetbrains.bintray.com/intellij-jbr/jbr_jcef-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-		jbr-vanilla?	( https://jetbrains.bintray.com/intellij-jbr/jbr_nomod-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
+		jbr-dcevm?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_dcevm-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
+		jbr-fd?		( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_fd-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
+		jbr-jcef?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_jcef-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
+		jbr-vanilla?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_nomod-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 	)
-	x86?	( https://jetbrains.bintray.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
+	x86?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
 
 src_prepare() {
