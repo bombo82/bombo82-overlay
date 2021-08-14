@@ -40,7 +40,7 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	x86?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
 
-BUILD_NUMBER="211.7628.25"
+BUILD_NUMBER="212.4746.80"
 S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
 src_prepare() {
@@ -48,8 +48,8 @@ src_prepare() {
 
 	local pty4j_path="lib/pty4j-native/linux"
 	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el )
-	use amd64 || remove_me+=( bin/fsnotifier64 "${pty4j_path}"/x86_64 )
-	use x86 || remove_me+=( bin/fsnotifier "${pty4j_path}"/x86 )
+	use amd64 || remove_me+=( "${pty4j_path}"/x86_64 )
+	use x86 || remove_me+=( "${pty4j_path}"/x86 )
 
 	if use amd64 && ! use jbr-jcef ; then
 		remove_me+=( )
@@ -69,13 +69,6 @@ src_install() {
 		doins -r ../jbr
 	fi
 	fperms 755 "${dir}"/jbr/bin/{jaotc,java,javac,jdb,jfr,jhsdb,jjs,jrunscript,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
-
-	if use amd64; then
-		fperms 755 "${dir}"/bin/fsnotifier64
-	fi
-	if use x86; then
-		fperms 755 "${dir}"/bin/fsnotifier
-	fi
 
 	if use jbr-jcef; then
 		fperms 755 "${dir}"/jbr/lib/jcef_helper

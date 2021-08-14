@@ -47,8 +47,8 @@ src_prepare() {
 
 	local pty4j_path="lib/pty4j-native/linux"
 	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el )
-	use amd64 || remove_me+=( bin/fsnotifier64 "${pty4j_path}"/x86_64 )
-	use x86 || remove_me+=( bin/fsnotifier "${pty4j_path}"/x86 )
+	use amd64 || remove_me+=( "${pty4j_path}"/x86_64 )
+	use x86 || remove_me+=( "${pty4j_path}"/x86 )
 
 	if use amd64 && ! use jbr-jcef ; then
 		remove_me+=( )
@@ -68,13 +68,6 @@ src_install() {
 		doins -r ../jbr
 	fi
 	fperms 755 "${dir}"/jbr/bin/{jaotc,java,javac,jdb,jfr,jhsdb,jjs,jrunscript,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
-
-	if use amd64; then
-		fperms 755 "${dir}"/bin/fsnotifier64
-	fi
-	if use x86; then
-		fperms 755 "${dir}"/bin/fsnotifier
-	fi
 
 	if use jbr-jcef; then
 		fperms 755 "${dir}"/jbr/lib/jcef_helper

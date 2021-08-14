@@ -6,11 +6,11 @@ EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="GoLand is a cross-platform IDE built specially for Go developers"
+DESCRIPTION="The Lightning-Smart PHP IDE"
 HOMEPAGE="https://www.jetbrains.com/go"
 LICENSE="
 	|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh W3C yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -24,10 +24,10 @@ RDEPEND="
 	dev-util/lldb
 "
 
-SIMPLE_NAME="GoLand"
+SIMPLE_NAME="PhpStorm"
 MY_PN="${PN}"
-SRC_URI_PATH="go"
-SRC_URI_PN="${PN}"
+SRC_URI_PATH="webide"
+SRC_URI_PN="PhpStorm"
 JBR_PV="11_0_11"
 JBR_PB="1504.8"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
@@ -40,15 +40,16 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	x86?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
 
-S="${WORKDIR}/GoLand-${PV}"
+BUILD_NUMBER="212.4746.100"
+S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
 
 src_prepare() {
 	default
 
 	local pty4j_path="lib/pty4j-native/linux"
 	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el )
-	use amd64 || remove_me+=( bin/fsnotifier64 "${pty4j_path}"/x86_64 )
-	use x86 || remove_me+=( bin/fsnotifier "${pty4j_path}"/x86 )
+	use amd64 || remove_me+=( "${pty4j_path}"/x86_64 )
+	use x86 || remove_me+=( "${pty4j_path}"/x86 )
 
 	if use amd64 && ! use jbr-jcef ; then
 		remove_me+=( )
@@ -69,20 +70,13 @@ src_install() {
 	fi
 	fperms 755 "${dir}"/jbr/bin/{jaotc,java,javac,jdb,jfr,jhsdb,jjs,jrunscript,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
 
-	if use amd64; then
-		fperms 755 "${dir}"/bin/fsnotifier64
-	fi
-	if use x86; then
-		fperms 755 "${dir}"/bin/fsnotifier
-	fi
-
 	if use jbr-jcef; then
 		fperms 755 "${dir}"/jbr/lib/jcef_helper
 	fi
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
