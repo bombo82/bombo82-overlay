@@ -13,7 +13,7 @@ LICENSE="
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 RESTRICT="bindist mirror splitdebug"
 IUSE="jbr-dcevm jbr-fd +jbr-jcef jbr-vanilla"
 REQUIRED_USE="amd64 ( ^^ ( jbr-dcevm jbr-fd jbr-jcef jbr-vanilla ) )"
@@ -43,7 +43,7 @@ src_prepare() {
 	default
 
 	local pty4j_path="lib/pty4j-native/linux"
-	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el )
+	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el "${pty4j_path}"/arm)
 	use amd64 || remove_me+=( "${pty4j_path}"/x86_64 )
 	use x86 || remove_me+=( "${pty4j_path}"/x86 )
 
@@ -70,6 +70,8 @@ src_install() {
 	if use jbr-jcef; then
 		fperms 755 "${dir}"/jbr/lib/jcef_helper
 	fi
+
+	fperms 755 "${dir}"/bin/fsnotifier
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg

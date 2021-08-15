@@ -6,16 +6,15 @@ EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="Many databases, one tool"
-HOMEPAGE="https://www.jetbrains.com/datagrip"
-
+DESCRIPTION="The smartest JavaScript IDE"
+HOMEPAGE="https://www.jetbrains.com/webstorm"
 LICENSE="
 	|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 RESTRICT="bindist mirror splitdebug"
 IUSE="jbr-dcevm jbr-fd +jbr-jcef jbr-vanilla"
 REQUIRED_USE="amd64 ( ^^ ( jbr-dcevm jbr-fd jbr-jcef jbr-vanilla ) )"
@@ -25,13 +24,13 @@ RDEPEND="
 	dev-util/lldb
 "
 
-SIMPLE_NAME="DataGrip"
+SIMPLE_NAME="WebStorm"
 MY_PN="${PN}"
-SRC_URI_PATH="${PN}"
-SRC_URI_PN="${PN}"
+SRC_URI_PATH="webstorm"
+SRC_URI_PN="WebStorm"
 JBR_PV="11_0_11"
 JBR_PB="1504.8"
-SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}-no-jbr.tar.gz -> ${P}-no-jbr.tar.gz
+SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
 	amd64?	(
 		jbr-dcevm?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_dcevm-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 		jbr-fd?		( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_fd-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
@@ -41,15 +40,20 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}-no-j
 	x86?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x86-b${JBR_PB}.tar.gz )
 "
 
-S="${WORKDIR}/DataGrip-${PV}"
+BUILD_NUMBER="212.4746.80"
+S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
 src_prepare() {
 	default
 
 	local pty4j_path="lib/pty4j-native/linux"
-	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el )
+	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el "${pty4j_path}"/arm)
 	use amd64 || remove_me+=( "${pty4j_path}"/x86_64 )
 	use x86 || remove_me+=( "${pty4j_path}"/x86 )
+
+	if use amd64 && ! use jbr-jcef ; then
+		remove_me+=( )
+	fi
 
 	rm -rv "${remove_me[@]}" || die
 }
@@ -61,8 +65,12 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}".sh
 
-	doins -r ../jbr
+	if use amd64 && ! use jbr-jcef ; then
+		doins -r ../jbr
+	fi
 	fperms 755 "${dir}"/jbr/bin/{jaotc,java,javac,jdb,jfr,jhsdb,jjs,jrunscript,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
+
+	fperms 755 "${dir}"/bin/fsnotifier
 
 	if use jbr-jcef; then
 		fperms 755 "${dir}"/jbr/lib/jcef_helper
@@ -70,7 +78,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
