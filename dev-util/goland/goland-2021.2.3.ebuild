@@ -28,8 +28,8 @@ SIMPLE_NAME="GoLand"
 MY_PN="${PN}"
 SRC_URI_PATH="go"
 SRC_URI_PN="${PN}"
-JBR_PV="11_0_11"
-JBR_PB="1504.8"
+JBR_PV="11_0_12"
+JBR_PB="1649.1"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
 	amd64?	(
 		jbr-dcevm?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_dcevm-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
