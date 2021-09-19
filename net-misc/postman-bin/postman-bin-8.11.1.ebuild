@@ -36,6 +36,7 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/Postman
+	fperms 755 "${dir}"/postman
 
 	make_wrapper "${PN}" "${dir}/Postman"
 	newicon "resources/app/assets/icon.png" "${PN}.png"
