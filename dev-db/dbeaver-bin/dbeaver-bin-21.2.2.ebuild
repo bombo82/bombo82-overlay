@@ -14,10 +14,14 @@ SRC_URI="http://dbeaver.io/files/${PV}/dbeaver-ce-${PV}-linux.gtk.x86_64.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
+RESTRICT="bindist mirror"
 
 IUSE=""
 DEPEND=">=x11-libs/gtk+-2:2"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	media-libs/alsa-lib
+	x11-libs/libXtst
+"
 
 S="${WORKDIR}/dbeaver"
 
