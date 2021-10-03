@@ -15,10 +15,12 @@ RESTRICT="mirror strip bindist"
 LICENSE="MS-vscode"
 SLOT="0"
 KEYWORDS="~amd64"
+RESTRICT="bindist mirror"
 
 DEPEND=""
-
-RDEPEND="${DEPEND}"
+RDEPEND="
+	x11-libs/gtk+
+"
 
 QA_PRESTRIPPED="opt/${PN}/code"
 QA_PREBUILT="opt/${PN}/code"
