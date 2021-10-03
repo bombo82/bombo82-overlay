@@ -20,8 +20,18 @@ IUSE="jbr-dcevm jbr-fd +jbr-jcef jbr-vanilla"
 REQUIRED_USE="amd64 ( ^^ ( jbr-dcevm jbr-fd jbr-jcef jbr-vanilla ) )"
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
+	>=app-accessibility/at-spi2-atk-2.15.1
 	dev-libs/libdbusmenu
 	dev-util/lldb
+	media-libs/mesa[X(+)]
+	x11-libs/libX11
+	x11-libs/libXcomposite
+	x11-libs/libXcursor
+	x11-libs/libXdamage
+	x11-libs/libXext
+	x11-libs/libXfixes
+	>=x11-libs/libXi-1.3
+	>=x11-libs/libXrandr-1.5
 "
 
 SIMPLE_NAME="PyCharm Professional"
