@@ -18,10 +18,12 @@ LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="pax_kernel"
-RESTRICT="mirror strip"
+RESTRICT="bindist mirror strip"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND="
+	x11-libs/gtk+
+"
 
 S="${WORKDIR}/${MY_PN^}/app"
 
