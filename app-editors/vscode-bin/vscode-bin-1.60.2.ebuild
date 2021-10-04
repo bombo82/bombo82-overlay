@@ -25,9 +25,7 @@ RDEPEND="
 QA_PRESTRIPPED="opt/${PN}/code"
 QA_PREBUILT="opt/${PN}/code"
 
-pkg_setup(){
-	use amd64 && S="${WORKDIR}/VSCode-linux-x64"
-}
+S="${WORKDIR}/VSCode-linux-x64"
 
 src_install(){
 	local dir="/opt/${PN}"
