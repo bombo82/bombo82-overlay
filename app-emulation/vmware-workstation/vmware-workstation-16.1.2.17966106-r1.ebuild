@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+PYTHON_COMPAT=( python3_{8..10} )
 inherit eutils readme.gentoo-r1 gnome2-utils pam python-any-r1 systemd xdg-utils
 
 MY_PN="VMware-Workstation-Full"
@@ -44,8 +44,9 @@ REQUIRED_USE="
 "
 RESTRICT="mirror preserve-libs strip"
 
-# vmware should not use virtual/libc as this is a
-# precompiled binary package thats linked to glibc.
+BDEPEND="
+	app-admin/chrpath
+"
 RDEPEND="
 	app-arch/bzip2
 	app-arch/unzip
@@ -94,6 +95,7 @@ QA_PREBUILT="/opt/*"
 QA_WX_LOAD="opt/vmware/lib/vmware/tools-upgraders/vmware-tools-upgrader-32 opt/vmware/lib/vmware/bin/vmware-vmx-stats opt/vmware/lib/vmware/bin/vmware-vmx-debug opt/vmware/lib/vmware/bin/vmware-vmx"
 # adding "opt/vmware/lib/vmware/lib/libvmware-gksu.so/libvmware-gksu.so" to QA_WX_LOAD doesn't work
 
+MY_ED="$ED"
 src_unpack() {
 	if has usersandbox ${FEATURES}; then
 		ewarn "You are emerging ${P} with 'usersandbox' enabled." \
@@ -135,7 +137,6 @@ src_prepare() {
 
 	rm -f */bin/vmware-modconfig
 	rm -rf */lib/modules/binary
-	# Bug 459566
 	mkdir vmware-network-editor/lib/lib
 	mv vmware-network-editor/lib/libvmware-netcfg.so vmware-network-editor/lib/lib/
 
@@ -144,9 +145,9 @@ src_prepare() {
 	fi
 
 	if use macos-guests; then
-		sed -i -e "s#vmx_path = '/usr#vmx_path = '${ED}${VM_INSTALL_DIR//\//\\/}#" \
-			-e "s#os\.path\.isfile('/usr#os.path.isfile('${ED}${VM_INSTALL_DIR//\//\\/}#" \
-			-e "s#vmwarebase = '/usr#vmwarebase = '${ED}${VM_INSTALL_DIR//\//\\/}#" \
+		sed -i -e "s#vmx_path = '/usr#vmx_path = '${MY_ED}${VM_INSTALL_DIR//\//\\/}#" \
+			-e "s#os\.path\.isfile('/usr#os.path.isfile('${MY_ED}${VM_INSTALL_DIR//\//\\/}#" \
+			-e "s#vmwarebase = '/usr#vmwarebase = '${MY_ED}${VM_INSTALL_DIR//\//\\/}#" \
 			"${WORKDIR}"/unlocker-*/unlocker.py
 	fi
 
@@ -171,23 +172,24 @@ src_install() {
 	into "${VM_INSTALL_DIR}"
 	dobin */bin/*
 	dosbin */sbin/*
-	rm "${ED}${VM_INSTALL_DIR}"/bin/configure-initscript.sh || die
-	mv "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher.bin
-	cat > "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher <<-EOF
+	rm "${MY_ED}${VM_INSTALL_DIR}"/bin/configure-initscript.sh || die
+	mv "${MY_ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher "${MY_ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher.bin
+	cat > "${MY_ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher <<-EOF
 		#!/usr/bin/env bash
 		export LD_LIBRARY_PATH="/opt/vmware/lib/vmware/lib/libssl.so.1.0.2:/opt/vmware/lib/vmware/lib/libcrypto.so.1.0.2"
 		"${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher.bin "\$@"
 	EOF
-	chmod 755 "${ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher
+	chmod 755 "${MY_ED}${VM_INSTALL_DIR}"/sbin/vmware-authdlauncher
 
 	# install the libraries
 	insinto "${VM_INSTALL_DIR}"/lib/vmware
 	doins -r */lib/* vmware-vmx/roms
-	rm "${ED}${VM_INSTALL_DIR}"/lib/vmware/*.so || die
+	rm "${MY_ED}${VM_INSTALL_DIR}"/lib/vmware/*.so || die
 
 	# install the installer
 	insinto "${VM_INSTALL_DIR}"/lib/vmware-installer/${vmware_installer_version}
-	doins -r vmware-installer/{cdsHelper,vmis,vmis-launcher,vmware-cds-helper,vmware-installer,vmware-installer.py}
+	doins -r vmware-installer/{cdsHelper,vmis,vmis-launcher,vmware-cds-helper,vmware-installer,vmware-installer.py,python}
+	chrpath -k -r '/../lib:$ORIGIN/../lib' "${MY_ED}${VM_INSTALL_DIR}"/lib/vmware-installer/${vmware_installer_version}/python/lib/lib-dynload/*.so >/dev/null || die
 	fperms 0755 "${VM_INSTALL_DIR}"/lib/vmware-installer/${vmware_installer_version}/{vmis-launcher,cdsHelper,vmware-installer}
 	dosym "${VM_INSTALL_DIR}"/lib/vmware-installer/${vmware_installer_version}/vmware-installer "${VM_INSTALL_DIR}"/bin/vmware-installer
 	insinto /etc/vmware-installer
@@ -195,7 +197,7 @@ src_install() {
 	sed -i \
 		-e "s/@@VERSION@@/${vmware_installer_version}/" \
 		-e "s,@@VMWARE_INSTALLER@@,${VM_INSTALL_DIR}/lib/vmware-installer/${vmware_installer_version}," \
-		"${ED}/etc/vmware-installer/bootstrap"
+		"${MY_ED}/etc/vmware-installer/bootstrap"
 
 	# install the ancillaries
 	insinto /usr
@@ -259,8 +261,8 @@ src_install() {
 		insinto "${VM_INSTALL_DIR}"/lib/vmware-ovftool
 		doins -r *
 
-		chmod 0755 "${ED}${VM_INSTALL_DIR}"/lib/vmware-ovftool/{ovftool,ovftool.bin}
-		sed -i 's/readlink/readlink -f/' "${ED}${VM_INSTALL_DIR}"/lib/vmware-ovftool/ovftool
+		chmod 0755 "${MY_ED}${VM_INSTALL_DIR}"/lib/vmware-ovftool/{ovftool,ovftool.bin}
+		sed -i 's/readlink/readlink -f/' "${MY_ED}${VM_INSTALL_DIR}"/lib/vmware-ovftool/ovftool
 		dosym ../lib/vmware-ovftool/ovftool "${VM_INSTALL_DIR}"/bin/ovftool
 
 		cd - >/dev/null
@@ -303,12 +305,12 @@ src_install() {
 	# create the configuration
 	dodir /etc/vmware
 
-	cat > "${ED}"/etc/vmware/bootstrap <<-EOF
+	cat > "${MY_ED}"/etc/vmware/bootstrap <<-EOF
 		BINDIR='${VM_INSTALL_DIR}/bin'
 		LIBDIR='${VM_INSTALL_DIR}/lib'
 	EOF
 
-	cat > "${ED}"/etc/vmware/config <<-EOF
+	cat > "${MY_ED}"/etc/vmware/config <<-EOF
 		.encoding = "UTF-8"
 		bindir = "${VM_INSTALL_DIR}/bin"
 		libdir = "${VM_INSTALL_DIR}/lib/vmware"
@@ -336,7 +338,7 @@ src_install() {
 	EOF
 
 	if use vix; then
-		cat >> "${ED}"/etc/vmware/config <<-EOF
+		cat >> "${MY_ED}"/etc/vmware/config <<-EOF
 			vix.libdir = "${VM_INSTALL_DIR}/lib/vmware-vix"
 			vix.config.version = "1"
 		EOF
@@ -352,16 +354,16 @@ src_install() {
 
 	# fill in variable placeholders
 	sed -e "s:@@LIBCONF_DIR@@:${VM_INSTALL_DIR}/lib/vmware/libconf:g" \
-		-i "${ED}${VM_INSTALL_DIR}"/lib/vmware/libconf/etc/gtk-3.0/gdk-pixbuf.loaders || die
+		-i "${MY_ED}${VM_INSTALL_DIR}"/lib/vmware/libconf/etc/gtk-3.0/gdk-pixbuf.loaders || die
 	sed -e "s:@@BINARY@@:${EPREFIX}${VM_INSTALL_DIR}/bin/vmplayer:g" \
 		-e "/^Encoding/d" \
-		-i "${ED}/usr/share/applications/vmware-player.desktop" || die
+		-i "${MY_ED}/usr/share/applications/vmware-player.desktop" || die
 	sed -e "s:@@BINARY@@:${EPREFIX}${VM_INSTALL_DIR}/bin/vmware:g" \
 		-e "/^Encoding/d" \
-		-i "${ED}/usr/share/applications/vmware-workstation.desktop" || die
+		-i "${MY_ED}/usr/share/applications/vmware-workstation.desktop" || die
 	sed -e "s:@@BINARY@@:${EPREFIX}${VM_INSTALL_DIR}/bin/vmware-netcfg:g" \
 		-e "/^Encoding/d" \
-		-i "${ED}/usr/share/applications/vmware-netcfg.desktop" || die
+		-i "${MY_ED}/usr/share/applications/vmware-netcfg.desktop" || die
 
 	# install systemd unit files
 	if use systemd; then
@@ -376,7 +378,7 @@ src_install() {
 	# VMware tools
 	for guest in ${IUSE_VMWARE_GUESTS}; do
 		if use vmware-tools-${guest}; then
-			local dbfile="${ED}/etc/vmware-installer/database"
+			local dbfile="${MY_ED}/etc/vmware-installer/database"
 			if ! [ -e "${dbfile}" ]; then
 				> "${dbfile}"
 				sqlite3 "${dbfile}" "CREATE TABLE settings(key VARCHAR PRIMARY KEY, value VARCHAR NOT NULL, component_name VARCHAR NOT NULL);"
@@ -395,6 +397,10 @@ src_install() {
 		fi
 	done
 
+	# metadata
+	mv "${MY_ED}/usr/share/appdata" "${MY_ED}/usr/share/metainfo"
+
+	# readme
 	readme.gentoo_create_doc
 }
 
