@@ -25,6 +25,8 @@ RDEPEND="
 	x11-libs/gtk+
 "
 
+QA_FLAGS_IGNORED="CFLAGS LDFLAGS"
+
 S="${WORKDIR}/${MY_PN^}/app"
 
 src_prepare() {
