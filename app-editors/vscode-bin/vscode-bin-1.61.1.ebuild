@@ -24,6 +24,7 @@ RDEPEND="
 
 QA_PRESTRIPPED="opt/${PN}/code"
 QA_PREBUILT="opt/${PN}/code"
+QA_FLAGS_IGNORED="CFLAGS LDFLAGS"
 
 S="${WORKDIR}/VSCode-linux-x64"
 
