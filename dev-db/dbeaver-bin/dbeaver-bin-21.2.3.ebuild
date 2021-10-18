@@ -23,6 +23,8 @@ RDEPEND="${DEPEND}
 	x11-libs/libXtst
 "
 
+QA_FLAGS_IGNORED="CFLAGS LDFLAGS"
+
 S="${WORKDIR}/dbeaver"
 
 src_install() {
