@@ -1,0 +1,203 @@
+TOOLBOX SUBSCRIPTION AGREEMENT FOR STUDENTS AND TEACHERS
+Version 4.0, effective as of September 1, 2021
+
+IMPORTANT! READ CAREFULLY:
+
+THIS IS A LEGAL AGREEMENT. BY CLICKING ON THE “I AGREE” (OR SIMILAR) BUTTON THAT IS PRESENTED TO CUSTOMER AT THE TIME OF PURCHASE, OR BY DOWNLOADING, INSTALLING, COPYING, SAVING ON CUSTOMER’S DEVICE, OR OTHERWISE USING JETBRAINS SOFTWARE, SUPPORT, OR PRODUCTS, CUSTOMER BECOMES A PARTY TO THIS AGREEMENT AND CONSENTS TO BE BOUND BY ALL THE TERMS AND CONDITIONS SET FORTH BELOW.
+
+JetBrains and Customer may each also be referred to individually as a “Party” or jointly as the “Parties”.
+
+1. PARTIES
+1.1. “Customer” or “you” means a student or an instructor specified in the Subscription Confirmation who is at least 13 years old, or in the case of Redistributable Products, the sole proprietor or legal entity with sufficient legal capacity to enter into this Agreement using the Redistributable Product in accordance with this Agreement. For the purpose of this Agreement:
+
+(A) “student” is an individual who is enrolled at a recognized educational institution (university, college, high school, primary school, or a similar institution with educational goals), and upon request from JetBrains is able to provide proof of such enrollment;
+
+(B) “instructor” is an individual who gives lectures and/or seminars at a recognized educational institution (university, college, high school, primary school, or a similar institution with educational goals), and upon request by JetBrains is able to provide proof of such involvement.
+
+1.2. “JetBrains” or “we” means JetBrains s.r.o., having its principal place of business at Na Hrebenech II 1718/10, Prague, 14000, Czech Republic, registered in the Commercial Register maintained by the Municipal Court of Prague, Section C, File 86211, ID No.: 265 02 275.
+
+2. DEFINITIONS
+2.1 “Affiliate” means, with respect to any Party, any entity that directly, or indirectly through one or more intermediaries, controls, is controlled by, or is under common control of such Party; “control” for such purposes means the possession, direct or indirect, of the power to direct or affect the direction of the management and policies of a person or entity, whether through the ownership of voting securities, by contract, or otherwise.
+
+2.2. “Agreement” means this Toolbox Subscription Agreement for Students and Teachers.
+
+2.3. “EAP Version” means any of the Early Access, Beta, or Nightly versions of a Product that allow you to try pre-release Product Versions to evaluate features that may be added to a future Product Version.
+
+2.4. “JetBrains Account” or “JBA” means an account at https://account.jetbrains.com created by Customer, having a unique name and password, and enabling Customer to manage Subscription administration and/or access Products.
+
+2.5. “Machine” means a computing device used by Customer for running the Product.
+
+2.6. “Product” means any generally available JetBrains software intended for mass distribution which may be designated by JetBrains as part of the JetBrains Toolbox, on JetBrains’ website at www.jetbrains.com. “Product” does not include JetBrains ‘Team Tools’ software and services such as Space, Code With Me, YouTrack, TeamCity, Upsource, Datalore, Hub, or any other software, services, or products that are, in JetBrains’ sole discretion, subject to different terms and conditions. JetBrains does not develop Products according to Customer’s specifications, nor are Products customized through modification or personalization.
+
+2.7. “Product Version” means a release, update, or upgrade of a particular Product that is not identified by JetBrains as being made for the purpose of fixing software bugs.
+
+2.8. “Redistributable Product” means an independent module of a Product or a standalone JetBrains development tool designated by JetBrains as “Redistributable” in its name or in its official description, such as a Software Development Kit (SDK), Application Programming Interface (API), or Command Line Tool application (CLT), and which may be subject to additional terms.
+
+2.9. “Subscription” specifies the subscription term, Products provided to Customer, subscription fees, and payment schedules. Subscriptions do not apply to Redistributable Products.
+
+2.10. “Subscription Confirmation” means an email confirming Customer’s rights to access and use Products (excluding Redistributable Products), including Subscription plans, and stating the applicable use limitations for the Product (such as, for example, the number of Users and the license period).
+
+3. GRANT OF RIGHTS
+3.1 The Product is provided to Customer on a ‘per user’ basis, where Customer may deploy the Product on multiple Machines in accordance with the Product documentation, provided that Customer remains the sole user of the Product.
+
+3.2. Unless the Subscription has expired or this Agreement is terminated in accordance with Section 10, and subject to the terms and conditions specified in this Agreement, JetBrains grants Customer the non-exclusive and non-transferable right to use each Product covered by the Subscription for non-commercial, educational purposes only (including conducting academic research or providing educational services) for a period of one (1) year as stipulated below:
+
+(A) You may:
+
+(i) install and use any version of the Product covered by the Subscription and listed at https://www.jetbrains.com/student on any number of Machines and on any operating system supported by the Product; use such software for non-commercial, educational purposes only, including conducting academic research or providing educational services; and
+
+(ii) make one copy of the Product solely for archival, security, and/or backup purposes.
+
+(B) You may not:
+
+(i) allow the same Subscription to be used concurrently by another user apart from yourself;
+
+(ii) rent, lease, reproduce, modify, adapt, create derivative works of, distribute, sell, or transfer the Product;
+
+(iii) provide a third party with access to the Product or your JetBrains Account, or the right to use the Product;
+
+(iv) reverse engineer, decompile, disassemble, modify, translate, or make any attempt to discover the source code of, the Product;
+
+(v) remove or obscure any proprietary or other notices contained in the Product; or
+
+(vi) use the Product for any commercial purposes.
+
+3.3. Customer acknowledges that no ownership rights are conveyed to Customer under this Agreement, irrespective of the use of terms such as ‘purchase’ or ‘sale’. JetBrains has and retains all rights, title and interest, including all intellectual property rights, in and to the Products, any and all related or underlying technology, and any modifications or derivative works of the Products, including without limitation as they may incorporate Feedback (as defined below).
+
+3.4. If an independent module of the Product or the Product as a whole is a Redistributable Product, the following provisions shall apply in addition to Sections 3.1-3.3, unless specified otherwise in the terms relating to the use of the particular Redistributable Product:
+
+(A) You may:
+
+(i) use the Redistributable Product without the quantitative restrictions set out in Sections 3.1 and 3.2(B)(i);
+
+(ii) transfer, reproduce, redistribute, and provide access to the Redistributable Product to a third party;
+
+(iii) sell your product containing or using the Redistributable Product to a third party, but not the Redistributable Product on its own;
+
+(iv) redistribute the Redistributable Product onto another Machine for legitimate purposes in accordance with this Agreement and applicable law, and use the Redistributable Product on that Machine, provided that you have received authorization from the owner of that Machine to deploy and use the Redistributable Product in this way. You will indemnify JetBrains against any losses, costs, or damages arising from your deployment of the Redistributable Product onto another Machine in violation of this Section.
+
+(B) You agree that any Redistributable Product you reproduce, redistribute, or provide a third party access to must be governed by an agreement concluded between the relevant third party as a Customer and JetBrains, and that the third party must be bound by that agreement prior to the use of the reproduced or redistributed Redistributable Product. JetBrains is the exclusive owner and licensor of the Redistributable Product. You acknowledge that you are liable to JetBrains for any loss or damages in connection with any breach of this Section.
+
+3.5 Your access to and use of the Products is conditional on your status as a student or instructor. Customer:
+
+(A) agrees to immediately discontinue use of all Products covered by the Subscription if the Customer ceases to be a student or an instructor; and
+
+(B) warrants that the information Customer provides to JetBrains about the Customer’s status as a student or instructor is complete and accurate. This includes the use of legally valid and verifiable names and personal details.
+
+4. ACCESS TO PRODUCTS
+4.1. All deliveries under this Agreement will be electronic. You must have an Internet connection in order to access your JetBrains Account and receive any deliveries. You are responsible for downloading and installing the Products, which are made available for download on the JetBrains website at www.jetbrains.com.
+
+4.2 You may use the JBA in accordance with the JetBrains Account Agreement available at https://www.jetbrains.com/legal/docs/agreements/jetbrains_account.html. You are solely responsible for the accuracy of any information provided via, and any action taken through, the JBA.
+
+4.3 You may activate and access Products only via your JetBrains Account. You acknowledge and agree that the Product will periodically connect from a Machine to JetBrains’ servers via the Internet to confirm your right to use the Product.
+
+5. SUBSCRIPTION RENEWAL
+5.1. Customer may renew its Product subscription for another year by submitting a written request to JetBrains 30 (thirty) days prior to the end of the Subscription period.
+
+5.2. If not agreed otherwise in writing between JetBrains and Customer, in the event of subscription renewal, the relationship between the parties shall be governed and amended (if applicable) by the terms and conditions of the subscription agreement covering use of the Product available at www.jetbrains.com on the day of subscription renewal.
+
+6. FEEDBACK
+Customer has no obligation to provide us with ideas, suggestions, or proposals (“Feedback”). However, if Customer submits Feedback to us, then Customer grants us a non-exclusive, worldwide, royalty-free license that is sub-licensable and transferable, to make, use, sell, have made, offer to sell, import, reproduce, publicly display, distribute, modify, or publicly perform the Feedback in any manner without any obligation, royalty, or restriction based on intellectual property rights or otherwise.
+
+7. THIRD PARTY SOFTWARE
+The Products include code and libraries licensed to us by third parties, including open source software (“Third-Party Software”). A list of Third-Party Software included in each Product is available in the respective Product documentation and/or at https://www.jetbrains.com/legal/third-party-software. All Third-Party Software is provided to Customer under the respective terms stipulated in the Product documentation.
+
+8. WARRANTY LIMITATIONS
+8.1. ALL PRODUCTS ARE PROVIDED TO CUSTOMER ON AN “AS IS” AND “AS AVAILABLE” BASIS. USE OF THE PRODUCTS IS AT CUSTOMER’S OWN RISK.
+
+8.2. JETBRAINS MAKES NO WARRANTY AS TO THE PRODUCTS’ USE OR PERFORMANCE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, JETBRAINS (AND ITS AFFILIATES, SHAREHOLDERS, AGENTS, DIRECTORS, AND EMPLOYEES), ITS LICENSORS, SUPPLIERS (INCLUDING THE PROVIDERS OF THIRD PARTY SOFTWARE), AND RESELLERS (COLLECTIVELY HEREUNDER, “JETBRAINS PARTIES”) DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED (INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT) WITH REGARD TO THE PRODUCTS AND THE PROVISION OF OR FAILURE TO PROVIDE SUPPORT SERVICES.
+
+8.3. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, JETBRAINS PARTIES DO NOT REPRESENT OR WARRANT THAT THE PRODUCTS: (A) ARE ACCURATE, RELIABLE, OR CORRECT; (B) WILL MEET ANY CUSTOMER REQUIREMENTS; (C) WILL BE AVAILABLE AT ANY PARTICULAR TIME OR LOCATION, UNINTERRUPTED, OR SECURE; (D) ARE FREE OF DEFECTS OR ERRORS AND THAT ANY, IF FOUND, WILL BE CORRECTED; AND/OR (E) ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
+
+8.4. ANY CONTENT OR DATA DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE PRODUCTS ARE DOWNLOADED AT CUSTOMER’S OWN RISK; CUSTOMER AGREES IT IS SOLELY RESPONSIBLE FOR ANY DAMAGE TO ITS PROPERTY AND/OR LOSS OF DATA THAT RESULTS FROM SUCH DOWNLOAD.
+
+8.5. CUSTOMER MAY HAVE OTHER RIGHTS WHICH MAY NOT BE LIMITED OR EXCLUDED AND WHICH MAY VARY FROM JURISDICTION TO JURISDICTION. THIS DOCUMENT IS NOT INTENDED TO NEGATIVELY AFFECT SUCH RIGHTS.
+
+9. DISCLAIMER OF DAMAGES
+9.1. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL JETBRAINS PARTIES BE LIABLE TO CUSTOMER, CUSTOMER’S AFFILIATES, USERS, OR ANYONE ELSE FOR: (A) ANY LOSS OF USE, DATA, GOODWILL, OR PROFITS, WHETHER OR NOT FORESEEABLE; (B) ANY LOSS OR DAMAGES IN CONNECTION WITH TERMINATION OR SUSPENSION OF CUSTOMER’S ACCESS TO THE PRODUCTS IN ACCORDANCE WITH THIS AGREEMENT; OR (C) ANY SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES WHATSOEVER (EVEN IF THE RELEVANT JETBRAINS PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF THESE DAMAGES), INCLUDING THOSE (X) RESULTING FROM LOSS OF USE, DATA, OR PROFITS, WHETHER OR NOT THEY ARE FORESEEABLE, (Y) BASED ON ANY THEORY OF LIABILITY, INCLUDING BREACH OF CONTRACT OR WARRANTY, STRICT LIABILITY, NEGLIGENCE, OR OTHER TORTIOUS ACTION, OR (Z) ARISING FROM ANY OTHER CLAIM ARISING OUT OF OR IN CONNECTION WITH CUSTOMER’S USE OF OR ACCESS TO THE PRODUCTS OR SUPPORT. THIS LIMITATION OF LIABILITY SHALL APPLY TO THE FULLEST EXTENT PERMITTED BY LAW IN THE APPLICABLE JURISDICTION.
+
+9.2. THE TOTAL LIABILITY OF THE JETBRAINS PARTIES IN ANY MATTER ARISING OUT OF OR IN RELATION TO THIS AGREEMENT IS LIMITED TO TEN (10) US DOLLARS. THIS LIMITATION WILL APPLY EVEN IF THE JETBRAINS PARTIES HAVE BEEN ADVISED OF THE POSSIBILITY OF LIABILITY EXCEEDING SUCH AN AMOUNT AND NOTWITHSTANDING ANY FAILURE OF THE ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.
+
+10. TERM AND TERMINATION
+10.1. The term of this Agreement will commence upon acceptance of this Agreement by Customer as set forth in the preamble above, and it will continue for each Product through the end of the applicable Subscription period specified in the respective Subscription Confirmation. This Agreement can be renewed under the terms set forth in Section 5 of this Agreement with respect to a Product for a successive Subscription period, unless terminated in accordance with this Agreement.
+
+10.2. Customer may terminate this Agreement at any time by cancelling its Product Subscription via Customer’s JetBrains Account. If such termination occurs during a Subscription period, this Agreement will continue to be effective until the end of that Subscription period. In the case of Redistributable Products, Customer may terminate this Agreement with immediate effect by notifying JetBrains of such termination, discontinuing use of the Redistributable Products, and deleting all copies of Redistributable Products from its Machines and archives (notwithstanding anything else in this Agreement).
+
+10.3. JetBrains may terminate this Agreement and the associated Subscription if:
+
+(A) Customer has materially breached this Agreement and fails to remedy the breach within thirty (30) days of written notice;
+
+(B) JetBrains is required to do so by law (for example, where the provision of the Product to Customer is, or becomes, unlawful); or
+
+(C) JetBrains elects to discontinue providing the Product, in whole or in part.
+
+10.4. JetBrains will make reasonable efforts to notify Customer via email (to the email address of the billing or technical contact provided by Customer) as follows:
+
+Thirty (30) days prior to termination of the Agreement in the events specified in Sections 10.3(B) and 10.3(C).
+
+10.5. If JetBrains reasonably believes that:
+
+(A) the use of any Product by the Customer or associated with the Customer’s JetBrains Account is unauthorized or fraudulent;
+
+(B) information provided to JetBrains by the Customer in connection with this Agreement is incomplete, inaccurate, legally invalid, or unverifiable; or
+
+(C) the Customer has breached Section 3.2 of this Agreement;
+
+then JetBrains may terminate this Agreement on seven (7) days’ notice to the Customer (“Notice Period”). From the date of such termination notice until the expiry of the Notice Period, JetBrains may immediately suspend Customer’s access to the Products. During the Notice Period, the Customer may object to the termination in writing and must provide any information reasonably requested by JetBrains.
+
+10.6. Survival. Upon the expiration or termination of this Agreement Sections 6, 7, 8, 9, and 13 of this Agreement survive.
+
+10.7. The term of this Agreement will continue for each respective Redistributable Product until terminated by either Customer or JetBrains, unless specified otherwise by specific terms governing the use of the Redistributable Product.
+
+11. TEMPORARY SUSPENSION
+JetBrains reserves the right to suspend Customer’s access to JetBrains Products if Customer or User’s use of Product is in violation of this Agreement or disrupts or imminently threatens the security, integrity, or availability of a Product.
+
+12. EXPORT REGULATIONS
+12.1. Customer must comply with all applicable laws and regulations with regard to economic sanctions, export controls, import regulations, restrictive measures, and trade embargoes (all herein referred to as “Sanctions”), including those of the European Union and United States. Customer declares and warrants that it is not a person targeted by Sanctions, nor is it otherwise acting on behalf of any entity or person targeted by Sanctions. Customer agrees that it will not download or otherwise export or re-export the Product or any related technical data directly or indirectly to any person targeted by Sanctions or download or otherwise use the Product for any end-use prohibited or restricted by Sanctions.
+
+12.2. Customer must immediately report any concerns of non-compliance regarding Sanctions to compliance@jetbrains.com, legal@jetbrains.com, or ethics@jetbrains.com, and cooperate with JetBrains in its efforts to verify and ensure compliance with Sanctions.
+
+13. GENERAL
+13.1. Entire Agreement. The following documents are part of (‘incorporated into’) this Agreement: the JetBrains Privacy Policy, available at https://www.jetbrains.com/legal/docs/privacy/privacy.html, the Data Processing Addendum (if applicable) at https://www.jetbrains.com/legal/dpa, and the JetBrains Terms and Conditions of Purchase, available at https://www.jetbrains.com/legal/docs/store/terms. Together, these documents form the entire agreement and replace any previous agreement between you and us in relation to its subject matter. Except as expressly mentioned, this Agreement does not apply or give rights to anyone else (‘no third-party beneficiaries’). No purchase order, Customer terms, or other document that purports to modify or supplement this Agreement will vary the terms of this Agreement unless signed by Customer and JetBrains.
+
+13.2. EAP Version. Customer may choose to use EAP Versions during a Subscription period. Such use is subject to the JetBrains EAP User Agreement (available at https://www.jetbrains.com/legal/docs/toolbox/user_eap.html), and by using the EAP Version Customer accepts these terms and conditions. If Customer ceases to use an EAP Version but continues to use Product, such use will continue to be governed by this Agreement.
+
+13.3 Reservation of Rights. JetBrains reserves the right at any time to cease its support of the Product and to alter prices, features, specifications, capabilities, functions, terms of use, release dates, general availability, and other characteristics of the Product. Nothing in this Agreement limits any rights a consumer may have under applicable consumer protection laws.
+
+13.4. Changes to this Agreement. The Agreement can be updated from time to time to reflect changes in the Product and how it is offered to you.
+
+(A) If this happens, we will update the terms on the JetBrains website and let you know either:
+
+(i) by displaying them to you in the Product;
+
+(ii) in your JetBrains Account; or
+
+(iii) by sending the updated version to the email address used in your JetBrains Account.
+
+(B) Any updated Agreement will start (‘be effective’) on the date specified in the updated Agreement. By continuing to use the Product after the effective date, you agree to be bound by the modified Agreement.
+
+(C) We respect that you may not agree to the updated Agreement. If that is the case, you can terminate your Subscription any time up to 30 days after the effective date of the updated Agreement.
+
+13.5. Opportunity to Review. Customer declares that it has had sufficient opportunity to review this Agreement, understand the content of all of its sections, negotiate its terms, and seek independent professional legal advice before entering into it. Consequently, any statutory “form contract” (“adhesion contract”) regulations shall not be applicable to this Agreement.
+
+13.6. Severability. If a particular term of this Agreement is not enforceable, the unenforceability of that term will not affect any other terms of this Agreement.
+
+13.7. Interpretation. Headings and titles are for convenience only and do not affect the interpretation of this Agreement. Terms such as “including” are not exhaustive.
+
+13.8. No Waiver. Our failure to enforce or exercise any part of this Agreement is not a waiver of that section.
+
+13.9. Notice. JetBrains may deliver any notice to Customer via electronic mail to an email address provided by Customer, or via Customer’s JetBrains Account, registered mail, personal delivery, or reputable express courier (such as DHL, FedEx, or UPS). Any such notice will be deemed to be effective (i) on the day the notice is sent to Customer via email, (ii) upon being uploaded to Customer’s JetBrains Account (irrespective of when Customer actually receives it), (iii) upon personal delivery, (iv) one (1) day after deposit with an express courier, or (v) five (5) days after deposit in the mail, whichever occurs first.
+
+13.10. Governing Law. This Agreement is governed by the laws of the Czech Republic, without reference to conflict of laws principles and specifically excluding the United Nations Convention on Contracts for the International Sale of Goods. The Parties to the agreement constituted by this Agreement undertake to use best commercial efforts to amicably settle any disputes arising hereunder (“Dispute”).
+
+13.11. Dispute Resolution. Should the Parties to this Agreement fail to settle a Dispute amicably, the Dispute will be excluded from the jurisdiction of general courts and the Dispute will be finally decided by the Arbitration Court attached to the Czech Chamber of Commerce and the Agricultural Chamber of the Czech Republic, by three arbitrators in accordance with the Rules of that Arbitration Court, and the language of the proceedings will be English; if you are a consumer, we both agree that any Dispute-related litigation may only be brought in, and shall be subject to the jurisdiction of, any competent court of the Czech Republic, unless provided otherwise by applicable consumer law. Consumer Disputes can also be settled out of court through the Czech Trade Inspection Authority (www.coi.cz) or the European Commission’s online platform for dispute resolution (http://ec.europa.eu/consumers/odr).
+
+13.12. Data Privacy. By accepting this Agreement, Customer acknowledges that JetBrains will process personal data in accordance with JetBrains’ Privacy Policy (available at https://www.jetbrains.com/company/privacy.html). Unless you have signed an individual data processing addendum with JetBrains, the JetBrains data processing addendum available at https://www.jetbrains.com/legal/dpa applies.
+
+13.13. Force Majeure. Neither Party shall be in breach of this Agreement, or otherwise liable to the other, by reason of any delay in performance, or non-performance, of any of its obligations under this Agreement (except payment obligations), arising directly from an act of God, fire, flood, natural disaster, act of terrorism, strike, lock-out, labor dispute, public health emergency, civil commotion, riot, or act of war.
+
+13.14. Children and minors. If you are under 18 years old, then by entering into this Agreement you explicitly stipulate that (i) you have legal capacity to conclude this Agreement or that you have valid consent from a parent or legal guardian to do so and (ii) you understand the JetBrains Privacy Policy available at https://www.jetbrains.com/legal/docs/privacy/privacy.html. You may not enter into this Agreement if you are under 13 years old. IF YOU DO NOT UNDERSTAND THIS SECTION, DO NOT UNDERSTAND THE JETBRAINS PRIVACY POLICY, OR DO NOT KNOW WHETHER YOU HAVE THE LEGAL CAPACITY TO ACCEPT THESE TERMS, PLEASE ASK YOUR PARENT OR LEGAL GUARDIAN FOR HELP.
+
+The previous version of this agreement is available here.
+
+For further information, please contact us at legal@jetbrains.com

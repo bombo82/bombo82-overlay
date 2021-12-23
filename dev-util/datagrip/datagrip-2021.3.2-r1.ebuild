@@ -6,11 +6,12 @@ EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="The Python IDE for Professional Developers"
-HOMEPAGE="https://www.jetbrains.com/pycharm"
+DESCRIPTION="Many databases, one tool"
+HOMEPAGE="https://www.jetbrains.com/datagrip"
+
 LICENSE="
-	|| ( jetbrains_business-3.1 jetbrains_individual-4.1 jetbrains_education-3.2 jetbrains_classroom-4.1 jetbrains_open_source-4.1 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 EPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit ZLIB
+	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -34,10 +35,10 @@ RDEPEND="
 	>=x11-libs/libXrandr-1.5
 "
 
-SIMPLE_NAME="PyCharm Professional"
-MY_PN="pycharm"
-SRC_URI_PATH="python"
-SRC_URI_PN="pycharm-professional"
+SIMPLE_NAME="DataGrip"
+MY_PN="${PN}"
+SRC_URI_PATH="${PN}"
+SRC_URI_PN="${PN}"
 JBR_PV="17_0_1"
 JBR_PB="164.8"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
@@ -47,7 +48,7 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	jbr-vanilla?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 "
 
-S="${WORKDIR}/pycharm-${PV}"
+S="${WORKDIR}/DataGrip-${PV}"
 
 src_prepare() {
 	default
