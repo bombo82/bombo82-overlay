@@ -47,7 +47,7 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	jbr-vanilla?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 "
 
-BUILD_NUMBER="213.6461.83"
+BUILD_NUMBER="213.6777.58"
 S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
 
 src_prepare() {
