@@ -1,4 +1,4 @@
-# Copyright 2020-2021 Gianni Bombelli <bombo82@giannibombelli.it>
+# Copyright 2020-2022 Gianni Bombelli <bombo82@giannibombelli.it>
 # Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
