@@ -77,6 +77,7 @@ src_install() {
 	fi
 
 	fperms 755 "${dir}"/bin/fsnotifier
+	fperms 755 "${dir}"/bin/ninja/linux/ninja
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
