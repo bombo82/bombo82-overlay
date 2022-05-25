@@ -11,7 +11,7 @@ MY_PN="${PN/-bin/}"
 DESCRIPTION="Supercharge your API workflow"
 HOMEPAGE="https://www.getpostman.com"
 SRC_URI="
-	amd64? ( https://dl.pstmn.io/download/version/${PV}/linux64 -> ${P}-amd64.tar.gz )
+	amd64? ( https://bombo82-overlay.doesntexist.xyz/postman-bin/${P/-bin/}-linux-x64.tar.gz )
 "
 
 LICENSE="MPL-2.0"
