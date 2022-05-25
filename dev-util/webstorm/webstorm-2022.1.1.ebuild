@@ -6,11 +6,11 @@ EAPI=7
 
 inherit desktop wrapper
 
-DESCRIPTION="The Lightning-Smart PHP IDE"
-HOMEPAGE="https://www.jetbrains.com/go"
+DESCRIPTION="The smartest JavaScript IDE"
+HOMEPAGE="https://www.jetbrains.com/webstorm"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh W3C yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -34,10 +34,10 @@ RDEPEND="
 	>=x11-libs/libXrandr-1.5
 "
 
-SIMPLE_NAME="PhpStorm"
+SIMPLE_NAME="WebStorm"
 MY_PN="${PN}"
-SRC_URI_PATH="webide"
-SRC_URI_PN="PhpStorm"
+SRC_URI_PATH="webstorm"
+SRC_URI_PN="WebStorm"
 JBR_PV="17_0_2"
 JBR_PB="315.1"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
@@ -47,8 +47,8 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 	jbrsdk-jcef?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk_jcef-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 "
 
-BUILD_NUMBER="221.5080.224"
-S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
+BUILD_NUMBER="221.5591.52"
+S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
 src_prepare() {
 	default
