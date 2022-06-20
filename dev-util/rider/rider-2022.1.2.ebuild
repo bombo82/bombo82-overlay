@@ -77,6 +77,7 @@ src_install() {
 		doins -r ../jbr
 	fi
 	fperms 755 "${dir}"/jbr/bin/{jaotc,java,javac,jdb,jfr,jhsdb,jjs,jrunscript,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
+	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/bin/*
 
 	if use jbrsdk-jcef; then
 		fperms 755 "${dir}"/jbr/lib/jcef_helper
