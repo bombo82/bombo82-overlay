@@ -39,7 +39,7 @@ MY_PN="pycharm"
 SRC_URI_PATH="python"
 SRC_URI_PN="pycharm-professional"
 JBR_PV="17.0.3"
-JBR_PB="463.3"
+JBR_PB="469.12"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
 	jbr-fd?		( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_fd-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
 	jbr-vanilla?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
