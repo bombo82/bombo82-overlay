@@ -15,8 +15,7 @@ SLOT="0"
 VER="$(ver_cut 1-2)"
 KEYWORDS="~amd64"
 RESTRICT="bindist mirror splitdebug"
-IUSE="jbrsdk jbr-fd +jbrsdk-jcef jbr-vanilla"
-REQUIRED_USE="^^ ( jbrsdk jbr-fd jbrsdk-jcef jbr-vanilla )"
+IUSE=""
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	>=app-accessibility/at-spi2-atk-2.15.1
@@ -37,24 +36,13 @@ SIMPLE_NAME="CLion"
 MY_PN="${PN}"
 SRC_URI_PATH="cpp"
 SRC_URI_PN="CLion"
-JBR_PV="17.0.3"
-JBR_PB="469.12"
-SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz
-	jbr-fd?		( https://cache-redirector.jetbrains.com/intellij-jbr/jbr_fd-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-	jbr-vanilla?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-	jbrsdk?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-	jbrsdk-jcef?	( https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk_jcef-${JBR_PV}-linux-x64-b${JBR_PB}.tar.gz )
-"
+SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
 src_prepare() {
 	default
 
 	local pty4j_path="lib/pty4j-native/linux"
 	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el "${pty4j_path}"/arm )
-
-	if ! use jbrsdk-jcef ; then
-		remove_me+=( )
-	fi
 
 	rm -rv "${remove_me[@]}" || die
 }
@@ -64,20 +52,14 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/"${MY_PN}".sh
-	fperms 755 "${dir}"/bin/clang/linux/clang{d,-tidy}
-
-	if ! use jbrsdk-jcef ; then
-		doins -r ../jbr
-	fi
-	fperms 755 "${dir}"/jbr/bin/{jaotc,java,javac,jdb,jfr,jhsdb,jjs,jrunscript,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
-
-	if use jbrsdk-jcef; then
-		fperms 755 "${dir}"/jbr/lib/jcef_helper
-	fi
-
+	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,ltedit,remote-dev-server}.sh
 	fperms 755 "${dir}"/bin/fsnotifier
+
+	fperms 755 "${dir}"/bin/clang/linux/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
 	fperms 755 "${dir}"/bin/ninja/linux/ninja
+
+	fperms 755 "${dir}"/jbr/bin/{java,javac,jcmd,jdb,jfr,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
+	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
