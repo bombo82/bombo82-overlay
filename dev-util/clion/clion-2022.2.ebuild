@@ -57,6 +57,9 @@ src_install() {
 
 	fperms 755 "${dir}"/bin/clang/linux/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
 	fperms 755 "${dir}"/bin/ninja/linux/ninja
+	fperms 755 "${dir}"/bin/gdb/linux/bin
+	fperms 755 "${dir}"/bin/cmake/linux/bin
+	fperms 755 "${dir}"/bin/lldb/linux/bin
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,jcmd,jdb,jfr,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
