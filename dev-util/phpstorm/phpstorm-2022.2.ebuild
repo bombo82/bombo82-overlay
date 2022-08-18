@@ -39,7 +39,7 @@ SRC_URI_PATH="webide"
 SRC_URI_PN="PhpStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="221.6008.16"
+BUILD_NUMBER="222.3345.135"
 S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
 
 src_prepare() {
