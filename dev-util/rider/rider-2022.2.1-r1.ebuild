@@ -49,7 +49,7 @@ src_prepare() {
 	local pty4j_path="lib/pty4j-native/linux"
 	local ReSharperHost_path="lib/ReSharperHost/"
 	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el "${pty4j_path}"/arm )
-	remove_me+=( "${ReSharperHost_path}"/linux-arm "${ReSharperHost_path}"/linux-arm64 "${ReSharperHost_path}"/linux-x86 "${ReSharperHost_path}"/macos-arm64 "${ReSharperHost_path}"/macos-x64 "${ReSharperHost_path}"/windows-x64 "${ReSharperHost_path}"/windows-x86 )
+	remove_me+=( "${ReSharperHost_path}"/linux-arm "${ReSharperHost_path}"/linux-arm64 "$ReSharperHost_path"/linux-musl-arm64 "${ReSharperHost_path}"/linux-x86 "${ReSharperHost_path}"/macos-arm64 "${ReSharperHost_path}"/macos-x64 "${ReSharperHost_path}"/windows-x64 "${ReSharperHost_path}"/windows-x86 )
 
 	rm -rv "${remove_me[@]}" || die
 }
@@ -63,6 +63,8 @@ src_install() {
 	fperms 755 "${dir}"/bin/fsnotifier
 
 	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
+	fperms 755 "${dir}"/lib/ReSharperHost/{Rider.Backend.sh,runtime-dotnet.sh}
+	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/{7za,Rider.Backend}
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/dotnet
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,jcmd,jdb,jfr,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
