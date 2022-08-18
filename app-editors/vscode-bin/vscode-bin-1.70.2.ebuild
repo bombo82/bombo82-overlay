@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
-EAPI=7
+EAPI=8
 
-inherit desktop eutils
+inherit desktop wrapper
 
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft (binary version)"
 HOMEPAGE="https://code.visualstudio.com"

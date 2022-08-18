@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
-EAPI=7
+EAPI=8
 
 inherit desktop wrapper
 
@@ -39,7 +39,7 @@ SRC_URI_PATH="idea"
 SRC_URI_PN="ideaIU"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="222.3345.118"
+BUILD_NUMBER="222.3739.54"
 S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 
 src_prepare() {

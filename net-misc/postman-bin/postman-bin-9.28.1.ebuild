@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
-EAPI=7
+EAPI=8
 
-inherit desktop eutils pax-utils xdg
+inherit desktop pax-utils xdg wrapper
 
 MY_PN="${PN/-bin/}"
 

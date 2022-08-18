@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License  as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
-EAPI=7
+EAPI=8
 
-inherit autotools eutils
+inherit autotools wrapper
 
 DESCRIPTION="Forward-port of the Crowther/Woods Adventure 2.5 from 1995"
 HOMEPAGE="http://www.catb.org/~esr/open-adventure/"
