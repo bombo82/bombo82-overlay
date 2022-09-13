@@ -1,6 +1,8 @@
 .idea
+
 cache
 distfiles
+metadata/md5-cache/
 
 licenses-gentoo
 patch
