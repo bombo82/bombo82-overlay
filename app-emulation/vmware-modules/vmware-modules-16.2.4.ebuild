@@ -9,7 +9,7 @@ DESCRIPTION="VMware kernel modules"
 HOMEPAGE="https://github.com/mkubecek/vmware-host-modules"
 
 MY_KERNEL_VERSION="5.18"
-SRC_URI="https://github.com/mkubecek/vmware-host-modules/archive/w${PV}-k${MY_KERNEL_VERSION}.zip -> ${P}-${MY_KERNEL_VERSION}.zip"
+SRC_URI="https://github.com/mkubecek/vmware-host-modules/archive/w${PV}-k${MY_KERNEL_VERSION}.tar.gz -> ${P}-${MY_KERNEL_VERSION}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

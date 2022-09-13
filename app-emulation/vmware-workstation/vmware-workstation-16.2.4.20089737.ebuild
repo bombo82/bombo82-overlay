@@ -78,8 +78,6 @@ RDEPEND="
 	x11-libs/startup-notification
 	x11-libs/xcb-util
 	x11-themes/hicolor-icon-theme
-	!app-emulation/vmware-player
-	!app-emulation/vmware-tools
 "
 DEPEND="
 	${PYTHON_DEPS}
@@ -166,7 +164,7 @@ src_install() {
 
 	# revdep-rebuild entry
 	insinto /etc/revdep-rebuild
-	echo "SEARCH_DIRS_MASK=\"${VM_INSTALL_DIR}\"" >> ${T}/10${PN}
+	echo "SEARCH_DIRS_MASK=\"${VM_INSTALL_DIR}\"" >> "${T}"/10${PN}
 	doins "${T}"/10${PN}
 
 	# install the binaries
