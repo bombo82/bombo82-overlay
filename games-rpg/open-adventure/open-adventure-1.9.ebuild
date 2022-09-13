@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit autotools wrapper
+inherit wrapper
 
 DESCRIPTION="Forward-port of the Crowther/Woods Adventure 2.5 from 1995"
 HOMEPAGE="http://www.catb.org/~esr/open-adventure/"
