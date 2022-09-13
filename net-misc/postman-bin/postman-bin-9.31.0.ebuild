@@ -17,7 +17,7 @@ SRC_URI="
 LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="pax_kernel"
+IUSE="pax-kernel"
 RESTRICT="bindist mirror strip"
 
 DEPEND=""
@@ -46,5 +46,5 @@ src_install() {
 	newicon "resources/app/assets/icon.png" "${PN}.png"
 	make_desktop_entry "${PN}" "Postman" "${PN}" "Development;IDE;"
 
-	use pax_kernel && pax-mark m "${ED}/opt/${MY_PN}/${MY_PN^}"
+	use pax-kernel && pax-mark m "${ED}/opt/${MY_PN}/${MY_PN^}"
 }
