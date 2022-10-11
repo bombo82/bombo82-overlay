@@ -16,7 +16,7 @@ SYSTEMD_UNITS_TAG="gentoo-02"
 UNLOCKER_VERSION="3.0.4"
 
 DESCRIPTION="Emulate a complete PC without the performance overhead of most emulators"
-HOMEPAGE="https://www.vmware.com/products/workstation/"
+HOMEPAGE="https://www.vmware.com/products/workstation-pro.html"
 SRC_URI="
 	https://download3.vmware.com/software/WKST-${MY_PV//./}-LX/${MY_P}.x86_64.bundle
 	macos-guests? (
