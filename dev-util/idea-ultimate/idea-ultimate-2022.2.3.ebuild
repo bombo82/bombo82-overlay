@@ -19,7 +19,7 @@ RESTRICT="bindist mirror splitdebug"
 IUSE=""
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
-	>=app-accessibility/at-spi2-atk-2.15.1
+	app-accessibility/at-spi2-atk
 	dev-libs/libdbusmenu
 	dev-util/lldb
 	media-libs/mesa[X(+)]
@@ -39,7 +39,7 @@ SRC_URI_PATH="idea"
 SRC_URI_PN="ideaIU"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="222.4167.29"
+BUILD_NUMBER="222.4345.14"
 S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 
 src_prepare() {

@@ -6,11 +6,12 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The Lightning-Smart PHP IDE"
-HOMEPAGE="https://www.jetbrains.com/go"
+DESCRIPTION="Many databases, one tool"
+HOMEPAGE="https://www.jetbrains.com/datagrip"
+
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh W3C yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -19,7 +20,7 @@ RESTRICT="bindist mirror splitdebug"
 IUSE=""
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
-	>=app-accessibility/at-spi2-atk-2.15.1
+	app-accessibility/at-spi2-atk
 	dev-libs/libdbusmenu
 	dev-util/lldb
 	media-libs/mesa[X(+)]
@@ -33,14 +34,13 @@ RDEPEND="
 	>=x11-libs/libXrandr-1.5
 "
 
-SIMPLE_NAME="PhpStorm"
+SIMPLE_NAME="DataGrip"
 MY_PN="${PN}"
-SRC_URI_PATH="webide"
-SRC_URI_PN="PhpStorm"
+SRC_URI_PATH="${PN}"
+SRC_URI_PN="${PN}"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="222.3739.61"
-S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
+S="${WORKDIR}/DataGrip-${PV}"
 
 src_prepare() {
 	default
@@ -64,7 +64,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

@@ -19,7 +19,7 @@ RESTRICT="bindist mirror splitdebug"
 IUSE=""
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
-	>=app-accessibility/at-spi2-atk-2.15.1
+	app-accessibility/at-spi2-atk
 	dev-libs/libdbusmenu
 	dev-util/lldb
 	media-libs/mesa[X(+)]
