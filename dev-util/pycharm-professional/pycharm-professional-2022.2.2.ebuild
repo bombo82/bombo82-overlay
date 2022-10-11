@@ -7,7 +7,7 @@ EAPI=8
 inherit desktop wrapper
 
 DESCRIPTION="The Python IDE for Professional Developers"
-HOMEPAGE="https://www.jetbrains.com/pycharm"
+HOMEPAGE="https://www.jetbrains.com/pycharm/"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
 	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 EPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit ZLIB

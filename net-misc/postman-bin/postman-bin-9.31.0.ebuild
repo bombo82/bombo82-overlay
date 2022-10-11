@@ -9,7 +9,7 @@ inherit desktop pax-utils xdg wrapper
 MY_PN="${PN/-bin/}"
 
 DESCRIPTION="Supercharge your API workflow"
-HOMEPAGE="https://www.getpostman.com"
+HOMEPAGE="https://www.getpostman.com/"
 SRC_URI="
 	amd64? ( https://bombo82-overlay.doesntexist.xyz/postman-bin/${P/-bin/}-linux-x64.tar.gz )
 "

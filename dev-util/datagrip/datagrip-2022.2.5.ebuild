@@ -7,7 +7,7 @@ EAPI=8
 inherit desktop wrapper
 
 DESCRIPTION="Many databases, one tool"
-HOMEPAGE="https://www.jetbrains.com/datagrip"
+HOMEPAGE="https://www.jetbrains.com/datagrip/"
 
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )

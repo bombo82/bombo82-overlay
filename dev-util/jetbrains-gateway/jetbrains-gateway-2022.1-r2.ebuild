@@ -7,7 +7,7 @@ EAPI=8
 inherit desktop wrapper
 
 DESCRIPTION="Your single entry point to all remote development environments"
-HOMEPAGE="https://www.jetbrains.com/remote-development/gateway"
+HOMEPAGE="https://www.jetbrains.com/remote-development/gateway/"
 LICENSE="
 	jetbrains_team_tools-2.1
 	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
