@@ -7,9 +7,9 @@ EAPI=8
 inherit desktop wrapper
 
 DESCRIPTION="Free universal database tool and SQL client"
-HOMEPAGE="http://dbeaver.io/"
+HOMEPAGE="https://dbeaver.io/"
 
-SRC_URI="http://dbeaver.io/files/${PV}/dbeaver-ce-${PV}-linux.gtk.x86_64.tar.gz"
+SRC_URI="https://dbeaver.io/files/${PV}/dbeaver-ce-${PV}-linux.gtk.x86_64.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
