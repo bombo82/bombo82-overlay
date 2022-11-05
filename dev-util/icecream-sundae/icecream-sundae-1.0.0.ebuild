@@ -22,7 +22,6 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-util/meson
 	dev-util/ninja
-	sys-libs/glibc
 "
 
 PATCHES=(
