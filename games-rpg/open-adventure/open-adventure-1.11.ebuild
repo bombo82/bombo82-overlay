@@ -7,7 +7,7 @@ EAPI=8
 inherit wrapper
 
 DESCRIPTION="Forward-port of the Crowther/Woods Adventure 2.5 from 1995"
-HOMEPAGE="https://www.catb.org/~esr/open-adventure/"
+HOMEPAGE="http://www.catb.org/~esr/open-adventure/"
 SRC_URI="https://gitlab.com/esr/${PN}/-/archive/${PV}/${P}.tar.gz"
 
 LICENSE="BSD-2"
