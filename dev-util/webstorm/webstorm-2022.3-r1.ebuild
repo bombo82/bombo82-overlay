@@ -42,15 +42,6 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 BUILD_NUMBER="223.7571.168"
 S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
-src_prepare() {
-	default
-
-	local pty4j_path="lib/pty4j-native/linux"
-	local remove_me=( "${pty4j_path}"/ppc64le "${pty4j_path}"/aarch64 "${pty4j_path}"/mips64el "${pty4j_path}"/arm )
-
-	rm -rv "${remove_me[@]}" || die
-}
-
 src_install() {
 	local dir="/opt/${P}"
 
