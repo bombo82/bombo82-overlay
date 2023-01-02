@@ -5,4 +5,7 @@
         <email>bombo82@giannibombelli.it</email>
         <name>Gianni Bombelli (bombo82)</name>
     </maintainer>
+    <upstream>
+        <remote-id type="github">JPEWdev/icecream-sundae</remote-id>
+    </upstream>
 </pkgmetadata>

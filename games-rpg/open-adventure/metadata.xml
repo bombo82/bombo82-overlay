@@ -5,4 +5,7 @@
         <email>bombo82@giannibombelli.it</email>
         <name>Gianni Bombelli (bombo82)</name>
     </maintainer>
+    <upstream>
+        <remote-id type="gitlab">esr/open-adventure</remote-id>
+    </upstream>
 </pkgmetadata>
