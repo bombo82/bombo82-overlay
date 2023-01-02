@@ -27,7 +27,4 @@
 		<flag name="vmware-tools-winPre2k">Install VMware Tools for Windows (before 2000) guests.</flag>
 		<flag name="vmware-tools-winPreVista">Install VMware Tools for Windows (after 2000, before Vista) guests.</flag>
 	</use>
-	<upstream>
-		<remote-id type="github">akhuettel/systemd-vmware</remote-id>
-	</upstream>
 </pkgmetadata>

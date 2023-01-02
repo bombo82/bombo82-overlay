@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -8,8 +8,17 @@ inherit flag-o-matic linux-info linux-mod udev
 DESCRIPTION="VMware kernel modules"
 HOMEPAGE="https://github.com/mkubecek/vmware-host-modules"
 
-MY_KERNEL_VERSION="5.18"
-SRC_URI="https://github.com/mkubecek/vmware-host-modules/archive/w${PV}-k${MY_KERNEL_VERSION}.tar.gz -> ${P}-${MY_KERNEL_VERSION}.tar.gz"
+MY_KERNEL_VERSION="6.0"
+
+# Upstream doesn't want to tag versions or anything that looks like properly
+# releasing the software, so we need to just pick a commit from
+# https://github.com/mkubecek/vmware-host-modules/commits/workstation-${PV}
+# and test it ourselves.
+#
+# Details: https://github.com/mkubecek/vmware-host-modules/issues/158#issuecomment-1228341760
+HOST_MODULES_COMMIT="d9244035eb0638ea4602f3e50beb5d9a7f441d03"
+
+SRC_URI=" https://github.com/mkubecek/vmware-host-modules/archive/${HOST_MODULES_COMMIT}.tar.gz -> ${P}-${HOST_MODULES_COMMIT}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -19,7 +28,7 @@ IUSE=""
 RDEPEND="acct-group/vmware"
 DEPEND=""
 
-S="${WORKDIR}/vmware-host-modules-w${PV}-k${MY_KERNEL_VERSION}"
+S="${WORKDIR}/vmware-host-modules-${HOST_MODULES_COMMIT}"
 MY_S="$S"
 
 pkg_setup() {
@@ -34,6 +43,12 @@ pkg_setup() {
 
 	linux-info_pkg_setup
 	linux-mod_pkg_setup
+
+	if kernel_is gt ${MY_KERNEL_VERSION//./ }; then
+		ewarn
+		ewarn "Warning: this version of the modules is only known to work with kernels up to ${MY_KERNEL_VERSION}, while you are building them for a ${KV_FULL} kernel."
+		ewarn
+	fi
 
 	VMWARE_MODULE_LIST="vmmon vmnet"
 
@@ -90,5 +105,11 @@ src_install() {
 
 pkg_postinst() {
 	linux-mod_pkg_postinst
+	udev_reload
 	ewarn "Don't forget to run 'rc-service vmware restart' to use the new kernel modules."
+}
+
+pkg_postrm() {
+	linux-mod_pkg_postrm
+	udev_reload
 }
