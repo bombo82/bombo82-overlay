@@ -58,7 +58,7 @@ src_install() {
 	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,ltedit,remote-dev-server}.sh
 	fperms 755 "${dir}"/bin/fsnotifier
 
-	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
+	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
 	fperms 755 "${dir}"/lib/ReSharperHost/{Rider.Backend.sh,runtime-dotnet.sh}
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/{clang-format,Rider.Backend}
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/dotnet
