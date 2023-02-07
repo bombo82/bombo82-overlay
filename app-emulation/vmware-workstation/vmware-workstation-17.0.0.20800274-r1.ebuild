@@ -11,7 +11,7 @@ MY_PV=$(ver_cut 1-3)
 PV_MODULES="${MY_PV}"
 PV_BUILD=$(ver_cut 4)
 MY_P="${MY_PN}-${MY_PV}-${PV_BUILD}"
-VMWARE_FUSION_VER="12.2.5/20904517" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
+VMWARE_FUSION_VER="13.0.0/20802013" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
 UNLOCKER_VERSION="3.0.4"
 
 DESCRIPTION="Emulate a complete PC without the performance overhead of most emulators"
@@ -56,10 +56,8 @@ RDEPEND="
 	dev-libs/json-c
 	dev-libs/nettle:0
 	gnome-base/dconf
-	gnome-base/gconf
 	media-gfx/graphite2
 	media-libs/alsa-lib
-	media-libs/libart_lgpl
 	media-libs/libvorbis
 	media-libs/mesa
 	media-plugins/alsa-plugins[speex]
@@ -122,7 +120,7 @@ src_unpack() {
 		for guest in ${DARWIN_GUESTS}; do
 			if use vmware-tools-${guest}; then
 				mkdir extracted/vmware-tools-${guest}
-				mv "payload/VMware Fusion.app/Contents/Library/isoimages/${guest}.iso" extracted/vmware-tools-${guest}/ || die
+				mv "payload/VMware Fusion.app/Contents/Library/isoimages/x86_x64/${guest}.iso" extracted/vmware-tools-${guest}/ || die
 			fi
 		done
 		rm -rf __MACOSX payload manifest.plist preflight postflight com.vmware.fusion.zip
