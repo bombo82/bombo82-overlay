@@ -50,6 +50,7 @@ src_install() {
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+    fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linux/dlv
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
