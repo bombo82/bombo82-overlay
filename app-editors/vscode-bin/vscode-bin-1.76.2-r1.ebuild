@@ -17,9 +17,21 @@ SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="bindist mirror"
 
-DEPEND=""
+DEPEND="
+	media-libs/libpng
+	x11-libs/gtk+:3
+	x11-libs/cairo
+	x11-libs/libXtst
+	!app-editors/vscode
+"
+
 RDEPEND="
-	x11-libs/gtk+
+	${DEPEND}
+	net-print/cups
+	x11-libs/libnotify
+	x11-libs/libXScrnSaver
+	dev-libs/nss
+	app-crypt/libsecret[crypt]
 "
 
 QA_PRESTRIPPED="opt/${PN}/code"
