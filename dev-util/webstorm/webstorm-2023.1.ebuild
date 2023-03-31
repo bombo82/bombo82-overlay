@@ -38,7 +38,7 @@ SRC_URI_PATH="webstorm"
 SRC_URI_PN="WebStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="223.8836.50"
+BUILD_NUMBER="231.8109.174"
 S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
 src_install() {
