@@ -38,7 +38,7 @@ SRC_URI_PATH="idea"
 SRC_URI_PN="ideaIU"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="223.8836.41"
+BUILD_NUMBER="231.8109.175"
 S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 
 src_prepare() {
