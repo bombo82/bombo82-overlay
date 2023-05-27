@@ -8,7 +8,7 @@ inherit flag-o-matic linux-info linux-mod udev
 DESCRIPTION="VMware kernel modules"
 HOMEPAGE="https://github.com/mkubecek/vmware-host-modules"
 
-MY_KERNEL_VERSION="6.0"
+MY_KERNEL_VERSION="6.3"
 
 # Upstream doesn't want to tag versions or anything that looks like properly
 # releasing the software, so we need to just pick a commit from
@@ -16,7 +16,7 @@ MY_KERNEL_VERSION="6.0"
 # and test it ourselves.
 #
 # Details: https://github.com/mkubecek/vmware-host-modules/issues/158#issuecomment-1228341760
-HOST_MODULES_COMMIT="78b77816d39a77b1643426ece1ebd48776d83c1b"
+HOST_MODULES_COMMIT="650fb3abeb82f2b7d3a14f9579a7529d153636b7"
 
 SRC_URI=" https://github.com/mkubecek/vmware-host-modules/archive/${HOST_MODULES_COMMIT}.tar.gz -> ${P}-${HOST_MODULES_COMMIT}.tar.gz"
 
