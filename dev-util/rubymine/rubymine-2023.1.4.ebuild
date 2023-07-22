@@ -6,11 +6,11 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The Lightning-Smart PHP IDE"
-HOMEPAGE="https://www.jetbrains.com/go/"
+DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
+HOMEPAGE="https://www.jetbrains.com/ruby/"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh W3C yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -32,21 +32,20 @@ RDEPEND="
 	x11-libs/libXrandr
 "
 
-SIMPLE_NAME="PhpStorm"
+SIMPLE_NAME="RubyMine"
 MY_PN="${PN}"
-SRC_URI_PATH="webide"
-SRC_URI_PN="PhpStorm"
+SRC_URI_PATH="ruby"
+SRC_URI_PN="RubyMine"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="231.9161.47"
-S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
+S="${WORKDIR}/RubyMine-${VER}"
 
 src_install() {
 	local dir="/opt/${P}"
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,ltedit,remote-dev-server}.sh
+	fperms 755 "${dir}"/bin/{"${MY_PN}",format,ltedit,remote-dev-server,rinspect}.sh
 	fperms 755 "${dir}"/bin/fsnotifier
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
@@ -54,7 +53,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
