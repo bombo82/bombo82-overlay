@@ -6,11 +6,11 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="A complete toolset for web, mobile and enterprise development"
-HOMEPAGE="https://www.jetbrains.com/idea/"
+DESCRIPTION="The smartest JavaScript IDE"
+HOMEPAGE="https://www.jetbrains.com/webstorm/"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -32,23 +32,14 @@ RDEPEND="
 	x11-libs/libXrandr
 "
 
-SIMPLE_NAME="Idea Ultimate"
-MY_PN="idea"
-SRC_URI_PATH="idea"
-SRC_URI_PN="ideaIU"
+SIMPLE_NAME="WebStorm"
+MY_PN="${PN}"
+SRC_URI_PATH="webstorm"
+SRC_URI_PN="WebStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="231.9225.16"
-S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
-
-src_prepare() {
-	default
-
-	local jansi_path="plugins/maven/lib/maven3/lib/jansi-native"
-	local remove_me+=( "${jansi_path}"/freebsd32 "${jansi_path}"/freebsd64 "${jansi_path}"/osx "${jansi_path}"/windows32 "${jansi_path}"/windows64 )
-
-	rm -rv "${remove_me[@]}" || die
-}
+BUILD_NUMBER="232.8660.143"
+S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 
 src_install() {
 	local dir="/opt/${P}"
@@ -63,7 +54,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

@@ -35,7 +35,7 @@ SIMPLE_NAME="JetBrains Gateway"
 MY_PN="gateway"
 SRC_URI_PATH="idea/gateway"
 SRC_URI_PN="JetBrainsGateway"
-BUILD_NUMBER="231.9161.32"
+BUILD_NUMBER="232.8660.185"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
 S="${WORKDIR}/${SRC_URI_PN}-${BUILD_NUMBER}"
