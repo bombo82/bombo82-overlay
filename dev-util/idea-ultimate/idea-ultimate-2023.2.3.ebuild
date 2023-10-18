@@ -36,9 +36,9 @@ SIMPLE_NAME="Idea Ultimate"
 MY_PN="idea"
 SRC_URI_PATH="idea"
 SRC_URI_PN="ideaIU"
-SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://download-cdn.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-BUILD_NUMBER="232.9921.47"
+BUILD_NUMBER="232.10072.27"
 S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 
 src_install() {
