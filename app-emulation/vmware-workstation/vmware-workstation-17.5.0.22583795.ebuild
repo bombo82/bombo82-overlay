@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -30,7 +30,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 # the kernel modules are optional because they're not needed to connect to VMs
 # running on remote systems - https://bugs.gentoo.org/604426
-IUSE="cups doc macos-guests +modules ovftool vix"
+IUSE="doc macos-guests +modules ovftool vix"
 DARWIN_GUESTS="darwin darwinPre15"
 IUSE_VMWARE_GUESTS="${DARWIN_GUESTS} linux linuxPreGlibc25 netware solaris windows winPre2k winPreVista"
 for guest in ${IUSE_VMWARE_GUESTS}; do
@@ -63,7 +63,6 @@ RDEPEND="
 	media-plugins/alsa-plugins[speex]
 	net-dns/libidn
 	net-libs/gnutls
-	cups? ( net-print/cups )
 	sys-apps/tcp-wrappers
 	sys-apps/util-linux
 	sys-auth/polkit
@@ -160,7 +159,7 @@ src_install() {
 
 	# revdep-rebuild entry
 	insinto /etc/revdep-rebuild
-	echo "SEARCH_DIRS_MASK=\"${VM_INSTALL_DIR}\"" >> "${T}"/10${PN}
+	echo "SEARCH_DIRS_MASK=\"${VM_INSTALL_DIR}\"" >> "${T}/10${PN}"
 	doins "${T}"/10${PN}
 
 	# install the binaries
@@ -197,14 +196,6 @@ src_install() {
 	# install the ancillaries
 	insinto /usr
 	doins -r */share
-
-	if use cups; then
-		exeinto $(cups-config --serverbin)/filter
-		doexe */extras/thnucups
-
-		insinto /etc/cups
-		doins -r */etc/cups/*
-	fi
 
 	# Hardcoded EULA path. We need to disable the default compression.
 	insinto /usr/share/doc/vmware-workstation

@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -8,7 +8,7 @@ inherit flag-o-matic linux-info linux-mod udev
 DESCRIPTION="VMware kernel modules"
 HOMEPAGE="https://github.com/mkubecek/vmware-host-modules"
 
-MY_KERNEL_VERSION="6.3"
+MY_KERNEL_VERSION="6.0"
 
 # Upstream doesn't want to tag versions or anything that looks like properly
 # releasing the software, so we need to just pick a commit from
@@ -16,7 +16,7 @@ MY_KERNEL_VERSION="6.3"
 # and test it ourselves.
 #
 # Details: https://github.com/mkubecek/vmware-host-modules/issues/158#issuecomment-1228341760
-HOST_MODULES_COMMIT="650fb3abeb82f2b7d3a14f9579a7529d153636b7"
+HOST_MODULES_COMMIT="3b4aadaeec916d2d39550808866413736bff4410"
 
 SRC_URI=" https://github.com/mkubecek/vmware-host-modules/archive/${HOST_MODULES_COMMIT}.tar.gz -> ${P}-${HOST_MODULES_COMMIT}.tar.gz"
 
@@ -30,6 +30,11 @@ DEPEND=""
 
 S="${WORKDIR}/vmware-host-modules-${HOST_MODULES_COMMIT}"
 MY_S="$S"
+
+PATCHES=(
+	"${FILESDIR}/vmware-modules-16.2.5-kernel-6.4.10.patch"
+	"${FILESDIR}/vmware-modules-16.2.5-kernel-6.5.patch"
+)
 
 pkg_setup() {
 	CONFIG_CHECK="~HIGH_RES_TIMERS"
