@@ -1,4 +1,4 @@
-# Copyright 2019-2022 Gianni Bombelli <bombo82@giannibombelli.it>
+# Copyright 2019-2024 Gianni Bombelli <bombo82@giannibombelli.it>
 # Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
@@ -21,7 +21,7 @@ IUSE=""
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	dev-libs/libdbusmenu
-	dev-util/lldb
+	dev-debug/lldb
 	media-libs/mesa[X(+)]
 	x11-libs/libX11
 	x11-libs/libXcomposite

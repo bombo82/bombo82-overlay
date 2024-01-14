@@ -1,4 +1,4 @@
-# Copyright 2019-2022 Gianni Bombelli <bombo82@giannibombelli.it>
+# Copyright 2019-2024 Gianni Bombelli <bombo82@giannibombelli.it>
 # Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
@@ -6,11 +6,11 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The Python IDE for Professional Developers"
-HOMEPAGE="https://www.jetbrains.com/pycharm/"
+DESCRIPTION="The Lightning-Smart PHP IDE"
+HOMEPAGE="https://www.jetbrains.com/go/"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 EPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit ZLIB
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh W3C yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -20,7 +20,7 @@ IUSE=""
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	dev-libs/libdbusmenu
-	dev-util/lldb
+	dev-debug/lldb
 	media-libs/mesa[X(+)]
 	x11-libs/libX11
 	x11-libs/libXcomposite
@@ -32,13 +32,14 @@ RDEPEND="
 	x11-libs/libXrandr
 "
 
-SIMPLE_NAME="PyCharm Professional"
-MY_PN="pycharm"
-SRC_URI_PATH="python"
-SRC_URI_PN="pycharm-professional"
+SIMPLE_NAME="PhpStorm"
+MY_PN="${PN}"
+SRC_URI_PATH="webide"
+SRC_URI_PN="PhpStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-S="${WORKDIR}/pycharm-${PV}"
+BUILD_NUMBER="233.13135.108"
+S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
 
 src_install() {
 	local dir="/opt/${P}"
@@ -53,7 +54,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

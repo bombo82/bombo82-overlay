@@ -1,17 +1,15 @@
-# Copyright 2022 Gianni Bombelli <bombo82@giannibombelli.it>
-# Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
-# either version 2 of the License, or (at your option) any later version.
+# Copyright 1999-2024 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="Fast & powerful cross-platform .NET IDE"
-HOMEPAGE="https://www.jetbrains.com/rider/"
-# FIXME check licenses
+DESCRIPTION="A cross-platform IDE for C and C++"
+HOMEPAGE="https://www.jetbrains.com/clion/"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -21,7 +19,7 @@ IUSE=""
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	dev-libs/libdbusmenu
-	dev-util/lldb
+	dev-debug/lldb
 	media-libs/mesa[X(+)]
 	x11-libs/libX11
 	x11-libs/libXcomposite
@@ -33,22 +31,11 @@ RDEPEND="
 	x11-libs/libXrandr
 "
 
-SIMPLE_NAME="Rider"
-MY_PN="rider"
-SRC_URI_PATH="rider"
-SRC_URI_PN="JetBrains.Rider"
+SIMPLE_NAME="CLion"
+MY_PN="${PN}"
+SRC_URI_PATH="cpp"
+SRC_URI_PN="CLion"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-
-S="${WORKDIR}/JetBrains Rider-${PV}"
-
-src_prepare() {
-	default
-
-	local ReSharperHost_path="lib/ReSharperHost/"
-	local remove_me=( "${ReSharperHost_path}"/linux-arm "${ReSharperHost_path}"/macos-arm64 "${ReSharperHost_path}"/macos-x64 "${ReSharperHost_path}"/windows-x64 "${ReSharperHost_path}"/windows-x86 )
-
-	rm -rv "${remove_me[@]}" || die
-}
 
 src_install() {
 	local dir="/opt/${P}"
@@ -58,10 +45,11 @@ src_install() {
 	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,ltedit,remote-dev-server}.sh
 	fperms 755 "${dir}"/bin/fsnotifier
 
-	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
-	fperms 755 "${dir}"/lib/ReSharperHost/{Rider.Backend.sh,runtime-dotnet.sh}
-	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/{clang-format,Rider.Backend}
-	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/dotnet
+	fperms 755 "${dir}"/bin/clang/linux/x64/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
+	fperms 755 "${dir}"/bin/cmake/linux/x64/bin/{cmake,cpack,ctest}
+	fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver}
+	fperms 755 "${dir}"/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
+	fperms 755 "${dir}"/bin/ninja/linux/x64/ninja
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
