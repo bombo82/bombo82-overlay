@@ -8,10 +8,7 @@ inherit desktop wrapper
 
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft (binary version)"
 HOMEPAGE="https://code.visualstudio.com"
-
 SRC_URI="https://update.code.visualstudio.com/${PV}/linux-x64/stable -> ${PF}.tar.gz"
-RESTRICT="mirror strip bindist"
-
 LICENSE="MS-vscode"
 SLOT="0"
 KEYWORDS="~amd64"
