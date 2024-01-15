@@ -16,7 +16,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="bindist mirror"
 
-IUSE=""
 DEPEND=">=x11-libs/gtk+-2:2"
 RDEPEND="${DEPEND}
 	media-libs/alsa-lib

@@ -23,7 +23,6 @@ SRC_URI=" https://github.com/mkubecek/vmware-host-modules/archive/${HOST_MODULES
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 RDEPEND="acct-group/vmware"
 DEPEND=""
