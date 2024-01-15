@@ -19,8 +19,8 @@ RDEPEND="
 	sys-devel/icecream
 "
 DEPEND="${RDEPEND}
-	dev-util/meson
-	dev-util/ninja
+    dev-build/meson
+    dev-build/ninja
 "
 
 PATCHES=(
