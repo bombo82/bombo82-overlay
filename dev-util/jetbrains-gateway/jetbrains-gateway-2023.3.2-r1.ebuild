@@ -1,4 +1,4 @@
-# Copyright 2022-2023 Gianni Bombelli <bombo82@giannibombelli.it>
+# Copyright 2022-2024 Gianni Bombelli <bombo82@giannibombelli.it>
 # Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
@@ -45,11 +45,13 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/"${MY_PN}".sh
-	fperms 755 "${dir}"/bin/fsnotifier
+	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,ltedit}.sh
+	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
+
+	fperms 755 "${dir}"/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
