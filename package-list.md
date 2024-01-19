@@ -7,6 +7,7 @@
 - dev-db:
   - dev-db/dbeaver-bin
 - dev-util:
+  - dev-util/aqua
   - dev-util/clion
   - dev-util/datagrip
   - dev-util/dataspell
@@ -17,8 +18,12 @@
   - dev-util/jetbrains-gateway
   - dev-util/phpstorm
   - dev-util/pycharm-professional
+  - dev-util/rider
   - dev-util/rubymine
+  - dev-util/rustrover
   - dev-util/webstorm
+- games-rpg:
+  - games-rpg/open-adventure
 - net-misc:
   - net-misc/postman-bin
 -sys-devel:
