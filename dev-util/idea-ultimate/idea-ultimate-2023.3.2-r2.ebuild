@@ -6,11 +6,11 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The Most Intelligent Ruby and Rails IDE"
-HOMEPAGE="https://www.jetbrains.com/ruby/"
+DESCRIPTION="A complete toolset for web, mobile and enterprise development"
+HOMEPAGE="https://www.jetbrains.com/idea/"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -21,6 +21,10 @@ RDEPEND="
 	dev-libs/libdbusmenu
 	dev-debug/lldb
 	media-libs/mesa[X(+)]
+	sys-devel/gcc
+	sys-libs/glibc
+	sys-libs/libselinux
+	sys-process/audit
 	x11-libs/libX11
 	x11-libs/libXcomposite
 	x11-libs/libXcursor
@@ -31,20 +35,28 @@ RDEPEND="
 	x11-libs/libXrandr
 "
 
-SIMPLE_NAME="RubyMine"
-MY_PN="${PN}"
-SRC_URI_PATH="ruby"
-SRC_URI_PN="RubyMine"
+SIMPLE_NAME="Idea Ultimate"
+MY_PN="idea"
+SRC_URI_PATH="idea"
+SRC_URI_PN="ideaIU"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
-S="${WORKDIR}/RubyMine-${PV}"
+BUILD_NUMBER="233.13135.103"
+S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
+
+src_prepare() {
+    default
+
+    rm -rv ./lib/async-profiler/aarch64 || die
+    rm -rv ./plugins/cwm-plugin/quiche-native/linux-aarch64 || die
+}
 
 src_install() {
 	local dir="/opt/${P}"
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",format,jetbrains_client,ltedit,remote-dev-server}.sh
+	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,jetbrains_client,ltedit,remote-dev-server}.sh
 	fperms 755 "${dir}"/bin/{fsnotifier,repair,restarter}
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
@@ -52,8 +64,9 @@ src_install() {
 
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
     fperms 755 "${dir}"/plugins/javascript-impl/helpers/package-version-range-matcher/node_modules/semver/bin/semver.js
-    fperms 755 "${dir}"/plugins/ruby/rb/{consoles/exec/irb,consoles/exec/pry,stubsgen/gems/gems/rdoc-3.9.4/bin/rdoc,stubsgen/gems/gems/rdoc-3.9.4/bin/ri,terminal/asdf_starter.sh,terminal/chruby_starter.sh,terminal/rbenv_starter.sh,terminal/rvm_starter.sh,wsl/print_dirs.sh,wsl/sync_file.sh}
-     fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
+    fperms 755 "${dir}"/plugins/Kotlin/kotlinc/bin/{kotlin,kotlinc,kotlinc-js,kotlinc-jvm,kotlin-dce-js}
+    fperms 755 "${dir}"/plugins/maven/lib/maven3/bin/{mvn,mvnDebug,mvnyjp}
+    fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
     fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
