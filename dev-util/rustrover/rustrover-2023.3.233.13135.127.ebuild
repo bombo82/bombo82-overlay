@@ -39,7 +39,7 @@ SIMPLE_NAME="RustRover"
 MY_PN="${PN}"
 SRC_URI_PATH="rustrover"
 SRC_URI_PN="${SIMPLE_NAME}"
-BUILD_NUMBER="233.13135.116"
+BUILD_NUMBER="233.13135.127"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${BUILD_NUMBER}.tar.gz -> ${P}.tar.gz"
 
 S="${WORKDIR}/${SIMPLE_NAME}-${BUILD_NUMBER}"
