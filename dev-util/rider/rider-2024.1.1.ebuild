@@ -8,6 +8,12 @@ inherit desktop wrapper
 
 DESCRIPTION="Fast & powerful cross-platform .NET IDE"
 HOMEPAGE="https://www.jetbrains.com/rider/"
+SIMPLE_NAME="Rider"
+MY_PN="rider"
+SRC_URI_PATH="rider"
+SRC_URI_PN="JetBrains.Rider"
+SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/JetBrains Rider-${PV}"
 # FIXME check licenses
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
@@ -36,25 +42,16 @@ RDEPEND="
 	x11-libs/libXrandr
 "
 
-SIMPLE_NAME="Rider"
-MY_PN="rider"
-SRC_URI_PATH="rider"
-SRC_URI_PN="JetBrains.Rider"
-SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-
-S="${WORKDIR}/JetBrains Rider-${PV}"
-
 src_prepare() {
-    default
+	default
 
-    rm -rv ./lib/ReSharperHost/linux-arm || die
-    rm -rv ./lib/ReSharperHost/linux-arm64 || die
-    rm -rv ./lib/ReSharperHost/linux-musl-arm || die
-    rm -rv ./lib/ReSharperHost/linux-musl-arm64 || die
-    rm -rv ./lib/async-profiler/aarch64 || die
-    rm -rv ./plugins/cidr-debugger-plugin/bin/lldb/linux/aarch64 || die
-    rm -rv ./plugins/cwm-plugin/quiche-native/linux-aarch64 || die
-    rm -rv ./plugins/dotTrace.dotMemory/DotFiles/linux-arm64 || die
+	rm -rv ./lib/ReSharperHost/linux-arm || die
+	rm -rv ./lib/ReSharperHost/linux-arm64 || die
+	rm -rv ./lib/ReSharperHost/linux-musl-arm || die
+	rm -rv ./lib/ReSharperHost/linux-musl-arm64 || die
+	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/cidr-debugger-plugin/bin/lldb/linux/aarch64 || die
+	rm -rv ./plugins/dotTrace.dotMemory/DotFiles/linux-arm64 || die
 }
 
 src_install() {
@@ -77,9 +74,8 @@ src_install() {
 	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/x64/{bin/lldb,bin/lldb-argdumper,bin/LLDBFrontend,bin/lldb-server,lib/xml2Conf.sh}
 	fperms 755 "${dir}"/plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
-    fperms 755 "${dir}"/plugins/javascript-impl/helpers/package-version-range-matcher/node_modules/semver/bin/semver.js
-    fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
-    fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
+	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
+	fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
 	fperms 755 "${dir}"/tools/profiler/{dotMemory.sh,dotTrace.sh}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
