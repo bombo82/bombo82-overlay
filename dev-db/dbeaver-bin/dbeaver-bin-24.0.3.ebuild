@@ -8,9 +8,8 @@ inherit desktop wrapper
 
 DESCRIPTION="Free universal database tool and SQL client"
 HOMEPAGE="https://dbeaver.io/"
-
 SRC_URI="https://dbeaver.io/files/${PV}/dbeaver-ce-${PV}-linux.gtk.x86_64.tar.gz"
-
+S="${WORKDIR}/dbeaver"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -24,13 +23,10 @@ RDEPEND="${DEPEND}
 
 QA_FLAGS_IGNORED="CFLAGS LDFLAGS"
 
-S="${WORKDIR}/dbeaver"
-
-
 src_prepare() {
-    default
+	default
 
-    rm -rv ./plugins/com.sun.jna_5.13.0.v20230812-1000/com/sun/jna/{aix-*,darwin-*,freebsd-*,linux-aarch64,linux-arm,linux-armel,linux-loongarch64,linux-mips64el,linux-ppc,linux-ppc64le,linux-riscv64,linux-s390x,linux-x86,openbsd-*,sunos-*,win32,win32-*} || die
+	rm -rv ./plugins/com.sun.jna_5.13.0.v20230812-1000/com/sun/jna/{aix-*,darwin-*,freebsd-*,linux-aarch64,linux-arm,linux-armel,linux-loongarch64,linux-mips64el,linux-ppc,linux-ppc64le,linux-riscv64,linux-s390x,linux-x86,openbsd-*,sunos-*,win32,win32-*} || die
 }
 
 src_install() {

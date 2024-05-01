@@ -6,7 +6,7 @@ EAPI=8
 
 inherit acct-group
 
+DESCRIPTION="Group for sys-devel/icecream"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 ~x86"
 
-DESCRIPTION="Group for sys-devel/icecream"
 ACCT_GROUP_ID=-1

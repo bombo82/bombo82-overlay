@@ -26,5 +26,5 @@
   - games-rpg/open-adventure
 - net-misc:
   - net-misc/postman-bin
--sys-devel:
+- sys-devel:
   - sys-devel/icecream

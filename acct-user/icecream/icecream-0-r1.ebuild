@@ -6,9 +6,9 @@ EAPI=8
 
 inherit acct-user
 
+DESCRIPTION="User for sys-devel/icecream"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 ~x86"
 
-DESCRIPTION="User for sys-devel/icecream"
 ACCT_USER_ID=-1
 ACCT_USER_GROUPS=( icecream )
 

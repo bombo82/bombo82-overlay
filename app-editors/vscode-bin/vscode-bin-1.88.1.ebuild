@@ -9,6 +9,7 @@ inherit desktop wrapper
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft (binary version)"
 HOMEPAGE="https://code.visualstudio.com"
 SRC_URI="https://update.code.visualstudio.com/${PV}/linux-x64/stable -> ${PF}.tar.gz"
+S="${WORKDIR}/VSCode-linux-x64"
 LICENSE="MS-vscode"
 SLOT="0"
 KEYWORDS="~amd64"
@@ -34,8 +35,6 @@ RDEPEND="
 QA_PRESTRIPPED="opt/${PN}/code"
 QA_PREBUILT="opt/${PN}/code"
 QA_FLAGS_IGNORED="CFLAGS LDFLAGS"
-
-S="${WORKDIR}/VSCode-linux-x64"
 
 src_install(){
 	local dir="/opt/${PN}"

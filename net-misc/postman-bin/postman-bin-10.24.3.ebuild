@@ -13,21 +13,18 @@ HOMEPAGE="https://www.postman.com/"
 SRC_URI="
 	amd64? ( https://bombo82-overlay.doesntexist.xyz/postman-bin/${P/-bin/}-linux-x64.tar.gz )
 "
-
+S="${WORKDIR}/${MY_PN^}/app"
 LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="pax-kernel"
 RESTRICT="bindist mirror strip"
 
-DEPEND=""
 RDEPEND="
 	x11-libs/gtk+
 "
 
 QA_FLAGS_IGNORED="CFLAGS LDFLAGS"
-
-S="${WORKDIR}/${MY_PN^}/app"
 
 src_prepare() {
 	mv _Postman Postman
