@@ -11,17 +11,17 @@ MY_PV=$(ver_cut 1-3)
 PV_MODULES="${MY_PV}"
 PV_BUILD=$(ver_cut 4)
 MY_P="${MY_PN}-${MY_PV}-${PV_BUILD}"
-VMWARE_FUSION_VER="13.0.0/20802013" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
+	VMWARE_FUSION_VER="13.5.1/23298085" # https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/
 UNLOCKER_VERSION="3.0.5"
 
 DESCRIPTION="Emulate a complete PC without the performance overhead of most emulators"
-HOMEPAGE="https://www.vmware.com/products/workstation-pro.html"
+HOMEPAGE="https://www.vmware.com/products/workstation/"
 SRC_URI="
 	https://download3.vmware.com/software/WKST-${MY_PV//./}-LX/${MY_P}.x86_64.bundle
 	macos-guests? (
 		https://github.com/paolo-projects/unlocker/archive/${UNLOCKER_VERSION}.tar.gz -> unlocker-${UNLOCKER_VERSION}.tar.gz
-		vmware-tools-darwinPre15? ( https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/${VMWARE_FUSION_VER}/x86/core/com.vmware.fusion.zip.tar -> com.vmware.fusion-${PV}.zip.tar )
-		vmware-tools-darwin? ( https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/${VMWARE_FUSION_VER}/x86/core/com.vmware.fusion.zip.tar -> com.vmware.fusion-${PV}.zip.tar )
+		vmware-tools-darwinPre15? ( https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/${VMWARE_FUSION_VER}/universal/core/com.vmware.fusion.zip.tar -> com.vmware.fusion-${PV}.zip.tar )
+		vmware-tools-darwin? ( https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/${VMWARE_FUSION_VER}/universal/core/com.vmware.fusion.zip.tar -> com.vmware.fusion-${PV}.zip.tar )
 	)
 	"
 
@@ -353,6 +353,12 @@ src_install() {
 
 	# enable macOS guests support
 	if use macos-guests; then
+		sed -i \
+			-e "s#vmx_path = '/usr#vmx_path = '${ED}${VM_INSTALL_DIR//\//\\/}#" \
+			-e "s#os\.path\.isfile('/usr#os.path.isfile('${ED}${VM_INSTALL_DIR//\//\\/}#" \
+			-e "s#vmwarebase = '/usr#vmwarebase = '${ED}${VM_INSTALL_DIR//\//\\/}#" \
+			"${WORKDIR}"/unlocker-*/unlocker.py || die
+
 		python3 "${WORKDIR}"/unlocker-*/unlocker.py >/dev/null || die "unlocker.py failed"
 	fi
 

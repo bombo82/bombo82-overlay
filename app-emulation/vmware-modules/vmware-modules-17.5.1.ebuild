@@ -8,7 +8,7 @@ inherit flag-o-matic linux-info linux-mod-r1 udev
 DESCRIPTION="VMware kernel modules"
 HOMEPAGE="https://github.com/mkubecek/vmware-host-modules"
 
-MY_KERNEL_VERSION="6.3"
+MY_KERNEL_VERSION="6.7"
 
 # Upstream doesn't want to tag versions or anything that looks like properly
 # releasing the software, so we need to just pick a commit from
@@ -16,7 +16,7 @@ MY_KERNEL_VERSION="6.3"
 # and test it ourselves.
 #
 # Details: https://github.com/mkubecek/vmware-host-modules/issues/158#issuecomment-1228341760
-HOST_MODULES_COMMIT="4c2a103fd2d71f2084f1fe7ceacb816b9832ffa2"
+HOST_MODULES_COMMIT="2c6d66f3f1947384038b765c897b102ecdb18298"
 
 SRC_URI=" https://github.com/mkubecek/vmware-host-modules/archive/${HOST_MODULES_COMMIT}.tar.gz -> ${P}-${HOST_MODULES_COMMIT}.tar.gz"
 
@@ -38,7 +38,7 @@ pkg_setup() {
 	if kernel_is -ge 2 6 37 && kernel_is -lt 2 6 39; then
 		CONFIG_CHECK="${CONFIG_CHECK} BKL"
 	fi
-	CONFIG_CHECK="${CONFIG_CHECK} VMWARE_VMCI VMWARE_VMCI_VSOCKETS"
+	CONFIG_CHECK="${CONFIG_CHECK} VMWARE_VMCI ~VMWARE_VMCI_VSOCKETS"
 
 	linux-info_pkg_setup
 	linux-mod-r1_pkg_setup
