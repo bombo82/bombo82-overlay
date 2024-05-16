@@ -12,7 +12,7 @@ SIMPLE_NAME="RustRover"
 MY_PN="${PN}"
 SRC_URI_PATH="rustrover"
 SRC_URI_PN="${SIMPLE_NAME}"
-BUILD_NUMBER="233.15026.24"
+BUILD_NUMBER="241.15989.180"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${BUILD_NUMBER}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${SIMPLE_NAME}-${BUILD_NUMBER}"
 LICENSE="
@@ -46,7 +46,6 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
-	rm -rv ./plugins/cwm-plugin/quiche-native/linux-aarch64 || die
 	rm -rv ./plugins/intellij-rust/bin/linux/arm64/intellij-rust-native-helper || die
 }
 
@@ -66,7 +65,6 @@ src_install() {
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 	fperms 755 "${dir}"/plugins/intellij-rust/bin/linux/x86-64/intellij-rust-native-helper
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
-	fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg
