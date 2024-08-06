@@ -4,6 +4,8 @@
 - app-emulation:
   - app-emulation/vmware-modules
   - app-emulation/vmware-workstation
+- app-misc:
+  - app-misc/evemu
 - dev-db:
   - dev-db/dbeaver-bin
 - dev-util:
