@@ -1,22 +1,20 @@
-# Copyright 2019-2024 Gianni Bombelli <bombo82@giannibombelli.it>
-# Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
-# either version 2 of the License, or (at your option) any later version.
+# Copyright 1999-2024 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="Code Smarter with Ruby on Rails IDE"
-HOMEPAGE="https://www.jetbrains.com/ruby/"
-SIMPLE_NAME="RubyMine"
+DESCRIPTION="A cross-platform IDE for C and C++"
+HOMEPAGE="https://www.jetbrains.com/clion/"
+SIMPLE_NAME="CLion"
 MY_PN="${PN}"
-SRC_URI_PATH="ruby"
-SRC_URI_PN="RubyMine"
+SRC_URI_PATH="cpp"
+SRC_URI_PN="CLion"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/RubyMine-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -45,6 +43,7 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/python-ce/helpers/pydev/pydevd_attach_to_process/attach_linux_aarch64.so || die
 }
 
 src_install() {
@@ -52,18 +51,23 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",format,jetbrains_client,ltedit,remote-dev-server}.sh
+	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,jetbrains_client,ltedit,remote-dev-server}.sh}
 	fperms 755 "${dir}"/bin/{fsnotifier,repair,restarter}
+	fperms 755 "${dir}"/bin/clang/linux/x64/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
+	fperms 755 "${dir}"/bin/cmake/linux/x64/bin/{cmake,cpack,ctest}
+	fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver}
+	fperms 755 "${dir}"/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
+	fperms 755 "${dir}"/bin/ninja/linux/x64/ninja
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
-	fperms 755 "${dir}"/plugins/ruby/rb/{consoles/exec/irb,consoles/exec/pry,stubsgen/gems/gems/rdoc-3.9.4/bin/rdoc,stubsgen/gems/gems/rdoc-3.9.4/bin/ri,terminal/asdf_starter.sh,terminal/chruby_starter.sh,terminal/rbenv_starter.sh,terminal/rvm_starter.sh,wsl/print_dirs.sh,wsl/sync_file.sh}
+	fperms 755 "${dir}"/plugins/python-ce/helpers/{pockets/autolog.py,pycodestyle-2.10.0.py,pycodestyle.py,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux_aarch64.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_mac.sh,typeshed/scripts/generate_proto_stubs.sh,typeshed/scripts/sync_tensorflow_protobuf_stubs.sh}
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
 	fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
 
-	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
+	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
 	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
