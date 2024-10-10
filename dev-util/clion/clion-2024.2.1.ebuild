@@ -62,6 +62,7 @@ src_install() {
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
+	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/Rider.Backend
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 	fperms 755 "${dir}"/plugins/python-ce/helpers/{pockets/autolog.py,pycodestyle-2.10.0.py,pycodestyle.py,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux_aarch64.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_mac.sh,typeshed/scripts/generate_proto_stubs.sh,typeshed/scripts/sync_tensorflow_protobuf_stubs.sh}
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
