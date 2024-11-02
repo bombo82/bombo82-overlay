@@ -6,18 +6,17 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The JavaScript and TypeScript IDE"
-HOMEPAGE="https://www.jetbrains.com/webstorm/"
-SIMPLE_NAME="WebStorm"
+DESCRIPTION="The complete IDE crafted for Gophers"
+HOMEPAGE="https://www.jetbrains.com/go/"
+SIMPLE_NAME="GoLand"
 MY_PN="${PN}"
-SRC_URI_PATH="webstorm"
-SRC_URI_PN="WebStorm"
+SRC_URI_PATH="go"
+SRC_URI_PN="${PN}"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-BUILD_NUMBER="242.21829.149"
-S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
+S="${WORKDIR}/GoLand-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit W3C ZLIB
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -30,8 +29,6 @@ RDEPEND="
 	media-libs/mesa[X(+)]
 	sys-devel/gcc
 	sys-libs/glibc
-	sys-libs/libselinux
-	sys-process/audit
 	sys-libs/libselinux
 	sys-process/audit
 	x11-libs/libX11
@@ -48,6 +45,7 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/go-plugin/lib/dlv/linuxarm/dlv || die
 }
 
 src_install() {
@@ -56,18 +54,18 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,jetbrains_client,ltedit,remote-dev-server}.sh}
-	fperms 755 "${dir}"/bin/{fsnotifier,repair,restarter}
+	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linux/dlv
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
-	fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

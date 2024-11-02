@@ -1,4 +1,4 @@
-# Copyright 2022-2024 Gianni Bombelli <bombo82@giannibombelli.it>
+# Copyright 2024 Gianni Bombelli <bombo82@giannibombelli.it>
 # Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
@@ -6,17 +6,17 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="Your single entry point to all remote development environments"
-HOMEPAGE="https://www.jetbrains.com/remote-development/gateway/"
-SIMPLE_NAME="JetBrains Gateway"
-MY_PN="gateway"
-SRC_URI_PATH="idea/gateway"
-SRC_URI_PN="JetBrainsGateway"
-BUILD_NUMBER="242.20224.368"
-SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/${SRC_URI_PN}-${BUILD_NUMBER}"
+DESCRIPTION="The most powerful development environment – now adapted for writing documentation"
+HOMEPAGE="https://www.jetbrains.com/writerside/"
+SIMPLE_NAME="Writerside"
+MY_PN="${PN}"
+SRC_URI_PATH="writerside"
+SRC_URI_PN="writerside"
+BUILD_NUMBER="243.21565.432"
+SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${BUILD_NUMBER}.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/writerside-${BUILD_NUMBER}"
 LICENSE="
-	jetbrains_team_tools-2.1
+	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
 	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
@@ -28,6 +28,8 @@ RDEPEND="
 	dev-libs/libdbusmenu
 	dev-debug/lldb
 	media-libs/mesa[X(+)]
+	sys-devel/gcc
+	sys-libs/glibc
 	x11-libs/libX11
 	x11-libs/libXcomposite
 	x11-libs/libXcursor
@@ -43,15 +45,13 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,ltedit}.sh
+	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,ltedit}.sh}
 	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
+	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
-	fperms 755 "${dir}"/lib/remote-dev-workers/remote-dev-worker-linux-amd64
-
-	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
+	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
 	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 

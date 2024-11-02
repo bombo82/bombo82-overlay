@@ -43,7 +43,6 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
-	rm -rv ./plugins/python-ce/helpers/pydev/pydevd_attach_to_process/attach_linux_aarch64.so || die
 }
 
 src_install() {
@@ -52,8 +51,7 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,jetbrains_client,ltedit,remote-dev-server}.sh}
-	fperms 755 "${dir}"/bin/{fsnotifier,repair,restarter}
-	fperms 755 "${dir}"/bin/clang/linux/x64/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
+	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
 	fperms 755 "${dir}"/bin/cmake/linux/x64/bin/{cmake,cpack,ctest}
 	fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver}
 	fperms 755 "${dir}"/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
@@ -62,6 +60,7 @@ src_install() {
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
+	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/Rider.Backend
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 	fperms 755 "${dir}"/plugins/python-ce/helpers/{pockets/autolog.py,pycodestyle-2.10.0.py,pycodestyle.py,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux_aarch64.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_mac.sh,typeshed/scripts/generate_proto_stubs.sh,typeshed/scripts/sync_tensorflow_protobuf_stubs.sh}
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}

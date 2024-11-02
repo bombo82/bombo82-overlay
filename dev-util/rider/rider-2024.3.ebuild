@@ -60,7 +60,7 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,jetbrains_client,ltedit,remote-dev-server}.sh}
-	fperms 755 "${dir}"/bin/{fsnotifier,repair,restarter}
+	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
 	fperms 755 "${dir}"/bin/Bridge.framework/Versions/A/{Bridge,Resources/BridgeService}
 	fperms 755 "${dir}"/bin/JBDevice.framework/Versions/A/{JBDevice,Resources/JBDeviceService}
 	fperms 755 "${dir}"
