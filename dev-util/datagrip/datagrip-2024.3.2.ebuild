@@ -6,17 +6,17 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The complete IDE crafted for Gophers"
-HOMEPAGE="https://www.jetbrains.com/go/"
-SIMPLE_NAME="GoLand"
+DESCRIPTION="Many databases, one tool"
+HOMEPAGE="https://www.jetbrains.com/datagrip/"
+SIMPLE_NAME="DataGrip"
 MY_PN="${PN}"
-SRC_URI_PATH="go"
+SRC_URI_PATH="${PN}"
 SRC_URI_PN="${PN}"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/GoLand-${PV}"
+S="${WORKDIR}/DataGrip-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -25,7 +25,7 @@ RESTRICT="bindist mirror splitdebug"
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	dev-libs/libdbusmenu
-	dev-debug/lldb
+	llvm-core/lldb
 	media-libs/mesa[X(+)]
 	sys-devel/gcc
 	sys-libs/glibc
@@ -45,7 +45,6 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
-	rm -rv ./plugins/go-plugin/lib/dlv/linuxarm/dlv || die
 }
 
 src_install() {
@@ -53,15 +52,14 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,jetbrains_client,ltedit,remote-dev-server}.sh}
+	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,ltedit,remote-dev-server}.sh}
 	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
-	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
-	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linux/dlv
-	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
+	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
+	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg

@@ -25,7 +25,7 @@ RESTRICT="bindist mirror splitdebug"
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	dev-libs/libdbusmenu
-	dev-debug/lldb
+	llvm-core/lldb
 	media-libs/mesa[X(+)]
 	sys-devel/gcc
 	sys-libs/glibc

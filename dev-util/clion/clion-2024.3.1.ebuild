@@ -1,23 +1,20 @@
-# Copyright 2022-2024 Gianni Bombelli <bombo82@giannibombelli.it>
-# Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
-# either version 2 of the License, or (at your option) any later version.
+# Copyright 1999-2024 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="Fast & powerful cross-platform .NET IDE"
-HOMEPAGE="https://www.jetbrains.com/rider/"
-SIMPLE_NAME="Rider"
-MY_PN="rider"
-SRC_URI_PATH="rider"
-SRC_URI_PN="JetBrains.Rider"
+DESCRIPTION="A cross-platform IDE for C and C++"
+HOMEPAGE="https://www.jetbrains.com/clion/"
+SIMPLE_NAME="CLion"
+MY_PN="${PN}"
+SRC_URI_PATH="cpp"
+SRC_URI_PN="CLion"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/JetBrains Rider-${PV}"
-# FIXME check licenses
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -26,7 +23,7 @@ RESTRICT="bindist mirror splitdebug"
 QA_PREBUILT="opt/${P}/*"
 RDEPEND="
 	dev-libs/libdbusmenu
-	dev-debug/lldb
+	llvm-core/lldb
 	media-libs/mesa[X(+)]
 	sys-devel/gcc
 	sys-libs/glibc
@@ -45,13 +42,7 @@ RDEPEND="
 src_prepare() {
 	default
 
-	rm -rv ./lib/ReSharperHost/linux-arm || die
-	rm -rv ./lib/ReSharperHost/linux-arm64 || die
-	rm -rv ./lib/ReSharperHost/linux-musl-arm || die
-	rm -rv ./lib/ReSharperHost/linux-musl-arm64 || die
 	rm -rv ./lib/async-profiler/aarch64 || die
-	rm -rv ./plugins/cidr-debugger-plugin/bin/lldb/linux/aarch64 || die
-	rm -rv ./plugins/dotTrace.dotMemory/DotFiles/linux-arm64 || die
 }
 
 src_install() {
@@ -61,22 +52,19 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,jetbrains_client,ltedit,remote-dev-server}.sh}
 	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
-	fperms 755 "${dir}"/bin/Bridge.framework/Versions/A/{Bridge,Resources/BridgeService}
-	fperms 755 "${dir}"/bin/JBDevice.framework/Versions/A/{JBDevice,Resources/JBDeviceService}
-	fperms 755 "${dir}"
+	fperms 755 "${dir}"/bin/cmake/linux/x64/bin/{cmake,cpack,ctest}
+	fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver}
+	fperms 755 "${dir}"/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,LLDBFrontend,lldb-server}
+	fperms 755 "${dir}"/bin/ninja/linux/x64/ninja
 
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
-	fperms 755 "${dir}"/lib/ReSharperHost/{Rider.Backend.sh,runtime-dotnet.sh}
-	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/{dotnet/dotnet,Rider.Backend}
-
-	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/x64/{bin/lldb,bin/lldb-argdumper,bin/LLDBFrontend,bin/lldb-server,lib/xml2Conf.sh}
-	fperms 755 "${dir}"/plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer
+	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/Rider.Backend
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/python-ce/helpers/{pockets/autolog.py,pycodestyle-2.10.0.py,pycodestyle.py,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux_aarch64.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_linux.sh,pydev/pydevd_attach_to_process/linux_and_mac/compile_mac.sh,typeshed/scripts/generate_proto_stubs.sh,typeshed/scripts/sync_tensorflow_protobuf_stubs.sh}
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
 	fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
-	fperms 755 "${dir}"/tools/profiler/{dotMemory.sh,dotTrace.sh}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
