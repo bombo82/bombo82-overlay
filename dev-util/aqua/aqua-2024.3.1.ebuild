@@ -12,7 +12,7 @@ SIMPLE_NAME="Aqua"
 MY_PN="${PN}"
 SRC_URI_PATH="aqua"
 SRC_URI_PN="${PN}"
-BUILD_NUMBER="243.22562.117"
+BUILD_NUMBER="243.22562.238"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 
 S="${WORKDIR}/${PN}-${BUILD_NUMBER}"
