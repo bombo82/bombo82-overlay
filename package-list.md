@@ -24,6 +24,7 @@
   - dev-util/rubymine
   - dev-util/rustrover
   - dev-util/webstorm
+  - dev-util/writerside
 - games-rpg:
   - games-rpg/open-adventure
 - net-misc:
