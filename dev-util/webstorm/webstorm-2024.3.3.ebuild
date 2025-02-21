@@ -13,7 +13,7 @@ MY_PN="${PN}"
 SRC_URI_PATH="webstorm"
 SRC_URI_PN="WebStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-BUILD_NUMBER="243.23654.157"
+BUILD_NUMBER="243.24978.60"
 S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
