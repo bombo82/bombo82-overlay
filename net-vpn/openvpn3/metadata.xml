@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="person">
+        <email>bombo82@giannibombelli.it</email>
+        <name>Gianni Bombelli (bombo82)</name>
+    </maintainer>
+    <use>
+        <flag name="addon-aws">Enable the OpenVPN 3 AWS-VPC integration service</flag>
+        <flag name="addon-deviceposture">Enable the OpenVPN 3 Device Posture service</flag>
+        <flag name="bash-completion">Build the bash-completion helper scripts</flag>
+        <flag name="dco">Enable the Data Channel Offload support (DCO)</flag>
+        <flag name="doc">Build Doxygen documentation</flag>
+        <flag name="selinux">Add SELinux support (openvpn3-admin init-config)</flag>
+        <flag name="systemd">Enable use of systemd-specific libraries and features</flag>
+    </use>
+</pkgmetadata>
