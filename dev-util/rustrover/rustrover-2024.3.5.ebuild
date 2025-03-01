@@ -45,7 +45,6 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
-	rm -rv ./plugins/intellij-rust/bin/linux/arm64/intellij-rust-native-helper || die
 }
 
 src_install() {
@@ -62,7 +61,6 @@ src_install() {
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
-	fperms 755 "${dir}"/plugins/intellij-rust/bin/linux/x86-64/intellij-rust-native-helper
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
