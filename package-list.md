@@ -8,6 +8,8 @@
   - app-misc/evemu
 - dev-db:
   - dev-db/dbeaver-bin
+- dev-java:
+  - sbt-bin
 - dev-util:
   - dev-util/aqua
   - dev-util/clion
@@ -25,8 +27,6 @@
   - dev-util/rustrover
   - dev-util/webstorm
   - dev-util/writerside
-- games-rpg:
-  - games-rpg/open-adventure
 - net-misc:
   - net-misc/postman-bin
 - sys-devel:
