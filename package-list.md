@@ -26,7 +26,6 @@
   - dev-util/rubymine
   - dev-util/rustrover
   - dev-util/webstorm
-  - dev-util/writerside
 - net-misc:
   - net-misc/postman-bin
 - sys-devel:
