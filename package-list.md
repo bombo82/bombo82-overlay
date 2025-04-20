@@ -10,6 +10,8 @@
   - dev-db/dbeaver-bin
 - dev-java:
   - sbt-bin
+- dev-libs:
+  - dev-libs/gdbuspp
 - dev-util:
   - dev-util/aqua
   - dev-util/clion
@@ -28,5 +30,7 @@
   - dev-util/webstorm
 - net-misc:
   - net-misc/postman-bin
+- net-vpn:
+  - net-vpn/openvpn3
 - sys-devel:
   - sys-devel/icecream
