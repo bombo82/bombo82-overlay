@@ -1,0 +1,25 @@
+Subject: [PATCH] execjob.c:1164:108: error: passing argument 3 of 'add_param_int' makes integer from pointer without a cast [-Wint-conversion]
+ 1164 |                                 num = add_param_int(ptr_param, kPPD_Items_CNJobResultNoticeAddress, ppd_opt->job_result_notice_address);
+      |                                                                                                     ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                                                            |
+      |                                                                                                            char *
+execjob.c:431:53: note: expected 'int' but argument is of type 'char *'
+  431 | int add_param_int(char **ptr_param, char *name, int value)
+---
+Index: cnrdrvcups-lb-6.10/cngplp/cngplpmod/execjob.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cnrdrvcups-lb-6.10/cngplp/cngplpmod/execjob.c b/cnrdrvcups-lb-6.10/cngplp/cngplpmod/execjob.c
+--- a/cnrdrvcups-lb-6.10/cngplp/cngplpmod/execjob.c	(revision 57246f7947a183c3b332023857b1c6236f35cea6)
++++ b/cnrdrvcups-lb-6.10/cngplp/cngplpmod/execjob.c	(date 1745233643000)
+@@ -1161,7 +1161,7 @@
+ 			ptr_param += num;
+ 			list_num += num;
+ 			if (strlen(ppd_opt->job_result_notice_address) > 0){
+-				num = add_param_int(ptr_param, kPPD_Items_CNJobResultNoticeAddress, ppd_opt->job_result_notice_address);
++				num = add_param_int(ptr_param, kPPD_Items_CNJobResultNoticeAddress, atoi(ppd_opt->job_result_notice_address));
+ 				ptr_param += num;
+ 				list_num += num;
+ 			}
