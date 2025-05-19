@@ -13,7 +13,7 @@ MY_PN="${PN}"
 SRC_URI_PATH="webide"
 SRC_URI_PN="PhpStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-BUILD_NUMBER="251.23774.436"
+BUILD_NUMBER="251.25410.148"
 S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
