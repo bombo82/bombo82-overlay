@@ -50,12 +50,6 @@ BDEPEND="
 	dev-python/meson-python
 "
 
-PATCHES=(
-	"${FILESDIR}/${P}-build-journal-log-parse-test-only-on-systemd-systems.patch"
-	"${FILESDIR}/${P}-fix-dbus-proxy-on-non-systemd-systems.patch"
-	"${FILESDIR}/${P}-fix-handle-exceptions-in-backend_starter_srv.patch"
-)
-
 src_configure() {
 	local emesonargs=(
                 $(meson_feature addon-aws)
