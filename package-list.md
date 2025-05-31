@@ -1,9 +1,6 @@
 # List of maintained packages
 - app-editors:
   - app-editors/vscode-bin
-- app-emulation:
-  - app-emulation/vmware-modules
-  - app-emulation/vmware-workstation
 - app-misc:
   - app-misc/evemu
 - dev-db:
