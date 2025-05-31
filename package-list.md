@@ -10,7 +10,6 @@
 - dev-libs:
   - dev-libs/gdbuspp
 - dev-util:
-  - dev-util/aqua
   - dev-util/clion
   - dev-util/datagrip
   - dev-util/dataspell
