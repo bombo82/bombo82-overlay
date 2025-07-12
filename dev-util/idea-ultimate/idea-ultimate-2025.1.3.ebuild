@@ -6,18 +6,18 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The Lightning-Smart PHP IDE"
-HOMEPAGE="https://www.jetbrains.com/go/"
-SIMPLE_NAME="PhpStorm"
-MY_PN="${PN}"
-SRC_URI_PATH="webide"
-SRC_URI_PN="PhpStorm"
+DESCRIPTION="The Leading Java and Kotlin IDE"
+HOMEPAGE="https://www.jetbrains.com/idea/"
+SIMPLE_NAME="Idea Ultimate"
+MY_PN="idea"
+SRC_URI_PATH="idea"
+SRC_URI_PN="ideaIU"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-BUILD_NUMBER="251.26094.133"
-S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
+BUILD_NUMBER="251.26927.53"
+S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh W3C yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL CDDL-1.1 codehaus CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -60,12 +60,14 @@ src_install() {
 	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
 
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/Kotlin/kotlinc/bin/{kotlin,kotlinc,kotlinc-js,kotlinc-jvm}
+	fperms 755 "${dir}"/plugins/maven/lib/maven3/bin/{mvn,mvnDebug,mvnyjp}
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
 	fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
