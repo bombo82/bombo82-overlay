@@ -22,7 +22,3 @@ DEPEND="${RDEPEND}
 	dev-build/meson
 	dev-build/ninja
 "
-
-PATCHES=(
-	"${FILESDIR}/${P}-add-compatibility-with-icecream-v1.3.patch"
-)
