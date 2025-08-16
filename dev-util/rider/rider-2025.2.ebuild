@@ -50,7 +50,6 @@ src_prepare() {
 	rm -rv ./lib/ReSharperHost/linux-musl-arm || die
 	rm -rv ./lib/ReSharperHost/linux-musl-arm64 || die
 	rm -rv ./lib/async-profiler/aarch64 || die
-	rm -rv ./plugins/cidr-debugger-plugin/bin/lldb/linux/aarch64 || die
 	rm -rv ./plugins/dotTrace.dotMemory/DotFiles/linux-arm64 || die
 }
 
@@ -71,7 +70,6 @@ src_install() {
 	fperms 755 "${dir}"/lib/ReSharperHost/{Rider.Backend.sh,runtime-dotnet.sh}
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/{dotnet/dotnet,Rider.Backend}
 
-	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/x64/{bin/lldb,bin/lldb-argdumper,bin/LLDBFrontend,bin/lldb-server,lib/xml2Conf.sh}
 	fperms 755 "${dir}"/plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
