@@ -38,6 +38,7 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/Postman
 	fperms 755 "${dir}"/postman
+  fperms 755 "${dir}/chrome_crashpad_handler"
 
 	make_wrapper "${PN}" "${dir}/Postman"
 	newicon "resources/app/assets/icon.png" "${PN}.png"
