@@ -26,7 +26,7 @@ QA_FLAGS_IGNORED="CFLAGS LDFLAGS"
 src_prepare() {
 	default
 
-	rm -rv ./plugins/com.sun.jna_5.17.0.v20250316-1700/com/sun/jna/{aix-*,darwin-*,freebsd-*,linux-aarch64,linux-arm,linux-armel,linux-loongarch64,linux-mips64el,linux-ppc,linux-ppc64le,linux-riscv64,linux-s390x,linux-x86,openbsd-*,sunos-*,win32,win32-*} || die
+	rm -rv ./plugins/com.sun.jna_5.18.1.v20251001-0800/com/sun/jna/{aix-*,darwin-*,freebsd-*,linux-aarch64,linux-arm,linux-armel,linux-loongarch64,linux-mips64el,linux-ppc,linux-ppc64le,linux-riscv64,linux-s390x,linux-x86,openbsd-*,sunos-*,win32,win32-*} || die
 }
 
 src_install() {
