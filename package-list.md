@@ -1,6 +1,4 @@
 # List of maintained packages
-- app-editors:
-  - app-editors/vscode-bin
 - app-misc:
   - app-misc/evemu
 - dev-db:
