@@ -12,7 +12,7 @@ SIMPLE_NAME="JetBrains Gateway"
 MY_PN="gateway"
 SRC_URI_PATH="idea/gateway"
 SRC_URI_PN="JetBrainsGateway"
-BUILD_NUMBER="253.28294.342"
+BUILD_NUMBER="253.30387.104"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${SRC_URI_PN}-${BUILD_NUMBER}"
 LICENSE="
@@ -43,13 +43,13 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",format,inspect,ltedit}.sh
-	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
+  fperms 755 "${dir}"/bin/"${MY_PN}"
 
-	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
-
-	fperms 755 "${dir}"/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,gateway,gateway.sh,inspect.sh,ltedit.sh,restarter}
+  fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
+  fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
+  fperms 755 "${dir}"/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
+  fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
 	newicon bin/"${MY_PN}".svg "${PN}".svg

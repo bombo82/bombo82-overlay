@@ -6,17 +6,17 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="Many databases, one tool"
-HOMEPAGE="https://www.jetbrains.com/datagrip/"
-SIMPLE_NAME="DataGrip"
+DESCRIPTION="The complete IDE crafted for Gophers"
+HOMEPAGE="https://www.jetbrains.com/go/"
+SIMPLE_NAME="GoLand"
 MY_PN="${PN}"
-SRC_URI_PATH="${PN}"
+SRC_URI_PATH="go"
 SRC_URI_PN="${PN}"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/DataGrip-${PV}"
+S="${WORKDIR}/GoLand-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh UoI-NCSA yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL PSF-2 trilead-ssh yFiles yourkit
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -52,14 +52,16 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,inspect,ltedit,remote-dev-server}.sh}
-	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
+  fperms 755 "${dir}"/bin/"${MY_PN}"
 
-	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
-
-	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
-	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
+  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,goland,goland.sh,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter}
+  fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
+  fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+  fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
+  fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/{linuxarm/dlv,linuxarmmusl/dlv,linux/dlv,linuxmusl/dlv,macarm/dlv,mac/dlv}
+  fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
+  fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
+  fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg

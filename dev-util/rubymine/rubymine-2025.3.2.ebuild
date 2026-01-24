@@ -52,16 +52,20 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{"${MY_PN}",{format,jetbrains_client,ltedit,remote-dev-server}.sh}
-	fperms 755 "${dir}"/bin/{fsnotifier,restarter}
+  fperms 755 "${dir}"/bin/"${MY_PN}"
 
-	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
-
-	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
-	fperms 755 "${dir}"/plugins/ruby/rb/{consoles/exec/irb,consoles/exec/pry,stubsgen/gems/gems/rdoc-3.9.4/bin/rdoc,stubsgen/gems/gems/rdoc-3.9.4/bin/ri,terminal/asdf_starter.sh,terminal/chruby_starter.sh,terminal/rbenv_starter.sh,terminal/rvm_starter.sh,wsl/print_dirs.sh,wsl/sync_file.sh}
-	fperms 755 "${dir}"/plugins/remote-dev-server/{bin/launcher.sh,selfcontained/bin/xkbcomp,selfcontained/bin/Xvfb}
-	fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
+  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,rinspect.sh,rubymine,rubymine.sh}
+  fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
+  fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+  fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
+  fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
+  fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
+  fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
+  fperms 755 "${dir}"/plugins/ruby/rb/consoles/exec/{irb,pry}
+  fperms 755 "${dir}"/plugins/ruby/rb/stubsgen/gems/gems/rdoc-3.9.4/bin/{rdoc,ri}
+  fperms 755 "${dir}"/plugins/ruby/rb/terminal/{asdf_starter.sh,chruby_starter.sh,mise_starter.sh,rbenv_starter.sh,rvm_starter.sh}
+  fperms 755 "${dir}"/plugins/ruby/rb/wsl/{print_dirs.sh,sync_file.sh}
+  fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
