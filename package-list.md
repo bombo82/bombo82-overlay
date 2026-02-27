@@ -1,8 +1,6 @@
 # List of maintained packages
 - app-misc:
   - app-misc/evemu
-- dev-db:
-  - dev-db/dbeaver-bin
 - dev-java:
   - sbt-bin
 - dev-libs:
