@@ -83,13 +83,21 @@ src_install() {
   fperms 755 "${dir}"/plugins/cidr-debugger/bin/lldb/linux/x64/lib/xml2Conf.sh
   fperms 755 "${dir}"/plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer
   fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/esbuild/bin/esbuild
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/esbuild/esbuild.wasm
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/get-tsconfig/dist/{index.cjs,index.mjs}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/resolve-pkg-maps/dist/{index.cjs,index.mjs}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/cjs/api/{index.cjs,index.mjs}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/cjs/{index.cjs,index.mjs}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/{cli.cjs,cli.mjs}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/esm/api/{index.cjs,index.mjs}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/esm/{index.cjs,index.mjs}
+  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/{loader.cjs,loader.mjs,patch-repl.cjs,patch-repl.mjs,preflight.cjs,preflight.mjs,repl.cjs,repl.mjs,suppress-warnings.cjs,suppress-warnings.mjs}
   fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
   fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
   fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
   fperms 755 "${dir}"/plugins/rider-plugins-renderdoc/runtime/linux-x86_64/RenderDocHost
-  fperms 755 "${dir}"/plugins/sqlproj-plugin/Rider.Sqlproj.Worker/BuildDirectory/Microsoft.Data.Tools.Schema.SqlTasks.targets
-  fperms 755 "${dir}"/plugins/sqlproj-plugin/Rider.Sqlproj.Worker/Rider.Sqlproj.Worker
-  fperms 755 "${dir}"/plugins/tailwindcss/server/tailwindcss-language-server
+  fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
   fperms 755 "${dir}"/tools/profiler/{dotMemory.sh,dotTrace.sh}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
