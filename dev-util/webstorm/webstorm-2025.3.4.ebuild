@@ -6,18 +6,18 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The Lightning-Smart PHP IDE"
-HOMEPAGE="https://www.jetbrains.com/go/"
-SIMPLE_NAME="PhpStorm"
+DESCRIPTION="The JavaScript and TypeScript IDE"
+HOMEPAGE="https://www.jetbrains.com/webstorm/"
+SIMPLE_NAME="WebStorm"
 MY_PN="${PN}"
-SRC_URI_PATH="webide"
-SRC_URI_PN="PhpStorm"
+SRC_URI_PATH="webstorm"
+SRC_URI_PN="WebStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-BUILD_NUMBER="253.31033.138"
-S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
+BUILD_NUMBER="253.32098.39"
+S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 LICENSE="
 	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh W3C yFiles yourkit
+	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit W3C ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -30,6 +30,8 @@ RDEPEND="
 	media-libs/mesa[X(+)]
 	sys-devel/gcc
 	sys-libs/glibc
+	sys-libs/libselinux
+	sys-process/audit
 	sys-libs/libselinux
 	sys-process/audit
 	x11-libs/libX11
@@ -55,7 +57,7 @@ src_install() {
 	doins -r *
   fperms 755 "${dir}"/bin/"${MY_PN}"
 
-  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,inspect.sh,jetbrains_client.sh,ltedit.sh,phpstorm,phpstorm.sh,remote-dev-server,remote-dev-server.sh,restarter}
+  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,webstorm,webstorm.sh}
   fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
   fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
   fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
