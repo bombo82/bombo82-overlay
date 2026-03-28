@@ -43,12 +43,13 @@ src_prepare() {
 	default
 
   rm -rv ./lib/async-profiler/aarch64 || die
-  rm -rv ./plugins/clion-radler/dotCommon/DotFiles/{linux-arm64,macos-arm64,macos-x64,windows-arm64,windows-x64,windows-x86} || die
   rm -rv ./plugins/clion-radler/DotFiles/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64,macos-arm64,macos-x64,windows-arm64,windows-x64,windows-x86} || die
+  rm -rv ./plugins/clion-radler/DotFiles/runtimes/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64} || die
   rm -rv ./plugins/clion-radler/dotTrace.dotMemory/DotFiles/{linux-arm64,macos-arm64,macos-x64,windows-arm64,windows-x64} || die
   rm -rv ./plugins/nativeDebug-plugin/bin/lldb/linux/aarch64 || die
   rm -rv ./plugins/nativeDebug-plugin/bin/lldb/{mac,win} || die
   rm -rv ./plugins/serial-monitor/bin/{OSX,Windows} || die
+
 }
 
 src_install() {
@@ -61,15 +62,16 @@ src_install() {
   fperms 755 "${dir}"/bin/clang/linux/x64/bin/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
   fperms 755 "${dir}"/bin/{clion,clion.sh}
   fperms 755 "${dir}"/bin/cmake/linux/x64/bin/{cmake,cpack,ctest}
-  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.1/Modules/Compiler/XL-Fortran/cpp
-  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.1/Modules/Internal/CPack/CPack.STGZ_Header.sh.in
-  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.1/Modules/Platform/AIX/ExportImportList
-  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.1/Modules/{Squish4RunTestCase.sh,SquishRunTestCase.sh}
+  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/Compiler/XL-Fortran/cpp
+  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/Internal/CPack/CPack.STGZ_Header.sh.in
+  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/Platform/AIX/ExportImportList
+  fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/{Squish4RunTestCase.sh,SquishRunTestCase.sh}
   fperms 755 "${dir}"/bin/{format.sh,fsnotifier}
   fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver,gstack}
   fperms 755 "${dir}"/bin/{inspect.sh,jetbrains_client.sh}
   fperms 755 "${dir}"/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,lldb-dap,LLDBFrontend,lldb-server}
   fperms 755 "${dir}"/bin/ltedit.sh
+  fperms 755 "${dir}"/bin/native-helper/intellij-rust-native-helper
   fperms 755 "${dir}"/bin/ninja/linux/x64/ninja
   fperms 755 "${dir}"/bin/{remote-dev-server,remote-dev-server.sh,restarter}
   fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
@@ -77,8 +79,8 @@ src_install() {
   fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-musl-x64/jb_zip_unarchiver
   fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/clang-format
   fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/crossgen2/crossgen2
-  fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/dotnet
-  fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/shared/Microsoft.NETCore.App/9.0.11/createdump
+  fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/{dnx,dotnet}
+  fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/shared/Microsoft.NETCore.App/10.0.5/createdump
   fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/{jb_zip_unarchiver,JetBrains.Debugger.Worker,JetBrains.ProcessEnumerator.Worker,Rider.Backend}
   fperms 755 "${dir}"/plugins/clion-radler/DotFiles/{Rider.Backend.sh,runtime-dotnet.sh}
   fperms 755 "${dir}"/plugins/clion-radler/tools/profiler/{dotMemory.sh,dotTrace.sh}

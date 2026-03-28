@@ -12,7 +12,7 @@ SIMPLE_NAME="JetBrains Gateway"
 MY_PN="gateway"
 SRC_URI_PATH="idea/gateway"
 SRC_URI_PN="JetBrainsGateway"
-BUILD_NUMBER="253.30387.104"
+BUILD_NUMBER="261.22158.290"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${SRC_URI_PN}-${BUILD_NUMBER}"
 LICENSE="
@@ -51,9 +51,9 @@ src_install() {
   fperms 755 "${dir}"/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
   fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
 
-	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}".sh
+	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;X-RemoteDevelopment;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
