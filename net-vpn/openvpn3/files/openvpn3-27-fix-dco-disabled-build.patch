@@ -1,0 +1,17 @@
+diff --git a/src/client/core-client-netcfg.hpp b/src/client/core-client-netcfg.hpp
+index b911f92..17f4f1a 100644
+--- a/src/client/core-client-netcfg.hpp
++++ b/src/client/core-client-netcfg.hpp
+@@ -68,10 +68,12 @@ class NetCfgTunBuilder : public T
+         // Explicitly call cleanup
+         try
+         {
++#ifdef ENABLE_OVPNDCO
+             if (dco)
+             {
+                 dco.reset();
+             }
++#endif
+             if (device)
+             {
+                 device->Destroy();

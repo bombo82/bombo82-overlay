@@ -1,0 +1,22 @@
+--- a/src/tests/unit/meson.build
++++ b/src/tests/unit/meson.build
+@@ -9,9 +9,7 @@
+ #  unit tests
+ #
+ 
+-googletest = subproject('gtest')
+-gtest_deps = googletest.get_variable('gtest_main_dep')
+-gtest_inc = googletest.get_variable('gtest_incdir')
++gtest_deps = dependency('gtest_main')
+ 
+ unit_tests = executable(
+            'unit-tests',
+@@ -35,7 +33,7 @@
+                 '../../netcfg/dns/resolver-settings.cpp',
+                 '../../netcfg/dns/settings-manager.cpp',
+            ],
+-           include_directories: [include_dirs, gtest_inc, '../../..'],
++           include_directories: [include_dirs, '../../..'],
+            link_with: [
+                  common_code,
+                  netcfgmgr_lib,

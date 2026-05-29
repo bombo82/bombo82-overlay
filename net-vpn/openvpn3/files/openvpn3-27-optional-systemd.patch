@@ -1,0 +1,110 @@
+diff --git a/distro/systemd/meson.build b/distro/systemd/meson.build
+index 9c636b6..6d142e8 100644
+--- a/distro/systemd/meson.build
++++ b/distro/systemd/meson.build
+@@ -13,33 +13,35 @@ systemd_cfg = configuration_data({
+     }
+ )
+ 
+-systemd_service_cfg = dependency('systemd')
++systemd_service_cfg = dependency('systemd', required: false)
+ 
+-systemd_system_unit_dir = get_option('systemd_system_unit_dir')
+-if systemd_system_unit_dir == ''
+-  systemd_system_unit_dir = systemd_service_cfg.get_variable('systemdsystemunitdir')
+-endif
++if systemd_service_cfg.found()
++  systemd_system_unit_dir = get_option('systemd_system_unit_dir')
++  if systemd_system_unit_dir == ''
++    systemd_system_unit_dir = systemd_service_cfg.get_variable('systemdsystemunitdir')
++  endif
+ 
+-configure_file(
+-    input: 'openvpn3-autoload.service.in',
+-    output: 'openvpn3-autoload.service',
+-    configuration: systemd_cfg,
+-    install: true,
+-    install_dir: systemd_system_unit_dir,
+-)
++  configure_file(
++      input: 'openvpn3-autoload.service.in',
++      output: 'openvpn3-autoload.service',
++      configuration: systemd_cfg,
++      install: true,
++      install_dir: systemd_system_unit_dir,
++  )
+ 
+-configure_file(
+-    input: 'openvpn3-session@.service.in',
+-    output: 'openvpn3-session@.service',
+-    configuration: systemd_cfg,
+-    install: true,
+-    install_dir: systemd_system_unit_dir,
+-)
++  configure_file(
++      input: 'openvpn3-session@.service.in',
++      output: 'openvpn3-session@.service',
++      configuration: systemd_cfg,
++      install: true,
++      install_dir: systemd_system_unit_dir,
++  )
+ 
+-custom_target('openvpn3-systemd',
+-    input: 'openvpn3-systemd',
+-    output: 'openvpn3-systemd',
+-    command: [cp_prog, '@INPUT@', '@OUTPUT@'],
+-    install: true,
+-    install_dir: libexec_dir,
+-)
++  custom_target('openvpn3-systemd',
++      input: 'openvpn3-systemd',
++      output: 'openvpn3-systemd',
++      command: [cp_prog, '@INPUT@', '@OUTPUT@'],
++      install: true,
++      install_dir: libexec_dir,
++  )
++endif
+diff --git a/src/python/session-watcher/meson.build b/src/python/session-watcher/meson.build
+index d5d0c37..62568ad 100644
+--- a/src/python/session-watcher/meson.build
++++ b/src/python/session-watcher/meson.build
+@@ -11,20 +11,7 @@ systemd_cfg = configuration_data({
+     }
+ )
+ 
+-systemd_service_cfg = dependency('systemd')
+-
+-systemd_user_unit_dir = get_option('systemd_user_unit_dir')
+-if systemd_user_unit_dir == ''
+-  systemd_user_unit_dir = systemd_service_cfg.get_variable('systemduserunitdir')
+-endif
+-
+-configure_file(
+-    input: 'openvpn3-desktop-session-watcher.service.in',
+-    output: 'openvpn3-desktop-session-watcher.service',
+-    configuration: systemd_cfg,
+-    install: true,
+-    install_dir: systemd_user_unit_dir,
+-)
++systemd_service_cfg = dependency('systemd', required: false)
+ 
+ custom_target('openvpn3-desktop-session-watcher',
+     input: 'openvpn3-desktop-session-watcher.py',
+@@ -34,3 +21,17 @@ custom_target('openvpn3-desktop-session-watcher',
+     install_mode: 'rwxr-xr-x',
+     install_dir: systemd_cfg.get('BINDIR'),
+ )
++
++if systemd_service_cfg.found()
++  systemd_user_unit_dir = get_option('systemd_user_unit_dir')
++  if systemd_user_unit_dir == ''
++    systemd_user_unit_dir = systemd_service_cfg.get_variable('systemduserunitdir')
++  endif
++  configure_file(
++      input: 'openvpn3-desktop-session-watcher.service.in',
++      output: 'openvpn3-desktop-session-watcher.service',
++      configuration: systemd_cfg,
++      install: true,
++      install_dir: systemd_user_unit_dir,
++  )
++endif
