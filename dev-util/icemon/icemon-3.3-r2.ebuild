@@ -13,6 +13,7 @@ SRC_URI="https://github.com/icecc/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+IUSE="doc"
 
 RDEPEND="
 	dev-qt/qtcore:5
@@ -21,12 +22,15 @@ RDEPEND="
 	sys-devel/icecream
 "
 DEPEND="${RDEPEND}
-	app-text/docbook2X
+	doc? ( app-text/docbook2X )
 "
 
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=OFF
 	)
+	if ! use doc; then
+		mycmakeargs+=( -DCMAKE_DISABLE_FIND_PACKAGE_Docbook2X=ON )
+	fi
 	cmake_src_configure
 }
