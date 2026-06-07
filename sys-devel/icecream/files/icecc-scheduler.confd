@@ -9,3 +9,6 @@
 # Control verbosity of daemon. The more v (max three) the more verbose.
 # Default is "v"
 # ICECC_SCHEDULER_VERBOSITY="v"
+
+# The interface to bind to.
+# ICECC_SCHEDULER_INTERFACE=eth0

@@ -13,14 +13,13 @@ start() {
   local net_name="${ICECC_SCHEDULER_NET_NAME:+"--net-name $ICECC_SCHEDULER_NET_NAME"}"
   local verbosity="-${ICECC_SCHEDULER_VERBOSITY:-"v"}"
   local persistent_client_connection
-  [[ "$ICECC_SCHEDULER_PERSISTENT_CLIENT_CONNECTION" == "yes" ]] \
-    && persistent_client_connection="--persistent-client-connection"
+  [[ "$ICECC_SCHEDULER_PERSISTENT_CLIENT_CONNECTION" == "yes" ]] && persistent_client_connection="--persistent-client-connection"
+  local interface="${ICECC_SCHEDULER_INTERFACE:+"-i $ICECC_SCHEDULER_INTERFACE"}"
 
   [[ ! -d /var/log/icecream/ ]] && mkdir -p /var/log/icecream/ && chown icecream:icecream /var/log/icecream/
 
   ebegin "Starting Distributed Compiler Scheduler"
-  start-stop-daemon -u icecream --start --quiet --exec /usr/sbin/icecc-scheduler -- -d $log_file $net_name $verbosity \
-    $persistent_client_connection
+  start-stop-daemon -u icecream --start --quiet --exec /usr/sbin/icecc-scheduler -- -d $log_file $net_name $verbosity $persistent_client_connection $interface
   eend ${?}
 }
 
