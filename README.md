@@ -20,6 +20,30 @@ Or add it from layman;
 # layman -f -a bombo82
 ```
 
+## Development tools
+
+This overlay includes helper scripts for maintainers in the `tools/` directory.
+They are not installed by Portage and are only useful when working on ebuilds.
+
+- `tools/jetbrains.sh` — Helper for maintaining JetBrains IDE ebuilds.
+  Commands:
+  - `licenses`: output a Gentoo `LICENSE` string from third-party libraries.
+    Requires `bash`, `curl` and `jq`.
+  - `find-exec`: output `fperms` lines for executable files (foreign
+    architectures excluded by default).
+  - `find-arch`: output `rm ... || die` lines for foreign architecture
+    directories.
+
+  The tarball is resolved from the package ebuild and looked up in `\$DISTDIR`
+  (default: `/var/cache/distfiles`).
+  ```bash
+  ./tools/jetbrains.sh licenses clion
+  ./tools/jetbrains.sh find-exec clion
+  ./tools/jetbrains.sh find-exec --all clion
+  ./tools/jetbrains.sh find-arch clion
+  ./tools/jetbrains.sh --distdir /custom/path find-exec clion
+  ```
+
 ## Contributing
 If you find an issue then please submit it on [the issue tracker](https://github.com/bombo82/bombo82-overlay/issues).
 
