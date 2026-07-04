@@ -10,13 +10,13 @@ DESCRIPTION="An Agentic Development Environment by JetBrains"
 HOMEPAGE="https://air.dev/"
 SIMPLE_NAME="JetBrains Air"
 MY_PN="Air"
-SRC_URI_PATH="air/installers/linux_x64"
-SRC_URI_PN="Air"
-SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI_PATH="air"
+SRC_URI_PN="air"
+SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/installers/linux_x64/${SRC_URI_PN^}-${PV}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/Air"
 LICENSE="
-	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CDDL-1.1 CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit W3C ZLIB
+	jetbrains_team_tools-2.3
+	anthropic-claude-code Apache-2.0 BSD BSD-2 CC0-1.0 CDDL-1.1 CDLA-Permissive-2.0 EPL-1.0 ISC MIT MPL-2.0 Unicode-3.0 Unlicense ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"

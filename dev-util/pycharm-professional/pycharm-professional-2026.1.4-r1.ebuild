@@ -6,17 +6,17 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="Code Smarter with Ruby on Rails IDE"
-HOMEPAGE="https://www.jetbrains.com/ruby/"
-SIMPLE_NAME="RubyMine"
-MY_PN="${PN}"
-SRC_URI_PATH="ruby"
-SRC_URI_PN="RubyMine"
+DESCRIPTION="The Python IDE for Professional Developers"
+HOMEPAGE="https://www.jetbrains.com/pycharm/"
+SIMPLE_NAME="PyCharm Professional"
+MY_PN="pycharm"
+SRC_URI_PATH="python"
+SRC_URI_PN="pycharm-professional"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/RubyMine-${PV}"
+S="${WORKDIR}/pycharm-${PV}"
 LICENSE="
-	|| ( jetbrains_business-4.0 jetbrains_individual-4.2 jetbrains_educational-4.0 jetbrains_classroom-4.2 jetbrains_opensource-4.2 )
-	Apache-1.1 Apache-2.0 BSD BSD-2 CC0-1.0 CDDL CPL-1.0 GPL-2 GPL-2-with-classpath-exception GPL-3 ISC LGPL-2.1 LGPL-3 MIT MPL-1.1 OFL trilead-ssh yFiles yourkit
+	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
+	0BSD Apache-2.0 BlueOak-1.0.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CC-BY-3.0 CC-BY-4.0 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MIT-0 MPL-2.0 OFL-1.1 PYTHON redocly unicode Unlicense UPL-1.0 yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -45,6 +45,7 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
+  rm -rv ./plugins/python-ce/helpers/pydev/pydevd_attach_to_process/attach_linux_aarch64.so || die
 }
 
 src_install() {
@@ -54,7 +55,7 @@ src_install() {
 	doins -r *
   fperms 755 "${dir}"/bin/"${MY_PN}"
 
-  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,rinspect.sh,rubymine,rubymine.sh}
+  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,inspect.sh,jetbrains_client.sh,ltedit.sh,pycharm,pycharm.sh,remote-dev-server,remote-dev-server.sh,restarter}
   fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
   fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
   fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
@@ -69,12 +70,10 @@ src_install() {
   fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/esm/{index.cjs,index.mjs}
   fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/{loader.cjs,loader.mjs,patch-repl.cjs,patch-repl.mjs,preflight.cjs,preflight.mjs,repl.cjs,repl.mjs,suppress-warnings.cjs,suppress-warnings.mjs}
   fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
+  fperms 755 "${dir}"/plugins/python-ce/helpers/debugpy/_vendored/pydevd/pydevd_attach_to_process/linux_and_mac/{compile_linux.sh,compile_mac.sh,compile_manylinux.cmd}
+  fperms 755 "${dir}"/plugins/python-ce/helpers/pydev/pydevd_attach_to_process/linux_and_mac/{compile_linux_aarch64.sh,compile_linux.sh,compile_mac.sh}
   fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
   fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
-  fperms 755 "${dir}"/plugins/ruby/rb/consoles/exec/{irb,pry}
-  fperms 755 "${dir}"/plugins/ruby/rb/stubsgen/gems/gems/rdoc-3.9.4/bin/{rdoc,ri}
-  fperms 755 "${dir}"/plugins/ruby/rb/terminal/{asdf_starter.sh,chruby_starter.sh,mise_starter.sh,rbenv_starter.sh,rvm_starter.sh}
-  fperms 755 "${dir}"/plugins/ruby/rb/wsl/{print_dirs.sh,sync_file.sh}
   fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
