@@ -12,11 +12,11 @@
   - dev-util/goland
   - dev-util/icecream-sundae
   - dev-util/icemon
-  - dev-util/idea-ultimate
+  - dev-util/intellij-idea
   - dev-util/jetbrains-air
   - dev-util/jetbrains-gateway
   - dev-util/phpstorm
-  - dev-util/pycharm-professional
+  - dev-util/pycharm
   - dev-util/rider
   - dev-util/rubymine
   - dev-util/rustrover

@@ -430,8 +430,8 @@ license_build_json_url() {
 
     local pn="${src_uri_pn:-$pkg}"
     case "$pkg" in
-        idea-ultimate) pn="idea" ;;
-        pycharm-professional) pn="pycharmPY" ;;
+        intellij-idea) pn="idea" ;;
+        pycharm) pn="pycharmPY" ;;
     esac
 
     echo "https://resources.jetbrains.com/storage/third-party-libraries/${path}/${pn}-${pv}-third-party-libraries.json"
