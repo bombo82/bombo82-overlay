@@ -13,6 +13,7 @@
   - dev-util/icecream-sundae
   - dev-util/icemon
   - dev-util/idea-ultimate
+  - dev-util/jetbrains-air
   - dev-util/jetbrains-gateway
   - dev-util/phpstorm
   - dev-util/pycharm-professional
