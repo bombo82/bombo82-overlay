@@ -3,9 +3,9 @@
 # either version 2 of the License, or (at your option) any later version.
 
 EAPI=8
-PYTHON_COMPAT=( python3_{10..13} )
+PYTHON_COMPAT=( python3_{10..14} )
 
-inherit git-r3 meson python-r1
+inherit git-r3 meson python-single-r1
 
 DESCRIPTION="Next generation OpenVPN client"
 HOMEPAGE="https://openvpn.net"
@@ -14,6 +14,7 @@ EGIT_REPO_URI="https://codeberg.org/OpenVPN/openvpn3-linux.git"
 LICENSE="AGPL-3"
 SLOT="0"
 IUSE="addon-aws addon-deviceposture bash-completion dco doc selinux systemd"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 DEPEND="${PYTHON_DEPS}
 	acct-group/openvpn
@@ -38,25 +39,31 @@ DEPEND="${PYTHON_DEPS}
 "
 RDEPEND="
 	${DEPEND}
-	$(python_gen_cond_dep 'dev-python/pyopenssl[${PYTHON_USEDEP}]')
-	$(python_gen_cond_dep 'dev-python/pygobject[${PYTHON_USEDEP}]')
-	$(python_gen_cond_dep 'dev-python/dbus-python[${PYTHON_USEDEP}]')
+	$(python_gen_cond_dep '
+		dev-python/pyopenssl[${PYTHON_USEDEP}]
+		dev-python/pygobject[${PYTHON_USEDEP}]
+		dev-python/dbus-python[${PYTHON_USEDEP}]
+	')
 "
 BDEPEND="
 	${PYTHON_DEPS}
 	dev-build/meson
-	dev-python/meson-python
+	$(python_gen_cond_dep 'dev-python/meson-python[${PYTHON_USEDEP}]')
 "
+
+pkg_setup() {
+	python-single-r1_pkg_setup
+}
 
 src_configure() {
 	local emesonargs=(
-                $(meson_feature addon-aws)
-                $(meson_feature addon-deviceposture)
-                $(meson_feature bash-completion)
-                $(meson_feature dco)
-                $(meson_feature doc doxygen)
-                $(meson_feature selinux)
-        )
+		$(meson_feature addon-aws)
+		$(meson_feature addon-deviceposture)
+		$(meson_feature bash-completion)
+		$(meson_feature dco)
+		$(meson_feature doc doxygen)
+		$(meson_feature selinux)
+	)
 	meson_src_configure --wrap-mode nopromote -Dunit_tests=disabled -Dtest_programs=disabled
 }
 

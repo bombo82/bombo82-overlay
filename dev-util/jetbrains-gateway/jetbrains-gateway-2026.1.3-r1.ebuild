@@ -43,13 +43,12 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-  fperms 755 "${dir}"/bin/"${MY_PN}"
+	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,gateway,gateway.sh,inspect.sh,ltedit.sh,restarter}
-  fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-  fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
-  fperms 755 "${dir}"/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
-  fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
+	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,gateway,gateway.sh,inspect.sh,ltedit.sh,restarter}
+	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
+	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
+	fperms 755 "${dir}"/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg

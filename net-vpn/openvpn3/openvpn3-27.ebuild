@@ -3,7 +3,7 @@
 # either version 2 of the License, or (at your option) any later version.
 
 EAPI=8
-PYTHON_COMPAT=( python3_{8..14} )
+PYTHON_COMPAT=( python3_{10..14} )
 OPENVPN3_CORE_TAG="release/3.11.6"
 ASIO_TAG="asio-1-36-0"
 
@@ -11,11 +11,10 @@ inherit meson python-single-r1
 
 DESCRIPTION="Next generation OpenVPN client"
 HOMEPAGE="https://openvpn.net"
-SRC_URI="
-	https://github.com/OpenVPN/openvpn3-linux/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
+SRC_URI="https://codeload.github.com/OpenVPN/openvpn3-linux/tar.gz/refs/tags/v${PV} -> ${P}.tar.gz
 	https://github.com/OpenVPN/openvpn3/archive/refs/tags/${OPENVPN3_CORE_TAG}.tar.gz -> openvpn3-core-${OPENVPN3_CORE_TAG//\//-}.tar.gz
-	https://github.com/chriskohlhoff/asio/archive/refs/tags/${ASIO_TAG}.tar.gz -> asio-${ASIO_TAG}.tar.gz
-"
+	https://github.com/chriskohlhoff/asio/archive/refs/tags/${ASIO_TAG}.tar.gz -> asio-${ASIO_TAG}.tar.gz"
+S="${WORKDIR}/openvpn3-linux-${PV}"
 
 LICENSE="AGPL-3+"
 SLOT="0"
@@ -74,7 +73,6 @@ BDEPEND="
 	bash-completion? ( $(python_gen_cond_dep 'dev-python/docutils[${PYTHON_USEDEP}]') )
 	doc? ( app-text/doxygen )
 "
-S="${WORKDIR}/openvpn3-linux-${PV}"
 
 src_unpack() {
 	unpack ${A}

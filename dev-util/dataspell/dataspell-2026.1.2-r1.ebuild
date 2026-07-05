@@ -44,7 +44,6 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
-  rm -rv ./plugins/python-ce/helpers/pydev/pydevd_attach_to_process/attach_linux_aarch64.so || die
 }
 
 src_install() {
@@ -54,13 +53,10 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-  fperms 755 "${dir}"/bin/{dataspell,dataspell.sh,format.sh,fsnotifier,inspect.sh,ltedit.sh,restarter}
-  fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-  fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
-  fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
-  fperms 755 "${dir}"/plugins/python-ce/helpers/debugpy/_vendored/pydevd/pydevd_attach_to_process/linux_and_mac/{compile_linux.sh,compile_mac.sh,compile_manylinux.cmd}
-  fperms 755 "${dir}"/plugins/python-ce/helpers/pydev/pydevd_attach_to_process/linux_and_mac/{compile_linux_aarch64.sh,compile_linux.sh,compile_mac.sh}
-  fperms 755 "${dir}"/plugins/r-plugin/{fsnotifier-linux,rwrapper-x64-linux}
+	fperms 755 "${dir}"/bin/{dataspell,dataspell.sh,format.sh,fsnotifier,inspect.sh,ltedit.sh,restarter}
+	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
+	fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+	fperms 755 "${dir}"/plugins/r-plugin/{fsnotifier-linux,rwrapper-x64-linux}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
@@ -69,4 +65,4 @@ src_install() {
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
 	echo "fs.inotify.max_user_watches = 524288" > "${D}/usr/lib/sysctl.d/30-${PN}-inotify-watches.conf" || die
-}
+	}

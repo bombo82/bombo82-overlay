@@ -47,12 +47,11 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/"${MY_PN}"
 
+	fperms 755 "${dir}"/bin/Air
 	fperms 755 "${dir}"/jbr/bin/{jar,jarsigner,java,javac,javadoc,javap,jcmd,jconsole,jdb,jdeprscan,jdeps,jfr,jhsdb,jimage,jinfo,jlink,jmap,jmod,jnativescan,jpackage,jps,jrunscript,jshell,jstack,jstat,jstatd,jwebserver,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
 	fperms 755 "${dir}"/lib/app/bin/{air,printenv}
-	fperms 755 "${dir}"/lib/app/libs/libjnidispatch.so
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon lib/"${MY_PN}".png "${PN}".png
@@ -61,4 +60,4 @@ src_install() {
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
 	echo "fs.inotify.max_user_watches = 524288" > "${D}/usr/lib/sysctl.d/30-${PN}-inotify-watches.conf" || die
-}
+	}

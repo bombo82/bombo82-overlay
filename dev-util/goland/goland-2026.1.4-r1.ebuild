@@ -45,6 +45,8 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/go-plugin/lib/dlv/{mac,macarm,windows,windowsarm} || die
+	rm -rv ./plugins/remote-dev-server/selfcontained/X11/xkb/symbols/macintosh_vndr || die
 }
 
 src_install() {
@@ -52,16 +54,18 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-  fperms 755 "${dir}"/bin/"${MY_PN}"
+	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,goland,goland.sh,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter}
-  fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-  fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
-  fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
-  fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/{linuxarm,linuxmusl}
-  fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
-  fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
-  fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
+	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,goland,goland.sh,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter}
+	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
+	fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linuxarm/dlv
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linuxarmmusl/dlv
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linux/dlv
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linuxmusl/dlv
+	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
+	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
@@ -70,4 +74,4 @@ src_install() {
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
 	echo "fs.inotify.max_user_watches = 524288" > "${D}/usr/lib/sysctl.d/30-${PN}-inotify-watches.conf" || die
-}
+	}

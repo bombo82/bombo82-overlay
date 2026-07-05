@@ -14,4 +14,9 @@
         <flag name="selinux">Add SELinux support (openvpn3-admin init-config)</flag>
         <flag name="systemd">Enable use of systemd-specific libraries and features</flag>
     </use>
+    <upstream>
+        <remote-id type="codeberg">OpenVPN/openvpn3-linux</remote-id>
+        <remote-id type="github">OpenVPN/openvpn3</remote-id>
+        <remote-id type="github">chriskohlhoff/asio</remote-id>
+    </upstream>
 </pkgmetadata>

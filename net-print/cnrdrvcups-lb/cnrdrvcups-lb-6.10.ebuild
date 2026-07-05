@@ -11,12 +11,12 @@ MY_PV="${PV//\./}"
 
 DESCRIPTION="Canon UFR II / LIPSLX Printer Driver for Linux"
 HOMEPAGE="https://www.canon-europe.com/support/products/imagerunner/"
-SRC_URI="https://gdlp01.c-wss.com/gds/${DL_ID}/linux-UFRII-drv-v${MY_PV}-m17n-${CANON_REL}.tar.gz -> linux-UFRII-drv-v${MY_PV}-m17n-${CANON_REL}.tar.gz"
+SRC_URI="https://gdlp01.c-wss.com/gds/${DL_ID}/linux-UFRII-drv-v${MY_PV}-m17n-${CANON_REL}.tar.gz"
+S="${WORKDIR}/linux-UFRII-drv-v${MY_PV}-m17n/Sources"
 
 LICENSE="Canon-UFR-II GPL-2 MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 DEPEND="dev-libs/atk
 	dev-libs/glib:2
@@ -35,35 +35,13 @@ RDEPEND="${DEPEND}
 	!net-print/cndrvcups-lb"
 
 HTML_DOCS=(
-	"${WORKDIR}"/linux-UFRII-drv-v${MY_PV}-m17n/Documents/uk_eng/README-ufr2-${PV//0}xUK.html
-	"${WORKDIR}"/linux-UFRII-drv-v${MY_PV}-m17n/Documents/uk_eng/UsersGuide-ufr2-UK.html
+	"${WORKDIR}/linux-UFRII-drv-v${MY_PV}-m17n/Documents/uk_eng/README-ufr2-${PV//0}xUK.html"
+	"${WORKDIR}/linux-UFRII-drv-v${MY_PV}-m17n/Documents/uk_eng/UsersGuide-ufr2-UK.html"
 )
 
 PATCHES=(
-	"${FILESDIR}/execjob_c_1164_108__error__passing_argument_3_of_'add_param_int'_makes_integer_from_pointe.patch"
+	"${FILESDIR}/execjob_c_1164_108__error__passing_argument_3_of_add_param_int_makes_integer_from_pointe.patch"
 )
-
-S="${WORKDIR}/linux-UFRII-drv-v${MY_PV}-m17n/Sources"
-
-common_op() {
-	local i
-	for i in backend buftool cngplp cnjbig rasterfilter; do
-		cd "${S}/cnrdrvcups-common-${PV}/${i}" ||
-			die "failed to switch dir to ${i}"
-		"${@}"
-		cd "${S}" || die "failed to switch dir back from ${i} to ${S}"
-	done
-}
-
-driver_op() {
-	local i
-	for i in cngplp cngplp/files cpca pdftocpca; do
-		cd "${S}/cnrdrvcups-lb-${PV}/${i}" ||
-			die "failed to switch dir to ${i}"
-		"${@}"
-		cd "${S}" || die "failed to switch dir back from ${i} to ${S}"
-	done
-}
 
 pkg_setup() {
 	QA_PREBUILT="/usr/bin/cnsetuputil2
@@ -115,6 +93,26 @@ src_prepare() {
 
 	# For some reason, @AR@ is defined everywhere else correctly, but not here.
 	sed -i -e "s/AR = ar/AR = $(tc-getAR)/g" ./cnrdrvcups-common-${PV}/buftool/Makefile.in || die
+}
+
+common_op() {
+	local i
+	for i in backend buftool cngplp cnjbig rasterfilter; do
+		cd "${S}/cnrdrvcups-common-${PV}/${i}" ||
+			die "failed to switch dir to ${i}"
+		"${@}"
+		cd "${S}" || die "failed to switch dir back from ${i} to ${S}"
+	done
+}
+
+driver_op() {
+	local i
+	for i in cngplp cngplp/files cpca pdftocpca; do
+		cd "${S}/cnrdrvcups-lb-${PV}/${i}" ||
+			die "failed to switch dir to ${i}"
+		"${@}"
+		cd "${S}" || die "failed to switch dir back from ${i} to ${S}"
+	done
 }
 
 src_configure() {

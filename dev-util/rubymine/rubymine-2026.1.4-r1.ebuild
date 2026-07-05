@@ -45,6 +45,7 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/remote-dev-server/selfcontained/X11/xkb/symbols/macintosh_vndr || die
 }
 
 src_install() {
@@ -52,30 +53,19 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-  fperms 755 "${dir}"/bin/"${MY_PN}"
+	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-  fperms 755 "${dir}"/bin/{format.sh,fsnotifier,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,rinspect.sh,rubymine,rubymine.sh}
-  fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-  fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
-  fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/{remote-dev-worker-darwin-amd64,remote-dev-worker-darwin-arm64,remote-dev-worker-linux-amd64,remote-dev-worker-linux-arm64,remote-dev-worker-windows-amd64.exe,remote-dev-worker-windows-arm64.exe}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/esbuild/bin/esbuild
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/esbuild/esbuild.wasm
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/get-tsconfig/dist/{index.cjs,index.mjs}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/resolve-pkg-maps/dist/{index.cjs,index.mjs}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/cjs/api/{index.cjs,index.mjs}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/cjs/{index.cjs,index.mjs}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/{cli.cjs,cli.mjs}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/esm/api/{index.cjs,index.mjs}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/esm/{index.cjs,index.mjs}
-  fperms 755 "${dir}"/plugins/nodeJS/js/ts-file-loader/node_modules/tsx/dist/{loader.cjs,loader.mjs,patch-repl.cjs,patch-repl.mjs,preflight.cjs,preflight.mjs,repl.cjs,repl.mjs,suppress-warnings.cjs,suppress-warnings.mjs}
-  fperms 755 "${dir}"/plugins/platform-ijent-impl/{ijent-aarch64-unknown-linux-musl-release,ijent-x86_64-unknown-linux-musl-release}
-  fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
-  fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
-  fperms 755 "${dir}"/plugins/ruby/rb/consoles/exec/{irb,pry}
-  fperms 755 "${dir}"/plugins/ruby/rb/stubsgen/gems/gems/rdoc-3.9.4/bin/{rdoc,ri}
-  fperms 755 "${dir}"/plugins/ruby/rb/terminal/{asdf_starter.sh,chruby_starter.sh,mise_starter.sh,rbenv_starter.sh,rvm_starter.sh}
-  fperms 755 "${dir}"/plugins/ruby/rb/wsl/{print_dirs.sh,sync_file.sh}
-  fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
+	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,rinspect.sh,rubymine,rubymine.sh}
+	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
+	fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
+	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
+	fperms 755 "${dir}"/plugins/ruby/rb/consoles/exec/{irb,pry}
+	fperms 755 "${dir}"/plugins/ruby/rb/stubsgen/gems/gems/rdoc-3.9.4/bin/{rdoc,ri}
+	fperms 755 "${dir}"/plugins/ruby/rb/terminal/{asdf_starter.sh,chruby_starter.sh,mise_starter.sh,rbenv_starter.sh,rvm_starter.sh}
+	fperms 755 "${dir}"/plugins/ruby/rb/wsl/{print_dirs.sh,sync_file.sh}
+	fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
@@ -84,4 +74,4 @@ src_install() {
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
 	echo "fs.inotify.max_user_watches = 524288" > "${D}/usr/lib/sysctl.d/30-${PN}-inotify-watches.conf" || die
-}
+	}

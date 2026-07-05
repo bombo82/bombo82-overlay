@@ -4,9 +4,9 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{8..14} )
+PYTHON_COMPAT=( python3_{10..14} )
 
-inherit flag-o-matic meson python-any-r1
+inherit meson python-any-r1
 
 DESCRIPTION="C++17 D-Bus wrapper library based on glib"
 HOMEPAGE="https://codeberg.org/OpenVPN/gdbuspp/"

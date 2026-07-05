@@ -2,10 +2,9 @@
 .ai
 .junie
 .playwright-mcp
+AGENTS.md
 
-cache
-distfiles
+cache/
+distfiles/
 metadata/md5-cache/
-
-licenses-gentoo
-patch
+patch/

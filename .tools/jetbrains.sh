@@ -6,6 +6,9 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 EBUILD_DIR="${REPO_ROOT}/dev-util"
 DISTDIR="${DISTDIR:-/var/cache/distfiles}"
 
+FOREIGN_ARCH_PATTERN="[-/_](linux-(musl|arm)|macos|osx|darwin|mac|windows|win|aarch|arm)[^/]*"
+NATIVE_ARCH_PATTERN="[-/_]linux-x64[^/]*"
+
 show_help() {
     echo "Usage: $0 [GLOBAL_OPTIONS] COMMAND <package>"
     echo "Helper for maintaining JetBrains IDE ebuilds."
@@ -267,9 +270,18 @@ license_map_single() {
     local license="$1"
 
     case "$license" in
-        "Apache 2.0"*) printf 'Apache-2.0\n'; return ;;
-        "MIT License"*) printf 'MIT\n'; return ;;
-        "BSD 3-Clause \"New\""*) printf 'BSD\n'; return ;;
+    "Apache 2.0"*)
+        printf 'Apache-2.0\n'
+        return
+        ;;
+    "MIT License"*)
+        printf 'MIT\n'
+        return
+        ;;
+    "BSD 3-Clause \"New\""*)
+        printf 'BSD\n'
+        return
+        ;;
     esac
 
     if [[ -n "${LICENSE_JETBRAINS_MAP[$license]+x}" ]]; then
@@ -294,7 +306,7 @@ license_split_expr() {
     expression="${expression%\)}"
 
     local parts
-    IFS="$separator" read -ra parts <<< "$expression"
+    IFS="$separator" read -ra parts <<<"$expression"
 
     local part
     for part in "${parts[@]}"; do
@@ -416,9 +428,9 @@ license_build_json_url() {
 
     local path=""
     case "$pkg" in
-        dataspell) path="dataspell" ;;
-        gateway|jetbrains-gateway) path="idea/gateway" ;;
-        rider) path="dotnet" ;;
+    dataspell) path="dataspell" ;;
+    gateway | jetbrains-gateway) path="idea/gateway" ;;
+    rider) path="dotnet" ;;
     esac
     if [[ -z "$path" ]]; then
         if [[ -n "${src_uri_path:-}" ]] && [[ "$src_uri_path" != */* ]]; then
@@ -430,8 +442,8 @@ license_build_json_url() {
 
     local pn="${src_uri_pn:-$pkg}"
     case "$pkg" in
-        intellij-idea) pn="idea" ;;
-        pycharm) pn="pycharmPY" ;;
+    intellij-idea) pn="idea" ;;
+    pycharm) pn="pycharmPY" ;;
     esac
 
     echo "https://resources.jetbrains.com/storage/third-party-libraries/${path}/${pn}-${pv}-third-party-libraries.json"
@@ -442,16 +454,19 @@ cmd_licenses() {
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-            -h|--help) show_help_licenses; return 0 ;;
-            *)
-                if [[ -z "$package" ]]; then
-                    package="$1"
-                else
-                    echo "Error: Unexpected argument $1" >&2
-                    show_help_licenses
-                    return 1
-                fi
-                ;;
+        -h | --help)
+            show_help_licenses
+            return 0
+            ;;
+        *)
+            if [[ -z "$package" ]]; then
+                package="$1"
+            else
+                echo "Error: Unexpected argument $1" >&2
+                show_help_licenses
+                return 1
+            fi
+            ;;
         esac
         shift
     done
@@ -493,8 +508,8 @@ cmd_licenses() {
         while IFS= read -r token; do
             [[ -n "$token" ]] || continue
             gentoo_tokens+=("$token")
-        done <<< "$normalized"
-    done <<< "$raw_licenses"
+        done <<<"$normalized"
+    done <<<"$raw_licenses"
 
     echo "  ebuild-ready LICENSE:"
     echo "    $(license_simplify "${gentoo_tokens[@]}")"
@@ -512,17 +527,20 @@ cmd_find_exec() {
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-            -h|--help) show_help_find_exec; return 0 ;;
-            --all) all_arch=true ;;
-            *)
-                if [[ -z "$package" ]]; then
-                    package="$1"
-                else
-                    echo "Error: Unexpected argument $1" >&2
-                    show_help_find_exec
-                    return 1
-                fi
-                ;;
+        -h | --help)
+            show_help_find_exec
+            return 0
+            ;;
+        --all) all_arch=true ;;
+        *)
+            if [[ -z "$package" ]]; then
+                package="$1"
+            else
+                echo "Error: Unexpected argument $1" >&2
+                show_help_find_exec
+                return 1
+            fi
+            ;;
         esac
         shift
     done
@@ -535,23 +553,25 @@ cmd_find_exec() {
     local archive
     archive=$(archive_resolve "$package") || return 1
 
-    local FOREIGN_ARCH_PATTERN="/\(linux-arm[^/]*\|linux-musl-\(arm\|aarch\|ppc\|s390\|mips\|riscv\)[^/]*\|macos-[^/]*\|windows-[^/]*\|aarch[^/]*\)/"
-
     local tar_list files
     if ! tar_list=$(tar -tvf "$archive"); then
         echo "Error: failed to list contents of ${archive}" >&2
         return 1
     fi
 
-    files=$(printf '%s\n' "$tar_list" | \
-        grep '^-..x' | \
-        grep -v '\.py$' | \
-        grep -v '\.js$' | \
-        grep -v '\.dll$' | \
+    files=$(printf '%s\n' "$tar_list" |
+        grep '^-..x' |
+        grep -v '\.py$' |
+        grep -v '\.js$' |
+        grep -v '\.dll$' |
         grep -v '\.so\(\.[0-9]\+\)\{0,3\}$' || true)
 
     if [[ "$all_arch" == false ]] && [[ -n "$files" ]]; then
-        files=$(printf '%s\n' "$files" | grep -v "$FOREIGN_ARCH_PATTERN" || true)
+        local foreign_files
+        foreign_files=$(printf '%s\n' "$files" | grep -iE "$FOREIGN_ARCH_PATTERN" | grep -vE "$NATIVE_ARCH_PATTERN" | sort -u || true)
+        if [[ -n "$foreign_files" ]]; then
+            files=$(comm -23 <(printf '%s\n' "$files" | sort -u) <(printf '%s\n' "$foreign_files") || true)
+        fi
     fi
 
     local file_list
@@ -597,16 +617,19 @@ cmd_find_arch() {
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-            -h|--help) show_help_find_arch; return 0 ;;
-            *)
-                if [[ -z "$package" ]]; then
-                    package="$1"
-                else
-                    echo "Error: Unexpected argument $1" >&2
-                    show_help_find_arch
-                    return 1
-                fi
-                ;;
+        -h | --help)
+            show_help_find_arch
+            return 0
+            ;;
+        *)
+            if [[ -z "$package" ]]; then
+                package="$1"
+            else
+                echo "Error: Unexpected argument $1" >&2
+                show_help_find_arch
+                return 1
+            fi
+            ;;
         esac
         shift
     done
@@ -619,9 +642,6 @@ cmd_find_arch() {
     local archive
     archive=$(archive_resolve "$package") || return 1
 
-    local INCLUDE_PATTERN="/\(linux-arm[^/]*\|linux-musl-[^/]*\|macos-[^/]*\|windows-[^/]*\|aarch[^/]*\)/"
-    local EXCLUDE_PATTERN="/\(linux-x64\|linux-musl-x64\)/"
-
     local tar_list dirs
     if ! tar_list=$(tar -tvf "$archive"); then
         echo "Error: failed to list contents of ${archive}" >&2
@@ -630,17 +650,33 @@ cmd_find_arch() {
 
     dirs=$(printf '%s\n' "$tar_list" | grep '^d' | tr -s ' ' | cut -d' ' -f6- || true)
     if [[ -n "$dirs" ]]; then
-        dirs=$(printf '%s\n' "$dirs" | grep "$INCLUDE_PATTERN" || true)
+        dirs=$(printf '%s\n' "$dirs" | grep -iE "$FOREIGN_ARCH_PATTERN" || true)
     fi
     if [[ -n "$dirs" ]]; then
-        dirs=$(printf '%s\n' "$dirs" | grep -v "$EXCLUDE_PATTERN" || true)
+        dirs=$(printf '%s\n' "$dirs" | grep -vE "$NATIVE_ARCH_PATTERN" || true)
     fi
     if [[ -n "$dirs" ]]; then
-        dirs=$(printf '%s\n' "$dirs" | grep -o ".*$INCLUDE_PATTERN" || true)
+        dirs=$(printf '%s\n' "$dirs" | grep -oiE ".*$FOREIGN_ARCH_PATTERN" || true)
     fi
 
     local dir_list
     dir_list=$(printf '%s\n' "$dirs" | sort -u)
+
+    # Drop directories that are children of another matched directory.
+    local selected=()
+    while IFS= read -r dir_path; do
+        [[ -z "$dir_path" ]] && continue
+        local covered=false
+        local sel
+        for sel in "${selected[@]}"; do
+            if [[ "$dir_path" == "${sel%/}"/* ]]; then
+                covered=true
+                break
+            fi
+        done
+        [[ "$covered" == false ]] && selected+=("$dir_path")
+    done <<<"$dir_list"
+    dir_list=$(printf '%s\n' "${selected[@]}")
 
     echo "$dir_list" | while read -r dir_path; do
         [[ -z "$dir_path" ]] && continue
@@ -650,33 +686,24 @@ cmd_find_arch() {
             echo "$(dirname "$stripped_dir")|$(basename "$stripped_dir")"
         fi
     done | sort | (
-        local current_parent=""
-        local children=""
+        declare -A groups=()
         while IFS='|' read -r parent child; do
-            if [[ "$parent" == "$current_parent" ]]; then
-                children="$children,$child"
-            else
-                if [[ -n "$current_parent" ]]; then
-                    local target_path="./$current_parent"
-                    [[ "$current_parent" == "." ]] && target_path="."
-                    if [[ "$children" == *","* ]]; then
-                        echo "rm -rv $target_path/{$children} || die"
-                    else
-                        echo "rm -rv $target_path/$children || die"
-                    fi
-                fi
-                current_parent="$parent"
-                children="$child"
-            fi
+            groups["$parent"]+="${groups[$parent]:+,}$child"
         done
-        if [[ -n "$current_parent" ]]; then
-            local target_path="./$current_parent"
-            [[ "$current_parent" == "." ]] && target_path="."
-            if [[ "$children" == *","* ]]; then
-                echo "rm -rv $target_path/{$children} || die"
-            else
-                echo "rm -rv $target_path/$children || die"
-            fi
+
+        local parent
+        if [[ ${#groups[@]} -gt 0 ]]; then
+            mapfile -t sorted_parents < <(printf '%s\n' "${!groups[@]}" | sort)
+            for parent in "${sorted_parents[@]}"; do
+                local target_path="./$parent"
+                [[ "$parent" == "." ]] && target_path="."
+                local children="${groups[$parent]}"
+                if [[ "$children" == *","* ]]; then
+                    echo "rm -rv $target_path/{$children} || die"
+                else
+                    echo "rm -rv $target_path/$children || die"
+                fi
+            done
         fi
     )
 }
@@ -684,22 +711,28 @@ cmd_find_arch() {
 main() {
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-            --distdir)
-                if [[ -z "${2:-}" ]]; then
-                    echo "Error: --distdir requires a path" >&2
-                    return 1
-                fi
-                DISTDIR="$2"
-                shift 2
-                ;;
-            -h|--help) show_help; return 0 ;;
-            --) shift; break ;;
-            -*)
-                echo "Error: Unknown global option $1" >&2
-                show_help
+        --distdir)
+            if [[ -z "${2:-}" ]]; then
+                echo "Error: --distdir requires a path" >&2
                 return 1
-                ;;
-            *) break ;;
+            fi
+            DISTDIR="$2"
+            shift 2
+            ;;
+        -h | --help)
+            show_help
+            return 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        -*)
+            echo "Error: Unknown global option $1" >&2
+            show_help
+            return 1
+            ;;
+        *) break ;;
         esac
     done
 
@@ -712,15 +745,15 @@ main() {
     shift
 
     case "$subcommand" in
-        licenses) cmd_licenses "$@" ;;
-        find-exec) cmd_find_exec "$@" ;;
-        find-arch) cmd_find_arch "$@" ;;
-        -h|--help) show_help ;;
-        *)
-            echo "Error: Unknown command '$subcommand'" >&2
-            show_help
-            return 1
-            ;;
+    licenses) cmd_licenses "$@" ;;
+    find-exec) cmd_find_exec "$@" ;;
+    find-arch) cmd_find_arch "$@" ;;
+    -h | --help) show_help ;;
+    *)
+        echo "Error: Unknown command '$subcommand'" >&2
+        show_help
+        return 1
+        ;;
     esac
 }
 
