@@ -13,13 +13,16 @@ EGIT_REPO_URI="https://github.com/icecc/${PN}.git"
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS=""
+IUSE="doc"
 
 RDEPEND="
 	dev-qt/qtbase:6[gui,widgets]
 	sys-devel/icecream
 "
-DEPEND="${RDEPEND}
-	kde-frameworks/extra-cmake-modules"
+DEPEND="${RDEPEND}"
 BDEPEND="
 	kde-frameworks/extra-cmake-modules
-	app-text/pandoc"
+	doc? ( app-text/pandoc )
+"
+
+PATCHES=( "${FILESDIR}/${PN}-doc-pandoc-optional.patch" )

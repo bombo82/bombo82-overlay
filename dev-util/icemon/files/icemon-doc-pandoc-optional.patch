@@ -1,0 +1,20 @@
+diff --git a/doc/CMakeLists.txt b/doc/CMakeLists.txt
+index cfe3ec5..7c292cf 100644
+--- a/doc/CMakeLists.txt
++++ b/doc/CMakeLists.txt
+@@ -3,12 +3,12 @@
+ 
+ find_program(pandoc_EXECUTABLE pandoc)
+ find_package_handle_standard_args(pandoc
+-    REQUIRED_VARS
+-        pandoc_EXECUTABLE
++    DEFAULT_MSG
++    pandoc_EXECUTABLE
+ )
+ mark_as_advanced(pandoc_EXECUTABLE)
+ set_package_properties(pandoc PROPERTIES
+-    TYPE REQUIRED
++    TYPE OPTIONAL
+     DESCRIPTION "A universal document converter. Used for generating manpages."
+     URL "https://pandoc.org/"
+ )
