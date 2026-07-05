@@ -18,16 +18,13 @@ LICENSE="Canon-UFR-II GPL-2 MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="dev-libs/atk
-	dev-libs/glib:2
+DEPEND="dev-libs/glib:2
 	dev-libs/libxml2:2
-	gnome-base/libglade:2.0
 	media-libs/jbigkit
 	media-libs/libjpeg-turbo
 	net-print/cups
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
-	x11-libs/gtk+:2
 	x11-libs/gtk+:3
 	x11-libs/pango"
 RDEPEND="${DEPEND}
@@ -77,7 +74,7 @@ src_prepare() {
 	driver_op sed -i -e 's/configure.in/configure.ac/' configure.ac || die
 
 	# This should work with autoreconf
-	export "LIBS=-lgtk-x11-2.0 -lgobject-2.0 -lglib-2.0 -lgmodule-2.0"
+	export "LIBS=-lgobject-2.0 -lglib-2.0 -lgmodule-2.0"
 
 	# Other components already depend on compiled product
 	append-ldflags -L"${S}/cnrdrvcups-common-${PV}/buftool"
