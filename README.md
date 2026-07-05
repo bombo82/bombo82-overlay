@@ -45,6 +45,14 @@ They are not installed by Portage and are only useful when working on ebuilds.
   ./.tools/jetbrains.sh --distdir /custom/path find-exec clion
   ```
 
+## Known limitations
+
+- The JetBrains IDE ebuilds (`dev-util/clion`, `dev-util/datagrip`, `dev-util/dataspell`, `dev-util/goland`,
+  `dev-util/intellij-idea`, `dev-util/jetbrains-air`, `dev-util/jetbrains-gateway`, `dev-util/phpstorm`,
+  `dev-util/pycharm`, `dev-util/rider`, `dev-util/rubymine`, `dev-util/rustrover`, `dev-util/webstorm`) install prebuilt
+  upstream binaries linked against `sys-libs/glibc`. They are **not compatible with musl-based profiles** and will not
+  work on systems using `sys-libs/musl` as the C library.
+
 ## Contributing
 
 If you find an issue then please submit it on [the issue tracker](https://github.com/bombo82/bombo82-overlay/issues).
