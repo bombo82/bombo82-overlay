@@ -1,0 +1,38 @@
+#!/sbin/openrc-run
+# Copyright 2026 Gianni Bombelli <bombo82@giannibombelli.it>
+# Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
+# either version 2 of the License, or (at your option) any later version.
+
+name="tccd"
+description="TUXEDO Control Center Service"
+
+TCCD="/usr/lib64/tuxedo-control-center/resources/dist/tuxedo-control-center/data/service/tccd"
+
+supervisor="supervise-daemon"
+command="${TCCD}"
+command_args="--start"
+
+# tccd logs via console.log (TuxedoControlCenterDaemon.logLine); under
+# systemd this lands in the journal, under OpenRC we must capture it
+output_log="/var/log/tccd/output.log"
+error_log="/var/log/tccd/error.log"
+
+start_pre() {
+    checkpath -d -m 0755 /var/log/tccd
+}
+
+# tccd handles SIGTERM with a clean shutdown that flushes its settings
+# (see setupSignalHandling() in TuxedoControlCenterDaemon.ts), so the
+# default supervise-daemon stop is sufficient; do NOT call `tccd --stop`
+# here, it would race with supervise-daemon's respawn.
+# tccd's own pidfile (/var/run/tccd.pid) is an internal mechanism used by
+# `tccd --stop` and SIGHUP config reloads; supervise-daemon tracks the
+# process on its own.
+
+depend() {
+    need dbus localmount
+    # ordering only: make sure kernel modules and device nodes (hwmon,
+    # sysfs entries from tuxedo-drivers) are likely ready; non-fatal if
+    # these services do not exist
+    after modules udev
+}

@@ -1,0 +1,22 @@
+#!/bin/sh
+# Copyright 2026 Gianni Bombelli <bombo82@giannibombelli.it>
+# Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
+# either version 2 of the License, or (at your option) any later version.
+
+# elogind system-sleep hook for tccd: stop the daemon before suspend and
+# start it again after resume, so hardware settings (fan profiles, CPU
+# limits, charging thresholds) are re-applied on wake.
+# OpenRC equivalent of upstream's systemd unit tccd-sleep.service.
+#
+# Called by elogind as: <script> pre|post suspend|hibernate|hybrid-sleep|suspend-then-hibernate
+
+case "$1" in
+    pre)
+        /sbin/rc-service --ifstarted tccd stop || true
+        ;;
+    post)
+        /sbin/rc-service --ifnotstarted tccd start || true
+        ;;
+esac
+
+exit 0

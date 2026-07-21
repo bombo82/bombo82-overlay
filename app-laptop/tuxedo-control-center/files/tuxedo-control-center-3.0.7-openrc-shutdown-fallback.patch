@@ -1,0 +1,128 @@
+From: Gianni Bombelli <bombo82@giannibombelli.it>
+Subject: [PATCH] shutdownAPI: support scheduled shutdowns on non-systemd inits
+
+Issues preventing the shutdown timer from working on non-systemd init
+systems (e.g. OpenRC with sysvinit):
+
+1. set-shutdown-time awaits 'pkexec shutdown -h HH:MM', but sysvinit's
+   shutdown(8) stays in the foreground until the scheduled time
+   (unlike systemd's, which schedules via logind and exits
+   immediately). The IPC call therefore never resolves and the GUI
+   stays disabled. Run the shutdown call in the background inside a
+   root shell instead; pkexec itself must stay in the foreground
+   because it authorizes via its parent process.
+
+2. get-scheduled-shutdown reads /run/systemd/shutdown/scheduled, which
+   never exists without systemd, so a scheduled shutdown cannot be
+   displayed. Fall back to detecting the running shutdown(8) process
+   and synthesize the same USEC=... format the GUI parses.
+
+3. On non-systemd inits the shutdown(8) process appears and
+   disappears asynchronously; without waiting for it, the GUI refresh
+   following a schedule/cancel races the process state. Poll for the
+   expected presence before resolving (guarded by the standard
+   /run/systemd/system check, so systemd timing is unchanged).
+
+On systemd systems behaviour is unchanged: the shutdown call still
+exits immediately, no polling takes place, and the /run/systemd file
+takes precedence whenever it exists.
+---
+--- a/src/e-app/backendAPIs/shutdownAPI.ts
++++ b/src/e-app/backendAPIs/shutdownAPI.ts
+@@ -27,8 +27,20 @@
+     async (_event: IpcMainInvokeEvent, selectedHour: number, selectedMinute: number): Promise<string> => {
+         return new Promise<string>(
+             (resolve: (value: string | PromiseLike<string>) => void, _reject: (reason?: unknown) => void): void => {
+-                execCmd(`pkexec shutdown -h ${selectedHour}:${selectedMinute}`)
+-                    .then((results: string) => {
++                // Run the shutdown(8) call in the background as root: sysvinit's
++                // shutdown stays in the foreground until the scheduled time (unlike
++                // systemd's, which exits immediately), so awaiting it would hang the
++                // IPC call. pkexec itself must stay in the foreground, because it
++                // authorizes via its parent process (backgrounding pkexec breaks the
++                // authentication flow).
++                execCmd(`pkexec /bin/sh -c 'shutdown -h ${selectedHour}:${selectedMinute} >/dev/null 2>&1 &'`)
++                    .then(async (results: string): Promise<void> => {
++                        // On non-systemd inits the backgrounded shutdown process may
++                        // take a moment to appear; wait for it so a following
++                        // get-scheduled-shutdown does not race it.
++                        if (!fs.existsSync('/run/systemd/system')) {
++                            await waitForShutdownProcess(true);
++                        }
+                         resolve(results);
+                     })
+                     .catch((): void => {
+@@ -43,7 +55,13 @@
+     return new Promise<string>(
+         (resolve: (value: string | PromiseLike<string>) => void, _reject: (reason?: unknown) => void): void => {
+             execCmd('pkexec shutdown -c')
+-                .then((results: string): void => {
++                .then(async (results: string): Promise<void> => {
++                    // On non-systemd inits the scheduled shutdown process may take a
++                    // moment to die; wait for it so a following
++                    // get-scheduled-shutdown does not still see it.
++                    if (!fs.existsSync('/run/systemd/system')) {
++                        await waitForShutdownProcess(false);
++                    }
+                     resolve(results);
+                 })
+                 .catch((): void => {
+@@ -53,6 +71,28 @@
+     );
+ });
+ 
++/**
++ * Poll until the shutdown(8) process presence matches expectPresent (or a
++ * short timeout elapses). Only meaningful on non-systemd inits, where a
++ * scheduled shutdown exists as a running shutdown(8) process.
++ */
++async function waitForShutdownProcess(expectPresent: boolean): Promise<void> {
++    const deadline: number = Date.now() + 3000;
++    while (Date.now() < deadline) {
++        try {
++            await execCmd('pgrep -x shutdown');
++            if (expectPresent) {
++                return;
++            }
++        } catch (_err: unknown) {
++            if (!expectPresent) {
++                return;
++            }
++        }
++        await new Promise<void>((resolve: () => void): NodeJS.Timeout => setTimeout(resolve, 100));
++    }
++}
++
+ ipcMain.handle('get-scheduled-shutdown', async (_event: IpcMainInvokeEvent): Promise<string> => {
+     return new Promise<string>(
+         (resolve: (value: string | PromiseLike<string>) => void, _reject: (reason?: unknown) => void): void => {
+@@ -67,7 +107,28 @@
+                         resolve('');
+                     });
+             } else {
+-                resolve('');
++                // Fallback for non-systemd inits (e.g. OpenRC + sysvinit): a scheduled
++                // shutdown exists as a running shutdown(8) process; parse its hh:mm
++                // argument and synthesize the USEC=... format the GUI expects.
++                execCmd('pgrep -a -x shutdown')
++                    .then((results: string): void => {
++                        const match: RegExpMatchArray | null = results.match(
++                            /shutdown\s+-[a-zA-Z]*\s+(\d{1,2}):(\d{2})/,
++                        );
++                        if (match) {
++                            const shutdownDate: Date = new Date();
++                            shutdownDate.setHours(Number.parseInt(match[1], 10), Number.parseInt(match[2], 10), 0, 0);
++                            if (shutdownDate.getTime() < Date.now()) {
++                                shutdownDate.setDate(shutdownDate.getDate() + 1);
++                            }
++                            resolve(`USEC=${shutdownDate.getTime() * 1000}`);
++                        } else {
++                            resolve('');
++                        }
++                    })
++                    .catch((): void => {
++                        resolve('');
++                    });
+             }
+         },
+     );

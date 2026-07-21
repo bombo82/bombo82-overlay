@@ -1,5 +1,7 @@
 # List of maintained packages
 
+- app-laptop:
+  - app-laptop/tuxedo-control-center
 - app-misc:
   - app-misc/evemu
 - dev-java:

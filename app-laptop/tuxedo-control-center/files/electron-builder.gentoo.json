@@ -1,0 +1,32 @@
+{
+    "appId": "tuxedocontrolcenter",
+    "compression": "store",
+    "directories": {
+        "output": "./dist/packages"
+    },
+    "files": [
+        "dist/tuxedo-control-center/**/*"
+    ],
+    "extraResources": [
+        "dist/tuxedo-control-center/data/service/tccd",
+        "dist/tuxedo-control-center/data/service/TuxedoIOAPI.node",
+        "dist/tuxedo-control-center/data/CHANGELOG.md",
+        "dist/tuxedo-control-center/data/dist-data/tccd.service",
+        "dist/tuxedo-control-center/data/dist-data/tccd-sleep.service",
+        "dist/tuxedo-control-center/data/dist-data/tuxedo-control-center_256.svg",
+        "dist/tuxedo-control-center/data/dist-data/tuxedo-control-center.desktop",
+        "dist/tuxedo-control-center/data/dist-data/tuxedo-control-center-tray.desktop",
+        "dist/tuxedo-control-center/data/dist-data/com.tuxedocomputers.tccd.policy",
+        "dist/tuxedo-control-center/data/dist-data/com.tuxedocomputers.tccd.conf",
+        "dist/tuxedo-control-center/data/camera/cameractrls.py",
+        "dist/tuxedo-control-center/data/dist-data/99-webcam.rules",
+        "dist/tuxedo-control-center/data/dist-data/com.tuxedocomputers.tomte.policy",
+        "dist/tuxedo-control-center/data/camera/v4l2_kernel_names.json"
+    ],
+    "linux": {
+        "target": [
+            "dir"
+        ],
+        "category": "System"
+    }
+}
