@@ -6,17 +6,17 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="Code Smarter with Ruby on Rails IDE"
-HOMEPAGE="https://www.jetbrains.com/ruby/"
-SIMPLE_NAME="RubyMine"
+DESCRIPTION="The complete IDE crafted for Gophers"
+HOMEPAGE="https://www.jetbrains.com/go/"
+SIMPLE_NAME="GoLand"
 MY_PN="${PN}"
-SRC_URI_PATH="ruby"
-SRC_URI_PN="RubyMine"
+SRC_URI_PATH="go"
+SRC_URI_PN="${PN}"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/RubyMine-${PV}"
+S="${WORKDIR}/GoLand-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
-	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 unicode UPL-1.0 yFiles ZLIB
+	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CC-BY-4.0 CDDL-1.1 codehaus EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 redocly unicode UPL-1.0 yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -45,6 +45,7 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/go-plugin/lib/dlv/{mac,macarm,windows,windowsarm} || die
 	rm -rv ./plugins/remote-dev-server/selfcontained/X11/xkb/symbols/macintosh_vndr || die
 }
 
@@ -55,17 +56,17 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,rinspect.sh,rubymine,rubymine.sh}
+	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,goland,goland.sh,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter}
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linuxarm/dlv
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linuxarmmusl/dlv
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linux/dlv
+	fperms 755 "${dir}"/plugins/go-plugin/lib/dlv/linuxmusl/dlv
+	fperms 755 "${dir}"/plugins/jcef-plugin/jcef/{cef_server,chrome-sandbox,jcef_helper}
 	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
 	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
-	fperms 755 "${dir}"/plugins/ruby/rb/consoles/exec/{irb,pry}
-	fperms 755 "${dir}"/plugins/ruby/rb/stubsgen/gems/gems/rdoc-3.9.4/bin/{rdoc,ri}
-	fperms 755 "${dir}"/plugins/ruby/rb/terminal/{asdf_starter.sh,chruby_starter.sh,mise_starter.sh,rbenv_starter.sh,rvm_starter.sh}
-	fperms 755 "${dir}"/plugins/ruby/rb/wsl/{print_dirs.sh,sync_file.sh}
-	fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg

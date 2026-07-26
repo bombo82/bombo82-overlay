@@ -1,4 +1,4 @@
-# Copyright 2024 Gianni Bombelli <bombo82@giannibombelli.it>
+# Copyright 2019-2024 Gianni Bombelli <bombo82@giannibombelli.it>
 # Distributed under the terms of the GNU General Public License as published by the Free Software Foundation;
 # either version 2 of the License, or (at your option) any later version.
 
@@ -6,17 +6,18 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="A brand new JetBrains IDE for Rust Developers"
-HOMEPAGE="https://www.jetbrains.com/rust/"
-SIMPLE_NAME="RustRover"
+DESCRIPTION="The JavaScript and TypeScript IDE"
+HOMEPAGE="https://www.jetbrains.com/webstorm/"
+SIMPLE_NAME="WebStorm"
 MY_PN="${PN}"
-SRC_URI_PATH="rustrover"
-SRC_URI_PN="${SIMPLE_NAME}"
+SRC_URI_PATH="webstorm"
+SRC_URI_PN="WebStorm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/${SIMPLE_NAME}-${PV}"
+BUILD_NUMBER="262.8665.341"
+S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
 LICENSE="
 	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
-	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 unicode UPL-1.0 yFiles ZLIB
+	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 redocly unicode UPL-1.0 yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -29,6 +30,8 @@ RDEPEND="
 	media-libs/mesa[X(+)]
 	sys-devel/gcc
 	sys-libs/glibc
+	sys-libs/libselinux
+	sys-process/audit
 	sys-libs/libselinux
 	sys-process/audit
 	x11-libs/libX11
@@ -45,8 +48,6 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
-	rm -rv ./plugins/nativeDebug-plugin/bin/lldb/{mac,win} || die
-	rm -rv ./plugins/nativeDebug-plugin/bin/lldb/linux/aarch64 || die
 	rm -rv ./plugins/remote-dev-server/selfcontained/X11/xkb/symbols/macintosh_vndr || die
 }
 
@@ -57,24 +58,18 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-	fperms 755 "${dir}"/bin/{format.sh,fsnotifier}
-	fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver,gstack}
-	fperms 755 "${dir}"/bin/{inspect.sh,jetbrains_client.sh}
-	fperms 755 "${dir}"/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,lldb-dap,LLDBFrontend,lldb-server}
-	fperms 755 "${dir}"/bin/ltedit.sh
-	fperms 755 "${dir}"/bin/native-helper/intellij-rust-native-helper
-	fperms 755 "${dir}"/bin/{remote-dev-server,remote-dev-server.sh,restarter,rustrover,rustrover.sh}
+	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,webstorm,webstorm.sh}
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
-	fperms 755 "${dir}"/plugins/nativeDebug-plugin/bin/lldb/linux/x64/bin/LLDBFrontend
+	fperms 755 "${dir}"/plugins/jcef-plugin/jcef/{cef_server,chrome-sandbox,jcef_helper}
 	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
 	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
 	fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

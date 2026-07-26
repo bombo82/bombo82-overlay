@@ -16,7 +16,7 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 S="${WORKDIR}/JetBrains Rider-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
-	ANTLR Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 microsoft_expression-blend-sdk-4.0 microsoft_net-library microsoft_windows-api-code-pack microsoft_windows-sdk-10 MIT MPL-2.0 Ms-PL Ms-RL OFL-1.1 redocly unicode Unlicense UPL-1.0 W3C yFiles ZLIB
+	Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2.1 LGPL-3 microsoft_expression-blend-sdk-4.0 microsoft_net-library microsoft_sqlserver-data-tier-application-framework microsoft_sqlserver-system-clr-types-2022 microsoft_windows-api-code-pack microsoft_windows-sdk-10 MIT MPL-2.0 Ms-PL Ms-RL OFL-1.1 public-domain redocly unicode Unlicense UPL-1.0 W3C yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -50,13 +50,14 @@ src_prepare() {
 	rm -rv ./lib/ReSharperHost/runtimes/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64,linux-musl-x64,osx-arm64,osx-x64,win,win8-arm,win-arm64,win-x64,win-x86} || die
 	rm -rv ./lib/ReSharperHost/tools/dotnet-stack/any/arm64 || die
 	rm -rv ./lib/ReSharperHost/tools/dotnet-stack/any/shims/{osx-x64,win-x64,win-x86} || die
-	rm -rv ./plugins/cidr-debugger/bin/gdb/linux/aarch64 || die
-	rm -rv ./plugins/cidr-debugger/bin/lldb/linux/aarch64 || die
+	rm -rv ./plugins/cidr-debugger-plugin/bin/gdb/linux/aarch64 || die
+	rm -rv ./plugins/cidr-debugger-plugin/bin/lldb/linux/aarch64 || die
 	rm -rv ./plugins/dotCommon/DotFiles/arm64 || die
 	rm -rv ./plugins/dotTrace.dotMemory/DotFiles/{linux-arm64,macos-arm64,macos-x64,windows-arm64,windows-x64} || die
 	rm -rv ./plugins/dpa/DotFiles/{linux-arm64,macos-arm64,macos-x64,windows-arm64,windows-x64} || die
 	rm -rv ./plugins/remote-dev-server/selfcontained/X11/xkb/symbols/macintosh_vndr || die
-	rm -rv ./plugins/sqlproj-plugin/Rider.Sqlproj.Worker/runtimes/{win,win-arm,win-arm64,win-x64,win-x86} || die
+	rm -rv ./plugins/rider-sqlproj-plugin/Rider.Sqlproj.Worker/NetCore/runtimes/win || die
+	rm -rv ./plugins/rider-sqlproj-plugin/Rider.Sqlproj.Worker/runtimes/{win-arm64,win-x64,win-x86} || die
 	rm -rv ./tools/JbMsDriver/Backend/runtimes/{win,win-arm64,win-x64,win-x86} || die
 }
 
@@ -75,7 +76,7 @@ src_install() {
 	fperms 755 "${dir}"/bin/JBDevice.framework/Versions/A/Resources/JBDeviceService
 	fperms 755 "${dir}"/bin/{jetbrains_client.sh,libObjCHelper.dylib,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,rider,rider.sh}
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/clang-format
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/crossgen2/crossgen2
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/{dnx,dotnet}
@@ -85,16 +86,16 @@ src_install() {
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/shared/Microsoft.NETCore.App/10.0.5/createdump
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/{jb_zip_unarchiver,JetBrains.Debugger.Worker,JetBrains.ProcessEnumerator.Worker,Rider.Backend}
 	fperms 755 "${dir}"/lib/ReSharperHost/{Rider.Backend.sh,runtime-dotnet.sh}
-	fperms 755 "${dir}"/plugins/cidr-debugger/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver,gstack}
-	fperms 755 "${dir}"/plugins/cidr-debugger/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,lldb-dap,LLDBFrontend,lldb-server}
-	fperms 755 "${dir}"/plugins/cidr-debugger/bin/lldb/linux/x64/lib/xml2Conf.sh
+	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/gdb/linux/x64/bin/{addr2line,ar,as,c++filt,coffdump,dlltool,dllwrap,elfedit,gcore,gdb,gdb-add-index,gdbserver,gp-archive,gp-collect-app,gp-display-html,gp-display-src,gp-display-text,gprof,gprofng,gprofng-archive,gprofng-collect-app,gprofng-display-html,gprofng-display-src,gprofng-display-text,gstack,ld,ld.bfd,nm,objcopy,objdump,ranlib,readelf,size,srconv,strings,strip,sysdump}
+	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/gdb/linux/x64/x86_64-pc-linux-gnu/bin/{ar,as,dlltool,ld,ld.bfd,nm,objcopy,objdump,ranlib,readelf,strip}
+	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,lldb-dap,LLDBFrontend,lldb-server}
+	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/lldb/linux/x64/lib/xml2Conf.sh
 	fperms 755 "${dir}"/plugins/dotCommon/DotFiles/linux-x64/JetBrains.Profiler.PdbServer
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/jcef-plugin/jcef/{cef_server,chrome-sandbox,jcef_helper}
 	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
 	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
 	fperms 755 "${dir}"/plugins/rider-plugins-renderdoc/runtime/linux-x86_64/RenderDocHost
-	fperms 755 "${dir}"/plugins/sqlproj-plugin/Rider.Sqlproj.Worker/BuildDirectory/Microsoft.Data.Tools.Schema.SqlTasks.targets
-	fperms 755 "${dir}"/plugins/sqlproj-plugin/Rider.Sqlproj.Worker/Rider.Sqlproj.Worker
 	fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
 	fperms 755 "${dir}"/tools/profiler/{dotMemory.sh,dotTrace.sh}
 

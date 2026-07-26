@@ -42,6 +42,7 @@ RDEPEND="
 src_prepare() {
 	default
 
+	rm -rv ./bin/cmake/linux/x64/share/cmake-4.3/Templates/Windows || die
 	rm -rv ./lib/async-profiler/aarch64 || die
 	rm -rv ./plugins/clion-radler/dotCommon/DotFiles/arm64 || die
 	rm -rv ./plugins/clion-radler/DotFiles/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64,linux-musl-x64,macos-arm64,macos-x64,windows-arm64,windows-x64,windows-x86} || die
@@ -52,6 +53,7 @@ src_prepare() {
 	rm -rv ./plugins/clion-radler/dotTrace.dotMemory/DotFiles/{linux-arm64,macos-arm64,macos-x64,windows-arm64,windows-x64} || die
 	rm -rv ./plugins/nativeDebug-plugin/bin/lldb/{mac,win} || die
 	rm -rv ./plugins/nativeDebug-plugin/bin/lldb/linux/aarch64 || die
+	rm -rv ./plugins/remote-dev-server/selfcontained/X11/xkb/symbols/macintosh_vndr || die
 	rm -rv ./plugins/serial-monitor/bin/{OSX,Windows} || die
 	rm -rv ./plugins/serial-monitor/bin/Linux/armv8_64 || die
 }
@@ -66,12 +68,13 @@ src_install() {
 	fperms 755 "${dir}"/bin/clang/linux/x64/bin/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
 	fperms 755 "${dir}"/bin/{clion,clion.sh}
 	fperms 755 "${dir}"/bin/cmake/linux/x64/bin/{cmake,cpack,ctest}
-	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/Compiler/XL-Fortran/cpp
-	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/Internal/CPack/CPack.STGZ_Header.sh.in
-	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/Platform/AIX/ExportImportList
-	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.2/Modules/{Squish4RunTestCase.sh,SquishRunTestCase.sh}
+	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.3/Modules/Compiler/XL-Fortran/cpp
+	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.3/Modules/Internal/CPack/CPack.STGZ_Header.sh.in
+	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.3/Modules/Platform/AIX/ExportImportList
+	fperms 755 "${dir}"/bin/cmake/linux/x64/share/cmake-4.3/Modules/{Squish4RunTestCase.sh,SquishRunTestCase.sh}
 	fperms 755 "${dir}"/bin/{format.sh,fsnotifier}
-	fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{gcore,gdb,gdb-add-index,gdbserver,gstack}
+	fperms 755 "${dir}"/bin/gdb/linux/x64/bin/{addr2line,ar,as,c++filt,coffdump,dlltool,dllwrap,elfedit,gcore,gdb,gdb-add-index,gdbserver,gprof,gprofng,gprofng-archive,gprofng-collect-app,gprofng-display-html,gprofng-display-src,gprofng-display-text,gstack,ld,ld.bfd,nm,objcopy,objdump,ranlib,readelf,size,srconv,strings,strip,sysdump}
+	fperms 755 "${dir}"/bin/gdb/linux/x64/x86_64-pc-linux-gnu/bin/{ar,as,dlltool,ld,ld.bfd,nm,objcopy,objdump,ranlib,readelf,strip}
 	fperms 755 "${dir}"/bin/{inspect.sh,jetbrains_client.sh}
 	fperms 755 "${dir}"/bin/lldb/linux/x64/bin/{lldb,lldb-argdumper,lldb-dap,LLDBFrontend,lldb-server}
 	fperms 755 "${dir}"/bin/ltedit.sh
@@ -79,7 +82,7 @@ src_install() {
 	fperms 755 "${dir}"/bin/ninja/linux/x64/ninja
 	fperms 755 "${dir}"/bin/{remote-dev-server,remote-dev-server.sh,restarter}
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
-	fperms 755 "${dir}"/jbr/lib/{cef_server,chrome-sandbox,jcef_helper,jexec,jspawnhelper}
+	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/clang-format
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/crossgen2/crossgen2
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/{dnx,dotnet}
@@ -88,6 +91,7 @@ src_install() {
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/{Rider.Backend.sh,runtime-dotnet.sh}
 	fperms 755 "${dir}"/plugins/clion-radler/tools/profiler/{dotMemory.sh,dotTrace.sh}
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
+	fperms 755 "${dir}"/plugins/jcef-plugin/jcef/{cef_server,chrome-sandbox,jcef_helper}
 	fperms 755 "${dir}"/plugins/nativeDebug-plugin/bin/lldb/linux/x64/bin/LLDBFrontend
 	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
 	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}

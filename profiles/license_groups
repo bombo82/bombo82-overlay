@@ -1,3 +1,12 @@
 # License agreements that try to take away your rights. These are more
 # restrictive than "all-rights-reserved" or require explicit approval.
-EULA anthropic-claude-code jetbrains_business-4.2 jetbrains_classroom-4.3 jetbrains_educational-4.2 jetbrains_individual-4.4 jetbrains_opensource-4.3 jetbrains_team_tools-2.3 microsoft_expression-blend-sdk-4.0 microsoft_net-library microsoft_windows-api-code-pack microsoft_windows-sdk-10 redocly yFiles
+EULA anthropic-claude-code jetbrains_business-4.2 jetbrains_classroom-4.3 jetbrains_educational-4.2 jetbrains_individual-4.4 jetbrains_opensource-4.3 jetbrains_team_tools-2.3 microsoft_expression-blend-sdk-4.0 microsoft_net-library microsoft_sqlserver-data-tier-application-framework microsoft_sqlserver-system-clr-types-2022 microsoft_windows-api-code-pack microsoft_windows-sdk-10 redocly yFiles
+
+# Misc licenses that are probably free software, i.e. follow the
+# Free Software Definition at https://www.gnu.org/philosophy/free-sw.html
+# but are not approved by either FSF or OSI. Preferably on the long
+# term these should be cleared up and moved to other sets.
+# Licenses in this list should NOT appear directly or indirectly in
+# @FSF-APPROVED or @OSI-APPROVED.
+# Note: Licenses for fonts should be included in @MISC-FREE-DOCS.
+MISC-FREE codehaus
