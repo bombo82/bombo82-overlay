@@ -4,7 +4,7 @@
 
 EAPI=8
 PYTHON_COMPAT=( python3_{10..14} )
-OPENVPN3_CORE_TAG="release/3.11.6"
+OPENVPN3_CORE_TAG="release/3.11.7"
 ASIO_TAG="asio-1-36-0"
 
 inherit meson python-single-r1
@@ -26,7 +26,6 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 PATCHES=(
 	"${FILESDIR}/${P}-use-system-fmt.patch"
 	"${FILESDIR}/${P}-use-system-gtest.patch"
-	"${FILESDIR}/${P}-optional-systemd.patch"
 	"${FILESDIR}/${P}-fix-dco-disabled-build.patch"
 )
 
