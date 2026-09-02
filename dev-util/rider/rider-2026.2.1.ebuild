@@ -16,7 +16,11 @@ SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.
 S="${WORKDIR}/JetBrains Rider-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
-	Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2.1 LGPL-3 microsoft_expression-blend-sdk-4.0 microsoft_net-library microsoft_sqlserver-data-tier-application-framework microsoft_sqlserver-system-clr-types-2022 microsoft_windows-api-code-pack microsoft_windows-sdk-10 MIT MPL-2.0 Ms-PL Ms-RL OFL-1.1 public-domain redocly unicode Unlicense UPL-1.0 W3C yFiles ZLIB
+	Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0
+	EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2.1 LGPL-3 microsoft_expression-blend-sdk-4.0
+	microsoft_net-library microsoft_sqlserver-data-tier-application-framework microsoft_sqlserver-system-clr-types-2022
+	microsoft_windows-api-code-pack microsoft_windows-sdk-10 MIT MPL-2.0 Ms-PL Ms-RL OFL-1.1 public-domain redocly unicode
+	Unlicense UPL-1.0 W3C yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -46,6 +50,8 @@ src_prepare() {
 
 	rm -rv ./lib/async-profiler/aarch64 || die
 	rm -rv ./lib/ReSharperHost/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64,linux-musl-x64,macos-arm64,macos-x64,windows-arm64,windows-x64,windows-x86} || die
+	rm -rv ./lib/ReSharperHost/ExternalAnnotations/WinRT || die
+	rm -rv ./lib/ReSharperHost/ExternalAnnotations/.NETFramework/{WindowsBase,WindowsFormsIntegration} || die
 	rm -rv ./lib/ReSharperHost/NetCore/runtimes/win || die
 	rm -rv ./lib/ReSharperHost/runtimes/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64,linux-musl-x64,osx-arm64,osx-x64,win,win8-arm,win-arm64,win-x64,win-x86} || die
 	rm -rv ./lib/ReSharperHost/tools/dotnet-stack/any/arm64 || die
@@ -80,10 +86,11 @@ src_install() {
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/clang-format
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/crossgen2/crossgen2
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/{dnx,dotnet}
-	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/packs/Microsoft.NETCore.App.Host.linux-x64/10.0.5/runtimes/linux-x64/native/{apphost,singlefilehost}
-	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/sdk/10.0.201/AppHostTemplate/apphost
-	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/sdk/10.0.201/Roslyn/bincore/{csc,vbc,VBCSCompiler}
-	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/shared/Microsoft.NETCore.App/10.0.5/createdump
+	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/packs/Microsoft.NETCore.App.Host.linux-x64/10.0.9/runtimes/linux-x64/native/{apphost,singlefilehost}
+	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/sdk/10.0.301/AppHostTemplate/apphost
+	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/sdk/10.0.301/MSBuild
+	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/sdk/10.0.301/Roslyn/bincore/{csc,vbc,VBCSCompiler}
+	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/dotnet/shared/Microsoft.NETCore.App/10.0.9/createdump
 	fperms 755 "${dir}"/lib/ReSharperHost/linux-x64/{jb_zip_unarchiver,JetBrains.Debugger.Worker,JetBrains.ProcessEnumerator.Worker,Rider.Backend}
 	fperms 755 "${dir}"/lib/ReSharperHost/{Rider.Backend.sh,runtime-dotnet.sh}
 	fperms 755 "${dir}"/plugins/cidr-debugger-plugin/bin/gdb/linux/x64/bin/{addr2line,ar,as,c++filt,coffdump,dlltool,dllwrap,elfedit,gcore,gdb,gdb-add-index,gdbserver,gp-archive,gp-collect-app,gp-display-html,gp-display-src,gp-display-text,gprof,gprofng,gprofng-archive,gprofng-collect-app,gprofng-display-html,gprofng-display-src,gprofng-display-text,gstack,ld,ld.bfd,nm,objcopy,objdump,ranlib,readelf,size,srconv,strings,strip,sysdump}

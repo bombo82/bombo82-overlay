@@ -14,7 +14,7 @@ SRC_URI_PN="CLion"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="
 	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
-	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 gcc-runtime-library-exception-3.1 GPL-2-with-classpath-exception GPL-3 ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 openssl PSF-2 unicode UPL-1.0 yFiles ZLIB
+	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 FSFAP gcc-runtime-library-exception-3.1 GPL-2-with-classpath-exception GPL-3 ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 openssl PSF-2 unicode UPL-1.0 yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -43,9 +43,13 @@ src_prepare() {
 	default
 
 	rm -rv ./bin/cmake/linux/x64/share/cmake-4.3/Templates/Windows || die
+	rm -rv ./docs/clangTidyDoc/darwin || die
 	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/cidr-clangd/docs/clangTidyDoc/darwin || die
 	rm -rv ./plugins/clion-radler/dotCommon/DotFiles/arm64 || die
 	rm -rv ./plugins/clion-radler/DotFiles/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64,linux-musl-x64,macos-arm64,macos-x64,windows-arm64,windows-x64,windows-x86} || die
+	rm -rv ./plugins/clion-radler/DotFiles/ExternalAnnotations/WinRT || die
+	rm -rv ./plugins/clion-radler/DotFiles/ExternalAnnotations/.NETFramework/{WindowsBase,WindowsFormsIntegration} || die
 	rm -rv ./plugins/clion-radler/DotFiles/NetCore/runtimes/win || die
 	rm -rv ./plugins/clion-radler/DotFiles/runtimes/{linux-arm,linux-arm64,linux-musl-arm,linux-musl-arm64,linux-musl-x64,osx-arm64,osx-x64,win,win8-arm,win-arm64,win-x64,win-x86} || die
 	rm -rv ./plugins/clion-radler/DotFiles/tools/dotnet-stack/any/arm64 || die
@@ -64,7 +68,6 @@ src_install() {
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}"
-
 	fperms 755 "${dir}"/bin/clang/linux/x64/bin/{clangd,clang-tidy,clazy-standalone,llvm-symbolizer}
 	fperms 755 "${dir}"/bin/{clion,clion.sh}
 	fperms 755 "${dir}"/bin/cmake/linux/x64/bin/{cmake,cpack,ctest}
@@ -86,13 +89,14 @@ src_install() {
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/clang-format
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/crossgen2/crossgen2
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/{dnx,dotnet}
-	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/shared/Microsoft.NETCore.App/10.0.5/createdump
+	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/dotnet/shared/Microsoft.NETCore.App/10.0.9/createdump
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/linux-x64/{jb_zip_unarchiver,JetBrains.Debugger.Worker,JetBrains.ProcessEnumerator.Worker,Rider.Backend}
 	fperms 755 "${dir}"/plugins/clion-radler/DotFiles/{Rider.Backend.sh,runtime-dotnet.sh}
 	fperms 755 "${dir}"/plugins/clion-radler/tools/profiler/{dotMemory.sh,dotTrace.sh}
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 	fperms 755 "${dir}"/plugins/jcef-plugin/jcef/{cef_server,chrome-sandbox,jcef_helper}
 	fperms 755 "${dir}"/plugins/nativeDebug-plugin/bin/lldb/linux/x64/bin/LLDBFrontend
+	fperms 755 "${dir}"/plugins/python-ce/helpers/tool_version_probe.sh
 	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
 	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
 	fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server

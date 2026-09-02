@@ -12,12 +12,12 @@ SIMPLE_NAME="JetBrains Gateway"
 MY_PN="gateway"
 SRC_URI_PATH="idea/gateway"
 SRC_URI_PN="JetBrainsGateway"
-BUILD_NUMBER="262.8665.250"
+BUILD_NUMBER="262.9437.193"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${SRC_URI_PN}-${BUILD_NUMBER}"
 LICENSE="
 	jetbrains_team_tools-2.3
-	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception JDOM LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 unicode ZLIB
+	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception JDOM LGPL-2.1 MIT MPL-2.0 OFL-1.1 unicode ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"

@@ -6,18 +6,19 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The Lightning-Smart PHP IDE"
-HOMEPAGE="https://www.jetbrains.com/go/"
-SIMPLE_NAME="PhpStorm"
-MY_PN="${PN}"
-SRC_URI_PATH="webide"
-SRC_URI_PN="PhpStorm"
+DESCRIPTION="The Leading Java and Kotlin IDE"
+HOMEPAGE="https://www.jetbrains.com/idea/"
+SIMPLE_NAME="IntelliJ IDEA"
+MY_PN="idea"
+SRC_URI_PATH="idea"
+SRC_URI_PN="idea"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-BUILD_NUMBER="262.8665.325"
-S="${WORKDIR}/PhpStorm-${BUILD_NUMBER}"
+BUILD_NUMBER="262.9437.185"
+S="${WORKDIR}/idea-IU-${BUILD_NUMBER}"
 LICENSE="
 	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
-	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 redocly unicode UPL-1.0 yFiles ZLIB
+	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC
+	JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 redocly unicode UPL-1.0 yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -46,6 +47,7 @@ src_prepare() {
 	default
 
 	rm -rv ./lib/async-profiler/aarch64 || die
+	rm -rv ./plugins/maven-plugin/lib/maven3/lib/jansi-native/Windows || die
 	rm -rv ./plugins/remote-dev-server/selfcontained/X11/xkb/symbols/macintosh_vndr || die
 }
 
@@ -56,18 +58,21 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,inspect.sh,jetbrains_client.sh,ltedit.sh,phpstorm,phpstorm.sh,remote-dev-server,remote-dev-server.sh,restarter}
+	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,idea.sh,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter}
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
+	fperms 755 "${dir}"/plugins/code-provenance/lib/chatter-native/linux-x86_64/chatter
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 	fperms 755 "${dir}"/plugins/jcef-plugin/jcef/{cef_server,chrome-sandbox,jcef_helper}
+	fperms 755 "${dir}"/plugins/Kotlin/kotlinc/bin/{kotlin,kotlinc,kotlinc-js,kotlinc-jvm}
+	fperms 755 "${dir}"/plugins/maven-plugin/lib/maven3/bin/{mvn,mvnDebug,mvnyjp}
 	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
 	fperms 755 "${dir}"/plugins/remote-dev-server/selfcontained/bin/{xkbcomp,Xvfb}
 	fperms 755 "${dir}"/plugins/tailwindcss/server/bin/tailwindcss-language-server
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/

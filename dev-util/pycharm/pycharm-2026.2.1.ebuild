@@ -6,18 +6,17 @@ EAPI=8
 
 inherit desktop wrapper
 
-DESCRIPTION="The JavaScript and TypeScript IDE"
-HOMEPAGE="https://www.jetbrains.com/webstorm/"
-SIMPLE_NAME="WebStorm"
-MY_PN="${PN}"
-SRC_URI_PATH="webstorm"
-SRC_URI_PN="WebStorm"
+DESCRIPTION="The Python IDE for Professional Developers"
+HOMEPAGE="https://www.jetbrains.com/pycharm/"
+SIMPLE_NAME="PyCharm"
+MY_PN="pycharm"
+SRC_URI_PATH="python"
+SRC_URI_PN="pycharm"
 SRC_URI="https://download.jetbrains.com/${SRC_URI_PATH}/${SRC_URI_PN}-${PV}.tar.gz -> ${P}.tar.gz"
-BUILD_NUMBER="262.8665.341"
-S="${WORKDIR}/WebStorm-${BUILD_NUMBER}"
+S="${WORKDIR}/pycharm-${PV}"
 LICENSE="
 	|| ( jetbrains_business-4.2 jetbrains_individual-4.4 jetbrains_educational-4.2 jetbrains_classroom-4.3 jetbrains_opensource-4.3 )
-	Apache-2.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CDDL-1.1 codehaus CPL-1.0 EPL-1.0 EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-2.0 OFL-1.1 redocly unicode UPL-1.0 yFiles ZLIB
+	0BSD Apache-2.0 BlueOak-1.0.0 BSD BSD-2 CC0-1.0 CC-BY-2.5 CC-BY-3.0 CC-BY-4.0 CDDL-1.1 codehaus CPL-1.0 EPL-1.0	EPL-2.0 GPL-2-with-classpath-exception ISC JDOM JSON LGPL-2.1 LGPL-3 MIT MIT-0 MPL-2.0 OFL-1.1 PYTHON redocly unicode Unlicense UPL-1.0 yFiles ZLIB
 "
 SLOT="0"
 VER="$(ver_cut 1-2)"
@@ -30,8 +29,6 @@ RDEPEND="
 	media-libs/mesa[X(+)]
 	sys-devel/gcc
 	sys-libs/glibc
-	sys-libs/libselinux
-	sys-process/audit
 	sys-libs/libselinux
 	sys-process/audit
 	x11-libs/libX11
@@ -58,9 +55,10 @@ src_install() {
 	doins -r *
 	fperms 755 "${dir}"/bin/"${MY_PN}"
 
-	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,inspect.sh,jetbrains_client.sh,ltedit.sh,remote-dev-server,remote-dev-server.sh,restarter,webstorm,webstorm.sh}
+	fperms 755 "${dir}"/bin/{format.sh,fsnotifier,inspect.sh,jetbrains_client.sh,ltedit.sh,pycharm,pycharm.sh,remote-dev-server,remote-dev-server.sh,restarter}
 	fperms 755 "${dir}"/jbr/bin/{java,javac,javadoc,jcmd,jdb,jfr,jhsdb,jinfo,jmap,jps,jrunscript,jstack,jstat,jwebserver,keytool,rmiregistry,serialver}
 	fperms 755 "${dir}"/jbr/lib/{jexec,jspawnhelper}
+	fperms 755 "${dir}"/plugins/code-provenance/lib/chatter-native/linux-x86_64/chatter
 	fperms 755 "${dir}"/plugins/gateway-plugin/lib/remote-dev-workers/remote-dev-worker-linux-amd64
 	fperms 755 "${dir}"/plugins/jcef-plugin/jcef/{cef_server,chrome-sandbox,jcef_helper}
 	fperms 755 "${dir}"/plugins/remote-dev-server/bin/launcher.sh
@@ -69,7 +67,7 @@ src_install() {
 
 	make_wrapper "${PN}" "${dir}"/bin/"${MY_PN}"
 	newicon bin/"${MY_PN}".svg "${PN}".svg
-	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;WebDevelopment;"
+	make_desktop_entry "${PN}" "${SIMPLE_NAME} ${VER}" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /usr/lib/sysctl.d/
